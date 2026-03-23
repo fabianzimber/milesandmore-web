@@ -217,7 +217,7 @@ export default function FlightDashboard({
         </header>
 
         <main className="page-frame relative z-10 flex-1 flex flex-col min-h-0 pb-6 lg:pb-8">
-          <div className="z-30 mb-4 sm:mb-6 rounded-[1.75rem] bg-white/10 p-2 backdrop-blur-xl shrink-0 -mt-8 sm:-mt-10 max-w-3xl mx-auto w-full">
+          <div className="z-30 mb-4 sm:mb-6 rounded-[1.75rem] bg-white/10 p-2 backdrop-blur-xl shrink-0 mt-8 sm:mt-10 max-w-3xl mx-auto w-full">
             <ResponsiveTabRail items={tabs} active={activeTab} onChange={setActiveTab} tone="dark" />
           </div>
 

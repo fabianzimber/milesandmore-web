@@ -115,7 +115,7 @@ export default function CommandsPageClient({ initialCommands }: { initialCommand
         </header>
 
         <main className="page-frame relative z-10 flex-1 flex flex-col min-h-0 pb-6 lg:pb-8 text-sas-midnight">
-          <MotionSection as="div" className="z-30 mb-4 sm:mb-6 rounded-[1.75rem] bg-white/10 p-2 backdrop-blur-xl shrink-0 -mt-8 sm:-mt-10 max-w-3xl mx-auto w-full">
+          <MotionSection as="div" className="z-30 mb-4 sm:mb-6 rounded-[1.75rem] bg-white/10 p-2 backdrop-blur-xl shrink-0 mt-8 sm:mt-10 max-w-3xl mx-auto w-full">
             <ResponsiveTabRail items={categories} active={filter} onChange={setFilter} tone="dark" />
           </MotionSection>
 
