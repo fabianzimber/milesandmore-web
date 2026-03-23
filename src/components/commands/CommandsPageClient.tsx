@@ -88,7 +88,9 @@ export default function CommandsPageClient({ initialCommands }: { initialCommand
           <div className="page-frame relative">
             <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
               <div className="flex items-center gap-3 mb-4 sm:mb-6">
-                <Image src="/logo.svg" alt="Miles & More Logo" width={36} height={36} className="rounded-lg" />
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-white overflow-hidden p-1">
+                  <Image src="/logo.svg" alt="Miles & More Logo" width={36} height={36} className="w-full h-full object-contain" />
+                </div>
                 <p className="eyebrow">Command Atlas</p>
               </div>
               <div className="mt-4 sm:mt-6 lg:mt-8 grid gap-6 lg:gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">

@@ -87,7 +87,7 @@ export default function AdminDashboard({
                   transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
                   className="hidden sm:block mt-1 lg:mt-2"
                 >
-                  <div className="flex h-12 w-12 sm:h-14 sm:w-14 lg:h-16 lg:w-16 items-center justify-center rounded-2xl bg-sas-midnight shadow-[0_18px_40px_rgba(5,11,25,0.18)] overflow-hidden p-1.5">
+                  <div className="flex h-12 w-12 sm:h-14 sm:w-14 lg:h-16 lg:w-16 items-center justify-center rounded-2xl bg-white shadow-[0_18px_40px_rgba(5,11,25,0.18)] overflow-hidden p-1.5">
                     <Image src="/logo.svg" alt="Miles & More" width={56} height={56} className="w-full h-full object-contain" />
                   </div>
                 </motion.div>
