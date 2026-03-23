@@ -11,7 +11,7 @@ import PageShell from "@/components/layout/PageShell";
 import ResponsiveTabRail from "@/components/layout/ResponsiveTabRail";
 import { changeSeat, getParticipant, getParticipants } from "@/lib/botApi";
 import type { Flight, Participant, BoardingPassData, PositionUpdate } from "@/lib/types";
-import { Armchair, Map, Plane, Ticket, Trophy, Wifi, WifiOff } from "lucide-react";
+import { Armchair, Map, Plane, Ticket, Trophy, Wifi, WifiOff, X } from "lucide-react";
 
 type Tab = "pass" | "seats" | "map" | "stats";
 
@@ -103,32 +103,43 @@ export default function FlightDashboard({
       await changeSeat(currentParticipant.participant_hash, newSeat);
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : "Sitzwechsel fehlgeschlagen");
-      const participantData = await getParticipant(hash);
-      setCurrentParticipant(participantData as Participant);
-      if (flight?.id) {
-        const participantList = await getParticipants(flight.id);
-        setParticipants(participantList as Participant[]);
+      try {
+        const participantData = await getParticipant(hash);
+        setCurrentParticipant(participantData as Participant);
+        if (flight?.id) {
+          const participantList = await getParticipants(flight.id);
+          setParticipants(participantList as Participant[]);
+        }
+      } catch {
+        // recovery fetch failed – state will sync on next poll
       }
     }
   };
 
-  if (error || !flight || !currentParticipant) {
+  if (!flight || !currentParticipant) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-aurora">
         <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="text-center glass rounded-2xl p-12">
           <Plane size={48} className="mx-auto text-sas-gray-300 mb-4" />
           <h1 className="text-xl font-bold text-sas-midnight mb-2">Nicht gefunden</h1>
-          <p className="text-sas-gray-400 text-sm">{error || "Dieser Boarding Pass existiert nicht."}</p>
+          <p className="text-sas-gray-400 text-sm">Dieser Boarding Pass existiert nicht.</p>
         </motion.div>
       </div>
     );
   }
 
-  const boardingPassBase: BoardingPassData = currentParticipant.boarding_pass_data
-    ? typeof currentParticipant.boarding_pass_data === "string"
-      ? JSON.parse(currentParticipant.boarding_pass_data)
-      : currentParticipant.boarding_pass_data
-    : {
+  let parsedPassData: BoardingPassData | null = null;
+  if (currentParticipant.boarding_pass_data) {
+    try {
+      parsedPassData =
+        typeof currentParticipant.boarding_pass_data === "string"
+          ? JSON.parse(currentParticipant.boarding_pass_data)
+          : currentParticipant.boarding_pass_data;
+    } catch {
+      // malformed JSON – fall through to default
+    }
+  }
+  const boardingPassBase: BoardingPassData = parsedPassData || {
         passenger_name: currentParticipant.user_name.toUpperCase(),
         flight_number: flight.flight_number || `SK${flight.id}`,
         seat: currentParticipant.seat || "TBD",
@@ -225,6 +236,21 @@ export default function FlightDashboard({
         </header>
 
         <main className="page-frame relative z-10 pb-6 sm:pb-8 lg:pb-10">
+          <AnimatePresence>
+            {error && (
+              <motion.div
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                className="mb-4 flex items-center justify-between gap-3 rounded-xl bg-red-500/15 border border-red-400/20 px-4 py-3 text-sm text-red-300"
+              >
+                <span>{error}</span>
+                <button onClick={() => setError(null)} className="shrink-0 p-0.5 hover:bg-white/10 rounded">
+                  <X size={14} />
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
           <div className="z-30 mb-4 sm:mb-6 lg:mb-8 rounded-[1.75rem] bg-white/10 p-2 sm:p-3 backdrop-blur-xl shrink-0 -mt-8 sm:-mt-10 lg:-mt-12 max-w-3xl mx-auto w-full">
             <ResponsiveTabRail items={tabs} active={activeTab} onChange={setActiveTab} tone="dark" />
           </div>

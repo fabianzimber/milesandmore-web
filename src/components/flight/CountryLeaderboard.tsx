@@ -15,6 +15,7 @@ export default function CountryLeaderboard({ userId }: { userId: string }) {
   const [leaderboard, setLeaderboard] = useState<
     { user_name: string; total_miles: number; countries_count: number }[]
   >([]);
+  const [fetchError, setFetchError] = useState<string | null>(null);
 
   useEffect(() => {
     (async () => {
@@ -22,12 +23,20 @@ export default function CountryLeaderboard({ userId }: { userId: string }) {
         const [stats, board] = await Promise.all([getUserStats(userId), getCountryLeaderboard()]);
         setUserStats(stats as typeof userStats);
         setLeaderboard(board as typeof leaderboard);
-      } catch {}
+        setFetchError(null);
+      } catch (err) {
+        setFetchError(err instanceof Error ? err.message : "Statistiken konnten nicht geladen werden");
+      }
     })();
   }, [userId]);
 
   return (
     <div className="space-y-6">
+      {fetchError && (
+        <SASCard variant="glass">
+          <p className="text-center text-sm text-red-400">{fetchError}</p>
+        </SASCard>
+      )}
       {/* Stats */}
       {userStats && (
         <SASCard variant="glass">

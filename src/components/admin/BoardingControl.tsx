@@ -46,15 +46,15 @@ export default function BoardingControl({
       try {
         const data = (await getChannels()) as ManagedChannel[];
         setChannels(data);
-        if (data.length > 0 && !selectedChannel) {
-          setSelectedChannel(data[0].channel_name);
+        if (data.length > 0) {
+          setSelectedChannel((prev: string) => prev || data[0].channel_name);
         }
       } catch {
         // ignore
       }
     };
     fetchChannels();
-  }, [selectedChannel]);
+  }, []);
 
   // Poll flight status independently to stay in sync with backend changes
   // (e.g. local scheduler auto-closing boarding, or status changes from chat commands)
@@ -174,7 +174,7 @@ export default function BoardingControl({
             break;
         }
       } catch (err) {
-        console.error(err);
+        setError(err instanceof Error ? err.message : "Aktion fehlgeschlagen");
       } finally {
         setActionLoading(null);
       }
@@ -335,6 +335,10 @@ export default function BoardingControl({
           )}
         </div>
       </div>
+
+      {error && (
+        <p className="text-sm font-medium text-red-600">{error}</p>
+      )}
 
       {/* Boarding Overview */}
       <BoardingOverview flight={currentFlight} />
