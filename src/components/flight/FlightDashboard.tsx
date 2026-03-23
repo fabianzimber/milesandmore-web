@@ -221,7 +221,7 @@ export default function FlightDashboard({
             <ResponsiveTabRail items={tabs} active={activeTab} onChange={setActiveTab} tone="dark" />
           </div>
 
-          <div className="flex-1 min-h-0 overflow-y-auto custom-scrollbar relative px-1 sm:px-2 lg:px-4 pb-4 sm:pb-6 lg:pb-8">
+          <div className="flex-1 min-h-0 relative px-1 sm:px-2 lg:px-4 pb-4 sm:pb-6 lg:pb-8">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeTab}

@@ -77,29 +77,32 @@ export default function SeatMap({ flight, participants, currentUser, onSeatChang
 
         <div className="relative mx-auto max-w-3xl overflow-x-auto pb-2">
           <div className="relative mx-auto min-w-[18rem] max-w-sm sm:min-w-[21rem] sm:max-w-md">
-            <div className="relative mx-auto w-40">
-            <svg viewBox="0 0 160 60" className="w-full">
-              <path d="M 20 60 Q 20 5, 80 0 Q 140 5, 140 60" fill="#eef0f4" stroke="#dde1e8" strokeWidth="1.5" />
-              <circle cx="65" cy="30" r="3" fill="#c0c7d4" />
-              <circle cx="80" cy="26" r="3" fill="#c0c7d4" />
-              <circle cx="95" cy="30" r="3" fill="#c0c7d4" />
-              <text x="80" y="48" textAnchor="middle" className="text-[8px] fill-sas-gray-400 font-semibold" style={{ fontSize: 8 }}>COCKPIT</text>
+            <div className="relative mx-auto w-56 sm:w-64">
+            <svg viewBox="0 0 200 90" className="w-full">
+              <path d="M 20 90 Q 20 8, 100 0 Q 180 8, 180 90" fill="#eef0f4" stroke="#dde1e8" strokeWidth="1.5" />
+              <line x1="60" y1="52" x2="140" y2="52" stroke="#dde1e8" strokeWidth="1" />
+              <circle cx="78" cy="38" r="3.5" fill="#c0c7d4" />
+              <circle cx="100" cy="33" r="3.5" fill="#c0c7d4" />
+              <circle cx="122" cy="38" r="3.5" fill="#c0c7d4" />
+              <rect x="70" y="58" width="24" height="14" rx="3" fill="#dde1e8" />
+              <rect x="106" y="58" width="24" height="14" rx="3" fill="#dde1e8" />
+              <text x="100" y="82" textAnchor="middle" className="fill-sas-gray-400 font-semibold" style={{ fontSize: 9 }}>COCKPIT</text>
             </svg>
             </div>
 
             <div className="relative mx-2 overflow-hidden rounded-[1.5rem] border border-sas-gray-200 bg-gradient-to-b from-sas-gray-50 to-white">
-              <div className="absolute left-0 top-0 bottom-0 flex w-3 flex-col items-center justify-start gap-3 pt-10">
+              <div className="absolute left-0.5 top-0 bottom-0 flex w-2 flex-col items-center justify-start gap-3 pt-10">
               {Array.from({ length: Math.min(totalRows, 30) }, (_, i) => (
-                <div key={`wl${i}`} className="w-1.5 h-3 rounded-full bg-sas-blue/10 border border-sas-blue/15" />
+                <div key={`wl${i}`} className="w-1 h-2.5 rounded-full bg-sas-blue/10 border border-sas-blue/15" />
               ))}
             </div>
-            <div className="absolute right-0 top-0 bottom-0 flex w-3 flex-col items-center justify-start gap-3 pt-10">
+            <div className="absolute right-0.5 top-0 bottom-0 flex w-2 flex-col items-center justify-start gap-3 pt-10">
               {Array.from({ length: Math.min(totalRows, 30) }, (_, i) => (
-                <div key={`wr${i}`} className="w-1.5 h-3 rounded-full bg-sas-blue/10 border border-sas-blue/15" />
+                <div key={`wr${i}`} className="w-1 h-2.5 rounded-full bg-sas-blue/10 border border-sas-blue/15" />
               ))}
             </div>
 
-            <div className="max-h-[460px] overflow-y-auto px-2 py-3 sm:px-5 sm:py-4">
+            <div className="max-h-[460px] overflow-y-auto px-1 py-3 sm:px-2 sm:py-4">
               <div className="sticky top-0 z-10 mb-3 flex items-center justify-center gap-0 rounded-xl bg-white/92 py-2 backdrop-blur-sm">
                 <div className="w-5 sm:w-7" />
                 {letters.map((letter, i) => (
