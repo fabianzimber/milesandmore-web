@@ -252,14 +252,13 @@ button, input, select, textarea { font: inherit; }
 .holographic {
   background: linear-gradient(
     90deg,
-    #c084fc,
-    #818cf8,
-    #38bdf8,
-    #34d399,
-    #facc15,
-    #fb923c,
-    #f472b6,
-    #c084fc
+    #94a3b8,
+    #e2e8f0,
+    #f8fafc,
+    #cbd5e1,
+    #e2e8f0,
+    #f8fafc,
+    #94a3b8
   );
   background-size: 300% 100%;
   animation: holo-shift 4s linear infinite;

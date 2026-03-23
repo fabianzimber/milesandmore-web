@@ -160,7 +160,7 @@ export default function FlightDashboard({
                 <p className="eyebrow">Passenger Surface</p>
                 <div className="mt-3 sm:mt-5 lg:mt-6 flex flex-col gap-2 sm:gap-3">
                   <h1 className="text-4xl font-black tracking-[-0.05em] text-glow-white sm:text-5xl lg:text-6xl">
-                    {flight.flight_number || `SK${flight.id}`}
+                    {`SK${flight.flight_number || flight.id}`}
                   </h1>
                   <div className="flex items-center gap-3 sm:gap-4 lg:gap-5 text-white/80">
                     <div>
