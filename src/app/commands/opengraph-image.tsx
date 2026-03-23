@@ -22,12 +22,16 @@ export default async function OgImage() {
     .filter(Boolean)
     .slice(0, 6) as CommandMetadata[];
 
-  // Fallback if API not available
-  const fallback = [
-    { usage: "&joinflight" }, { usage: "&miles" }, { usage: "&seat" },
-    { usage: "&topmiles" }, { usage: "&countries" }, { usage: "&flights" },
+  const fallback: { usage: string; description?: string }[] = [
+    { usage: "&joinflight", description: "Aktuellen Flug beitreten" },
+    { usage: "&miles", description: "Eigene Meilen anzeigen" },
+    { usage: "&seat", description: "Sitz und Passagier-Link" },
+    { usage: "&topmiles", description: "Miles-Leaderboard" },
+    { usage: "&countries", description: "Bereiste Länder anzeigen" },
+    { usage: "&flights", description: "Aktive Flüge auflisten" },
   ];
-  const items = shown.length > 0 ? shown : fallback;
+  const items: { usage: string; description?: string }[] = shown.length > 0 ? shown : fallback;
+  const countLabel = commands.length > 0 ? `${commands.length} Commands` : "Alle Commands";
 
   return new ImageResponse(
     (
@@ -42,24 +46,26 @@ export default async function OgImage() {
           fontFamily: "system-ui, sans-serif",
         }}
       >
-        <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 20% 50%, rgba(99,65,163,0.28) 0%, transparent 50%)" }} />
-        <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
+        {/* Glow */}
+        <div style={{ display: "flex", position: "absolute", top: 0, right: 0, bottom: 0, left: 0, background: "radial-gradient(ellipse at 20% 50%, rgba(99,65,163,0.28) 0%, transparent 50%)" }} />
+        {/* Grid */}
+        <div style={{ display: "flex", position: "absolute", top: 0, right: 0, bottom: 0, left: 0, backgroundImage: "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
 
         {/* Left */}
         <div style={{ display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "0 48px 60px 72px", flex: "0 0 480px", position: "relative" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 20 }}>
-            <div style={{ width: 28, height: 2, background: "#9B82C8" }} />
+            <div style={{ display: "flex", width: 28, height: 2, background: "#9B82C8" }} />
             <span style={{ fontSize: 13, fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "#9B82C8" }}>Command Atlas</span>
           </div>
-          <div style={{ fontSize: 68, fontWeight: 900, color: "#FFFFFF", lineHeight: 1.05, letterSpacing: "-0.04em", marginBottom: 20 }}>
+          <div style={{ display: "flex", fontSize: 68, fontWeight: 900, color: "#FFFFFF", lineHeight: 1.05, letterSpacing: "-0.04em", marginBottom: 20 }}>
             Alle Commands auf einen Blick.
           </div>
-          <div style={{ fontSize: 20, color: "rgba(255,255,255,0.5)", lineHeight: 1.5 }}>
-            {commands.length > 0 ? `${commands.length} Commands` : "Alle Commands"} — von Joinflight bis Leaderboard.
+          <div style={{ display: "flex", fontSize: 20, color: "rgba(255,255,255,0.5)", lineHeight: 1.5 }}>
+            {countLabel} — von Joinflight bis Leaderboard.
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 36, paddingTop: 28, borderTop: "1px solid rgba(255,255,255,0.1)" }}>
-            <img src={logo} style={{ width: 38, height: 38 }} />
-            <span style={{ fontSize: 16, fontWeight: 700, color: "rgba(255,255,255,0.6)" }}>milesandmore.live</span>
+            <img src={logo} alt="Miles &amp; More" style={{ width: 38, height: 38 }} />
+            <span style={{ display: "flex", fontSize: 16, fontWeight: 700, color: "rgba(255,255,255,0.6)" }}>milesandmore.live</span>
           </div>
         </div>
 
@@ -78,15 +84,15 @@ export default async function OgImage() {
                 gap: 16,
               }}
             >
-              <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#7B5CB5", flexShrink: 0 }} />
-              <span style={{ fontSize: 18, fontWeight: 800, color: "#FFFFFF", fontFamily: "monospace", letterSpacing: "0.02em" }}>
+              <div style={{ display: "flex", width: 8, height: 8, borderRadius: "50%", background: "#7B5CB5", flexShrink: 0 }} />
+              <span style={{ display: "flex", fontSize: 18, fontWeight: 800, color: "#FFFFFF", fontFamily: "monospace", letterSpacing: "0.02em" }}>
                 {cmd.usage}
               </span>
-              {"description" in cmd && (
-                <span style={{ fontSize: 14, color: "rgba(255,255,255,0.4)", marginLeft: "auto", maxWidth: 200, overflow: "hidden", display: "flex" }}>
-                  {(cmd as CommandMetadata).description?.slice(0, 40)}{(cmd as CommandMetadata).description?.length > 40 ? "…" : ""}
+              {cmd.description ? (
+                <span style={{ display: "flex", fontSize: 14, color: "rgba(255,255,255,0.4)", marginLeft: "auto" }}>
+                  {cmd.description.slice(0, 36)}{cmd.description.length > 36 ? "…" : ""}
                 </span>
-              )}
+              ) : null}
             </div>
           ))}
         </div>
