@@ -1,8 +1,42 @@
+import type { Metadata } from "next";
 import FlightDashboard from "@/components/flight/FlightDashboard";
 import { getParticipant, getParticipants } from "@/lib/botApi";
 import type { Flight, Participant } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ hash: string }>;
+}): Promise<Metadata> {
+  const { hash } = await params;
+  try {
+    const data = await getParticipant(hash);
+    if (!data) throw new Error("not found");
+    const from = data.icao_from ?? "???";
+    const to = data.icao_to ?? "???";
+    const name = data.user_name ?? "Passagier";
+    const flightNo = data.flight_number ? ` ${data.flight_number}` : "";
+    return {
+      title: `${name} · ${from} → ${to}`,
+      description: `Boarding Pass von ${name} für Flug${flightNo} von ${data.dep_name ?? from} nach ${data.arr_name ?? to}. Verfolge den Flug live.`,
+      openGraph: {
+        title: `${name} · ${from} → ${to} · Miles & More`,
+        description: `Boarding Pass für Flug${flightNo} von ${data.dep_name ?? from} nach ${data.arr_name ?? to}.`,
+      },
+      twitter: {
+        title: `${name} · ${from} → ${to}`,
+        description: `Flug${flightNo} live verfolgen auf Miles & More.`,
+      },
+    };
+  } catch {
+    return {
+      title: "Boarding Pass",
+      description: "Deinen persönlichen Flug-Status und Boarding Pass auf Miles & More ansehen.",
+    };
+  }
+}
 
 export default async function FlightPage({ params }: { params: Promise<{ hash: string }> }) {
   const { hash } = await params;
