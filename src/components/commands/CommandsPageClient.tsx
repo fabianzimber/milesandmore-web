@@ -76,7 +76,7 @@ export default function CommandsPageClient({ initialCommands }: { initialCommand
 
   return (
     <PageShell tone="night">
-      <div className="relative flex flex-col min-h-[100dvh] lg:h-[100dvh] lg:overflow-hidden text-white">
+      <div className="relative flex flex-col min-h-[100dvh] lg:h-[100dvh] text-white">
         <header className="relative shrink-0 overflow-hidden pb-8 pt-6 sm:pb-12 sm:pt-8 lg:pb-14 lg:pt-10">
           <div className="absolute inset-0 bg-mesh-dark opacity-90" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(123,164,255,0.18),transparent_24%),radial-gradient(circle_at_88%_12%,rgba(202,169,109,0.15),transparent_18%)]" />
@@ -119,7 +119,7 @@ export default function CommandsPageClient({ initialCommands }: { initialCommand
             <ResponsiveTabRail items={categories} active={filter} onChange={setFilter} tone="dark" />
           </MotionSection>
 
-          <div className="flex-1 min-h-0 overflow-y-auto custom-scrollbar relative px-1 pb-4 sm:pb-6 lg:pb-8 lg:px-4">
+          <div className="flex-1 min-h-0 relative px-1 pb-4 sm:pb-6 lg:pb-8 lg:px-4">
             <div className="space-y-6 sm:space-y-8 lg:space-y-10">
               <MotionSection className="control-panel rounded-[2rem] p-5 sm:p-7 lg:p-8" delay={0.06}>
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
