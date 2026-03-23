@@ -103,7 +103,9 @@ export default function LeaderboardPageClient({
               transition={{ duration: 0.7 }}
             >
               <div className="flex items-center gap-3 mb-4 sm:mb-6">
-                <Image src="/logo.svg" alt="Miles & More Logo" width={36} height={36} className="rounded-lg" />
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-white overflow-hidden p-1">
+                  <Image src="/logo.svg" alt="Miles & More Logo" width={36} height={36} className="w-full h-full object-contain" />
+                </div>
                 <p className="eyebrow">Global Rankings</p>
               </div>
 
