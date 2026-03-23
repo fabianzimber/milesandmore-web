@@ -150,64 +150,64 @@ export default function FlightDashboard({
   return (
     <PageShell tone="night">
       <div className="relative flex flex-col min-h-[100dvh] lg:h-[100dvh] lg:overflow-hidden">
-        <header className="relative shrink-0 overflow-hidden pb-8 pt-4 sm:pb-10 sm:pt-6 text-white">
+        <header className="relative shrink-0 overflow-hidden pb-8 pt-4 sm:pb-12 sm:pt-8 lg:pb-14 lg:pt-10 text-white">
           <AirspaceScene density="compact" className="opacity-90" />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,8,20,0.18),rgba(3,8,20,0.6)_65%,rgba(233,238,248,0)_100%)]" />
 
           <div className="page-frame relative">
-            <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} className="grid gap-6 lg:gap-8 lg:grid-cols-[1.15fr_0.85fr]">
-              <div className="pt-2">
+            <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} className="grid gap-6 lg:gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
+              <div className="pt-2 sm:pt-4">
                 <p className="eyebrow">Passenger Surface</p>
-                <div className="mt-3 sm:mt-4 flex flex-col gap-2">
+                <div className="mt-3 sm:mt-5 lg:mt-6 flex flex-col gap-2 sm:gap-3">
                   <h1 className="text-4xl font-black tracking-[-0.05em] text-glow-white sm:text-5xl lg:text-6xl">
                     {flight.flight_number || `SK${flight.id}`}
                   </h1>
-                  <div className="flex items-center gap-3 sm:gap-4 text-white/80">
+                  <div className="flex items-center gap-3 sm:gap-4 lg:gap-5 text-white/80">
                     <div>
-                      <p className="text-2xl font-black tracking-tight sm:text-3xl">{flight.icao_from}</p>
-                      <p className="text-[10px] uppercase tracking-[0.24em] text-white/50">{flight.dep_name}</p>
+                      <p className="text-2xl font-black tracking-tight sm:text-3xl lg:text-4xl">{flight.icao_from}</p>
+                      <p className="text-[10px] sm:text-xs uppercase tracking-[0.24em] text-white/50">{flight.dep_name}</p>
                     </div>
-                    <div className="flex items-center gap-2 px-1 opacity-60">
-                      <div className="h-px w-6 sm:w-10 bg-white/20" />
+                    <div className="flex items-center gap-2 px-1 sm:px-2 opacity-60">
+                      <div className="h-px w-6 sm:w-10 lg:w-12 bg-white/20" />
                       <motion.div animate={{ x: [0, 4, 0] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}>
-                        <Plane size={16} className="rotate-90 text-sas-gold" />
+                        <Plane size={16} className="sm:w-5 sm:h-5 rotate-90 text-sas-gold" />
                       </motion.div>
-                      <div className="h-px w-6 sm:w-10 bg-white/20" />
+                      <div className="h-px w-6 sm:w-10 lg:w-12 bg-white/20" />
                     </div>
                     <div className="text-right">
-                      <p className="text-2xl font-black tracking-tight sm:text-3xl">{flight.icao_to}</p>
-                      <p className="text-[10px] uppercase tracking-[0.24em] text-white/50">{flight.arr_name}</p>
+                      <p className="text-2xl font-black tracking-tight sm:text-3xl lg:text-4xl">{flight.icao_to}</p>
+                      <p className="text-[10px] sm:text-xs uppercase tracking-[0.24em] text-white/50">{flight.arr_name}</p>
                     </div>
                   </div>
                 </div>
-                <p className="mt-4 sm:mt-5 max-w-xl text-sm leading-6 sm:text-base sm:leading-7 text-white/60 line-clamp-2 sm:line-clamp-none">
+                <p className="mt-4 sm:mt-5 lg:mt-6 max-w-xl text-sm leading-6 sm:text-base sm:leading-7 lg:text-lg lg:leading-8 text-white/60 line-clamp-2 sm:line-clamp-none">
                   Persönlicher Flight Link, Seat Control, Live-Tracking und eigene Länder-/Meilenstatistik in einer
                   mobilen Oberfläche, die wie eine Boarding Experience statt wie ein Roh-Dashboard wirkt.
                 </p>
               </div>
 
-              <div className="night-panel rounded-[2rem] p-5 sm:p-6 lg:mt-2">
+              <div className="night-panel rounded-[2rem] p-5 sm:p-6 lg:p-8 lg:mb-2">
                 <div className="flex flex-wrap items-start justify-between gap-4">
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/38">Passenger</p>
-                    <p className="mt-2 text-2xl font-black tracking-tight text-white">{currentParticipant.user_name}</p>
+                    <p className="mt-1 sm:mt-2 text-2xl sm:text-3xl font-black tracking-tight text-white">{currentParticipant.user_name}</p>
                   </div>
-                  <div className="rounded-full border border-sas-gold/16 bg-sas-gold/10 px-3 py-1 text-xs font-semibold tracking-[0.22em] text-sas-gold uppercase">
+                  <div className="rounded-full border border-sas-gold/16 bg-sas-gold/10 px-3 py-1 sm:px-4 sm:py-1.5 text-xs sm:text-sm font-semibold tracking-[0.22em] text-sas-gold uppercase">
                     Seat {currentParticipant.seat || "TBD"}
                   </div>
                 </div>
-                <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                  <div className="rounded-[1.4rem] border border-white/8 bg-white/[0.045] p-4">
+                <div className="mt-5 sm:mt-6 grid gap-3 sm:gap-4 sm:grid-cols-2">
+                  <div className="rounded-[1.4rem] border border-white/8 bg-white/[0.045] p-4 sm:p-5">
                     <p className="text-xs uppercase tracking-[0.18em] text-white/35">Live Link</p>
-                    <p className="mt-2 text-sm leading-6 text-white/72">
+                    <p className="mt-1 sm:mt-2 text-sm sm:text-base leading-6 text-white/72">
                       {isLive ? "Positionsdaten laufen ein." : "Noch keine Positionsdaten aktiv."}
                     </p>
                   </div>
-                  <div className="rounded-[1.4rem] border border-white/8 bg-white/[0.045] p-4">
+                  <div className="rounded-[1.4rem] border border-white/8 bg-white/[0.045] p-4 sm:p-5">
                     <p className="text-xs uppercase tracking-[0.18em] text-white/35">Flight Status</p>
-                    <div className="mt-2 flex items-center gap-2">
-                      {isLive ? <Wifi size={14} className="text-sas-green" /> : <WifiOff size={14} className="text-sas-red" />}
-                      <span className="text-sm font-semibold text-white/78">{flight.status}</span>
+                    <div className="mt-1 sm:mt-2 flex items-center gap-2">
+                      {isLive ? <Wifi size={14} className="sm:w-4 sm:h-4 text-sas-green" /> : <WifiOff size={14} className="sm:w-4 sm:h-4 text-sas-red" />}
+                      <span className="text-sm sm:text-base font-semibold text-white/78">{flight.status}</span>
                     </div>
                   </div>
                 </div>
@@ -216,12 +216,12 @@ export default function FlightDashboard({
           </div>
         </header>
 
-        <main className="page-frame relative z-10 flex-1 flex flex-col min-h-0 pb-6 lg:pb-8">
-          <div className="z-30 mb-4 sm:mb-6 rounded-[1.75rem] bg-white/10 p-2 backdrop-blur-xl shrink-0 -mt-8 sm:-mt-10 max-w-3xl mx-auto w-full">
+        <main className="page-frame relative z-10 flex-1 flex flex-col min-h-0 pb-6 sm:pb-8 lg:pb-10">
+          <div className="z-30 mb-4 sm:mb-6 lg:mb-8 rounded-[1.75rem] bg-white/10 p-2 sm:p-3 backdrop-blur-xl shrink-0 -mt-8 sm:-mt-10 lg:-mt-12 max-w-3xl mx-auto w-full">
             <ResponsiveTabRail items={tabs} active={activeTab} onChange={setActiveTab} tone="dark" />
           </div>
 
-          <div className="flex-1 min-h-0 overflow-y-auto custom-scrollbar relative">
+          <div className="flex-1 min-h-0 overflow-y-auto custom-scrollbar relative px-1 sm:px-2 lg:px-4 pb-4 sm:pb-6 lg:pb-8">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeTab}
