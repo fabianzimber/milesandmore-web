@@ -65,7 +65,7 @@ export default function SeatMap({ flight, participants, currentUser, onSeatChang
       <SASCard variant="glass" className="overflow-hidden">
         <div className="text-center mb-5">
           <h3 className="text-lg font-bold text-sas-midnight">{flight.aircraft_name || "Aircraft"}</h3>
-          <p className="text-xs text-sas-gray-400 mt-1">Tippe auf einen freien Sitz und bestätige die Umbuchung unten.</p>
+          <p className="text-xs text-sas-gray-400 mt-1">Tippe auf einen freien Sitz und bestätige die Umbuchung direkt oben.</p>
         </div>
 
         <div className="mb-6 flex flex-wrap justify-center gap-3 text-xs">
@@ -74,6 +74,38 @@ export default function SeatMap({ flight, participants, currentUser, onSeatChang
           <LegendItem className="bg-gradient-to-b from-sas-blue/15 to-sas-blue/25 border border-sas-blue/20" label="Frei" />
           <LegendItem className="bg-gradient-to-b from-sas-cyan/60 to-sas-cyan/80 glow-cyan" label="Ausgewählt" />
         </div>
+
+        <AnimatePresence>
+          {selectedSeat && (
+            <motion.div
+              initial={{ opacity: 0, y: -16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              className="sticky top-2 z-20 mb-4 px-2"
+            >
+              <div className="night-panel mx-auto flex max-w-sm flex-col gap-4 rounded-[1.75rem] px-4 py-4 text-white sm:max-w-lg sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex items-center gap-3">
+                  <span className="inline-flex rounded-full bg-white/10 p-2 text-sas-cyan">
+                    <UserRound size={16} />
+                  </span>
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.22em] text-white/42">Selected Seat</p>
+                    <p className="text-lg font-black">{selectedSeat}</p>
+                  </div>
+                </div>
+                <div className="flex gap-2">
+                  <SASButton variant="ghost" onClick={() => setSelectedSeat(null)} className="!text-white/70 hover:!bg-white/8">
+                    Verwerfen
+                  </SASButton>
+                  <SASButton variant="gold" onClick={confirmSeatChange} loading={saving}>
+                    <Check size={15} />
+                    Sitz übernehmen
+                  </SASButton>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         <div className="relative mx-auto max-w-3xl overflow-x-auto pb-2">
           <div className="relative mx-auto min-w-[18rem] max-w-sm sm:min-w-[21rem] sm:max-w-md">
@@ -102,7 +134,7 @@ export default function SeatMap({ flight, participants, currentUser, onSeatChang
               ))}
             </div>
 
-            <div className="max-h-[460px] overflow-y-auto px-1 py-3 sm:px-2 sm:py-4">
+            <div className="px-1 py-3 sm:px-2 sm:py-4">
               <div className="sticky top-0 z-10 mb-3 flex items-center justify-center gap-0 rounded-xl bg-white/92 py-2 backdrop-blur-sm">
                 <div className="w-5 sm:w-7" />
                 {letters.map((letter, i) => (
@@ -219,37 +251,6 @@ export default function SeatMap({ flight, participants, currentUser, onSeatChang
           </div>
         </div>
 
-        <AnimatePresence>
-          {selectedSeat && (
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 16 }}
-              className="sticky bottom-4 mt-6 px-2"
-            >
-              <div className="night-panel mx-auto flex max-w-sm flex-col gap-4 rounded-[1.75rem] px-4 py-4 text-white sm:max-w-lg sm:flex-row sm:items-center sm:justify-between">
-                <div className="flex items-center gap-3">
-                  <span className="inline-flex rounded-full bg-white/10 p-2 text-sas-cyan">
-                    <UserRound size={16} />
-                  </span>
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.22em] text-white/42">Selected Seat</p>
-                    <p className="text-lg font-black">{selectedSeat}</p>
-                  </div>
-                </div>
-                <div className="flex gap-2">
-                  <SASButton variant="ghost" onClick={() => setSelectedSeat(null)} className="!text-white/70 hover:!bg-white/8">
-                    Verwerfen
-                  </SASButton>
-                  <SASButton variant="gold" onClick={confirmSeatChange} loading={saving}>
-                    <Check size={15} />
-                    Sitz übernehmen
-                  </SASButton>
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </SASCard>
     </div>
   );

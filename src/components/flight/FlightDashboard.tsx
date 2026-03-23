@@ -46,6 +46,10 @@ export default function FlightDashboard({
   );
 
   useEffect(() => {
+    window.dispatchEvent(new Event("resize"));
+  }, [activeTab]);
+
+  useEffect(() => {
     if (!flight?.id) return;
     const refresh = async () => {
       try {
@@ -120,7 +124,7 @@ export default function FlightDashboard({
     );
   }
 
-  const boardingPass: BoardingPassData = currentParticipant.boarding_pass_data
+  const boardingPassBase: BoardingPassData = currentParticipant.boarding_pass_data
     ? typeof currentParticipant.boarding_pass_data === "string"
       ? JSON.parse(currentParticipant.boarding_pass_data)
       : currentParticipant.boarding_pass_data
@@ -137,6 +141,10 @@ export default function FlightDashboard({
         boarding_time: new Date().toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" }),
         aircraft: flight.aircraft_name || "Aircraft",
       };
+  const boardingPass: BoardingPassData = {
+    ...boardingPassBase,
+    seat: currentParticipant.seat || boardingPassBase.seat || "TBD",
+  };
 
   const tabs: { id: Tab; label: string; icon: React.ReactNode }[] = [
     { id: "pass", label: "Boarding Pass", icon: <Ticket size={16} /> },
@@ -216,12 +224,12 @@ export default function FlightDashboard({
           </div>
         </header>
 
-        <main className="page-frame relative z-10 flex-1 flex flex-col min-h-0 pb-6 sm:pb-8 lg:pb-10">
+        <main className="page-frame relative z-10 pb-6 sm:pb-8 lg:pb-10">
           <div className="z-30 mb-4 sm:mb-6 lg:mb-8 rounded-[1.75rem] bg-white/10 p-2 sm:p-3 backdrop-blur-xl shrink-0 -mt-8 sm:-mt-10 lg:-mt-12 max-w-3xl mx-auto w-full">
             <ResponsiveTabRail items={tabs} active={activeTab} onChange={setActiveTab} tone="dark" />
           </div>
 
-          <div className="flex-1 min-h-0 relative px-1 sm:px-2 lg:px-4 pb-4 sm:pb-6 lg:pb-8">
+          <div className="relative px-1 sm:px-2 lg:px-4 pb-4 sm:pb-6 lg:pb-8">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeTab}
@@ -229,7 +237,7 @@ export default function FlightDashboard({
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
-                className="min-h-full flex flex-col"
+                className="flex flex-col"
               >
                 {activeTab === "pass" && <BoardingPass data={boardingPass} />}
                 {activeTab === "seats" && (
