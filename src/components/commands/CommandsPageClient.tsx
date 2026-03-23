@@ -94,7 +94,7 @@ export default function CommandsPageClient({ initialCommands }: { initialCommand
                   </p>
                 </div>
 
-                <div className="night-panel rounded-[2rem] p-5 sm:p-6 lg:p-8 lg:mb-0">
+                <div className="night-panel rounded-[2rem] p-5 sm:p-6 lg:p-8 lg:mb-40">
                   <p className="metric-kicker !text-white/40">Atlas Overview</p>
                   <div className="mt-4 sm:mt-5 lg:mt-6 grid grid-cols-2 gap-4">
                     <div>
