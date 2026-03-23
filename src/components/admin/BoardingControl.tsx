@@ -56,22 +56,37 @@ export default function BoardingControl({
     fetchChannels();
   }, [selectedChannel]);
 
-  // Check for recoverable flights on mount
+  // Poll flight status independently to stay in sync with backend changes
+  // (e.g. local scheduler auto-closing boarding, or status changes from chat commands)
   useEffect(() => {
-    const checkRecovery = async () => {
+    const syncFlightStatus = async () => {
       try {
         const boarding = (await getFlights("boarding")) as Flight[];
         const inFlight = (await getFlights("in_flight")) as Flight[];
-        const recoverable = [...boarding, ...inFlight];
-        if (recoverable.length > 0 && !currentFlight) {
-          setCurrentFlight(recoverable[0]);
+        const active = [...boarding, ...inFlight];
+
+        if (active.length > 0) {
+          // Update to latest server state (or recover if we had no flight)
+          const latest = active[0];
+          if (!currentFlight || currentFlight.id === latest.id) {
+            setCurrentFlight(latest);
+          }
+        } else if (currentFlight && ["boarding", "in_flight"].includes(currentFlight.status)) {
+          // Flight was completed/cancelled server-side - re-fetch to get final state
+          const { getFlight } = await import("@/lib/botApi");
+          const final = (await getFlight(currentFlight.id)) as Flight | null;
+          if (final) {
+            setCurrentFlight(final);
+          }
         }
       } catch {
         // ignore
       }
     };
-    checkRecovery();
-  }, [currentFlight, setCurrentFlight]);
+    syncFlightStatus();
+    const interval = setInterval(syncFlightStatus, 5000);
+    return () => clearInterval(interval);
+  }, [currentFlight?.id, currentFlight?.status, setCurrentFlight]);
 
   const handleStartBoarding = async () => {
     if (!selectedChannel || !importedFlightPlan) return;
@@ -115,6 +130,14 @@ export default function BoardingControl({
     }
   };
 
+  const refetchFlight = useCallback(async (flightId: number) => {
+    const { getFlight } = await import("@/lib/botApi");
+    const latest = (await getFlight(flightId)) as Flight | null;
+    if (latest) {
+      setCurrentFlight(latest);
+    }
+  }, [setCurrentFlight]);
+
   const handleAction = useCallback(
     async (action: string) => {
       if (!currentFlight) return;
@@ -124,19 +147,19 @@ export default function BoardingControl({
           case "end_boarding":
             await assignSeats(currentFlight.id);
             await updateFlightStatus(currentFlight.id, "in_flight");
-            setCurrentFlight({ ...currentFlight, status: "in_flight" });
+            await refetchFlight(currentFlight.id);
             break;
           case "cancel_boarding":
             await updateFlightStatus(currentFlight.id, "cancelled");
-            setCurrentFlight({ ...currentFlight, status: "cancelled" });
+            await refetchFlight(currentFlight.id);
             break;
           case "end_flight":
             await updateFlightStatus(currentFlight.id, "completed");
-            setCurrentFlight({ ...currentFlight, status: "completed" });
+            await refetchFlight(currentFlight.id);
             break;
           case "abort_flight":
             await updateFlightStatus(currentFlight.id, "aborted");
-            setCurrentFlight({ ...currentFlight, status: "aborted" });
+            await refetchFlight(currentFlight.id);
             break;
           case "resume_boarding":
             const resumed = (await resumeBoarding(currentFlight.id, 5)) as Flight;
@@ -156,7 +179,7 @@ export default function BoardingControl({
         setActionLoading(null);
       }
     },
-    [currentFlight, setCurrentFlight]
+    [currentFlight, setCurrentFlight, refetchFlight]
   );
 
   // No flight - show start controls

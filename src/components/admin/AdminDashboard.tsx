@@ -55,9 +55,12 @@ export default function AdminDashboard({
       }
     };
 
-    const interval = setInterval(refresh, 15000);
+    // Poll faster (5s) when there's an active flight, slower (15s) when idle
+    const pollInterval = currentFlight ? 5000 : 15000;
+    refresh();
+    const interval = setInterval(refresh, pollInterval);
     return () => clearInterval(interval);
-  }, []);
+  }, [currentFlight !== null]);
 
   const isLive = Boolean(botStatus.lastEventAt);
 
