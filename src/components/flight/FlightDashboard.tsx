@@ -149,42 +149,44 @@ export default function FlightDashboard({
 
   return (
     <PageShell tone="night">
-      <div className="relative">
-        <header className="relative overflow-hidden pb-10 pt-6 text-white">
+      <div className="relative flex flex-col min-h-[100dvh] lg:h-[100dvh] lg:overflow-hidden">
+        <header className="relative shrink-0 overflow-hidden pb-8 pt-4 sm:pb-10 sm:pt-6 text-white">
           <AirspaceScene density="compact" className="opacity-90" />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,8,20,0.18),rgba(3,8,20,0.6)_65%,rgba(233,238,248,0)_100%)]" />
 
           <div className="page-frame relative">
-            <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} className="grid gap-4 lg:gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-              <div className="pt-3">
+            <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} className="grid gap-6 lg:gap-8 lg:grid-cols-[1.15fr_0.85fr]">
+              <div className="pt-2">
                 <p className="eyebrow">Passenger Surface</p>
-                <h1 className="mt-5 text-4xl font-black tracking-[-0.05em] text-glow-white sm:text-5xl lg:text-6xl">
-                  {flight.flight_number || `SK${flight.id}`}
-                </h1>
-                <div className="mt-5 flex items-center gap-3 text-white/64">
-                  <div>
-                    <p className="text-2xl font-black tracking-tight sm:text-3xl">{flight.icao_from}</p>
-                    <p className="text-[10px] uppercase tracking-[0.24em] text-white/30">{flight.dep_name}</p>
-                  </div>
-                  <div className="flex items-center gap-1 px-2">
-                    <div className="h-px w-8 bg-white/15" />
-                    <motion.div animate={{ x: [0, 6, 0] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}>
-                      <Plane size={16} className="rotate-90 text-sas-gold" />
-                    </motion.div>
-                    <div className="h-px w-8 bg-white/15" />
-                  </div>
-                  <div className="text-right">
-                    <p className="text-2xl font-black tracking-tight sm:text-3xl">{flight.icao_to}</p>
-                    <p className="text-[10px] uppercase tracking-[0.24em] text-white/30">{flight.arr_name}</p>
+                <div className="mt-3 sm:mt-4 flex flex-col gap-2">
+                  <h1 className="text-4xl font-black tracking-[-0.05em] text-glow-white sm:text-5xl lg:text-6xl">
+                    {flight.flight_number || `SK${flight.id}`}
+                  </h1>
+                  <div className="flex items-center gap-3 sm:gap-4 text-white/80">
+                    <div>
+                      <p className="text-2xl font-black tracking-tight sm:text-3xl">{flight.icao_from}</p>
+                      <p className="text-[10px] uppercase tracking-[0.24em] text-white/50">{flight.dep_name}</p>
+                    </div>
+                    <div className="flex items-center gap-2 px-1 opacity-60">
+                      <div className="h-px w-6 sm:w-10 bg-white/20" />
+                      <motion.div animate={{ x: [0, 4, 0] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}>
+                        <Plane size={16} className="rotate-90 text-sas-gold" />
+                      </motion.div>
+                      <div className="h-px w-6 sm:w-10 bg-white/20" />
+                    </div>
+                    <div className="text-right">
+                      <p className="text-2xl font-black tracking-tight sm:text-3xl">{flight.icao_to}</p>
+                      <p className="text-[10px] uppercase tracking-[0.24em] text-white/50">{flight.arr_name}</p>
+                    </div>
                   </div>
                 </div>
-                <p className="mt-6 max-w-xl text-base leading-7 text-white/62">
+                <p className="mt-4 sm:mt-5 max-w-xl text-sm leading-6 sm:text-base sm:leading-7 text-white/60 line-clamp-2 sm:line-clamp-none">
                   Persönlicher Flight Link, Seat Control, Live-Tracking und eigene Länder-/Meilenstatistik in einer
                   mobilen Oberfläche, die wie eine Boarding Experience statt wie ein Roh-Dashboard wirkt.
                 </p>
               </div>
 
-              <div className="night-panel rounded-[2rem] p-5 sm:p-6">
+              <div className="night-panel rounded-[2rem] p-5 sm:p-6 lg:mt-2">
                 <div className="flex flex-wrap items-start justify-between gap-4">
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/38">Passenger</p>
@@ -198,7 +200,7 @@ export default function FlightDashboard({
                   <div className="rounded-[1.4rem] border border-white/8 bg-white/[0.045] p-4">
                     <p className="text-xs uppercase tracking-[0.18em] text-white/35">Live Link</p>
                     <p className="mt-2 text-sm leading-6 text-white/72">
-                      {isLive ? "Positionsdaten laufen ein und aktualisieren die Strecke." : "Noch keine Positionsdaten aktiv."}
+                      {isLive ? "Positionsdaten laufen ein." : "Noch keine Positionsdaten aktiv."}
                     </p>
                   </div>
                   <div className="rounded-[1.4rem] border border-white/8 bg-white/[0.045] p-4">
@@ -214,32 +216,35 @@ export default function FlightDashboard({
           </div>
         </header>
 
-        <main className="page-frame relative z-10 -mt-4 pb-20">
-          <div className="sticky top-3 z-30 mb-6 rounded-[1.75rem] bg-white/10 p-2 backdrop-blur-xl">
+        <main className="page-frame relative z-10 flex-1 flex flex-col min-h-0 pb-6 lg:pb-8">
+          <div className="z-30 mb-4 sm:mb-6 rounded-[1.75rem] bg-white/10 p-2 backdrop-blur-xl shrink-0 -mt-8 sm:-mt-10 max-w-3xl mx-auto w-full">
             <ResponsiveTabRail items={tabs} active={activeTab} onChange={setActiveTab} tone="dark" />
           </div>
 
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeTab}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
-            >
-              {activeTab === "pass" && <BoardingPass data={boardingPass} />}
-              {activeTab === "seats" && (
-                <SeatMap
-                  flight={flight}
-                  participants={participants}
-                  currentUser={currentParticipant}
-                  onSeatChange={handleSeatChange}
-                />
-              )}
-              {activeTab === "map" && <FlightTracker flight={flight} position={position} />}
-              {activeTab === "stats" && <CountryLeaderboard userId={currentParticipant.user_id} />}
-            </motion.div>
-          </AnimatePresence>
+          <div className="flex-1 min-h-0 overflow-y-auto custom-scrollbar relative">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTab}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+                className="min-h-full flex flex-col"
+              >
+                {activeTab === "pass" && <BoardingPass data={boardingPass} />}
+                {activeTab === "seats" && (
+                  <SeatMap
+                    flight={flight}
+                    participants={participants}
+                    currentUser={currentParticipant}
+                    onSeatChange={handleSeatChange}
+                  />
+                )}
+                {activeTab === "map" && <FlightTracker flight={flight} position={position} />}
+                {activeTab === "stats" && <CountryLeaderboard userId={currentParticipant.user_id} />}
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </main>
       </div>
     </PageShell>
