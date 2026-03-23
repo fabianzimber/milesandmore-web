@@ -233,12 +233,75 @@ button, input, select, textarea { font: inherit; }
 }
 
 /* ═══════════ UTILITY ═══════════ */
-.shimmer { /* no-op — kept for class references */ }
-.holographic { /* no-op */ }
-.gold-shimmer { color: var(--color-mm-purple-500); }
+.shimmer {
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  animation: shimmer-slide 3s ease-in-out infinite;
+}
+
+@keyframes shimmer-slide {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.holographic {
+  background: linear-gradient(
+    90deg,
+    #c084fc,
+    #818cf8,
+    #38bdf8,
+    #34d399,
+    #facc15,
+    #fb923c,
+    #f472b6,
+    #c084fc
+  );
+  background-size: 300% 100%;
+  animation: holo-shift 4s linear infinite;
+}
+
+@keyframes holo-shift {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+
+.gold-shimmer {
+  color: var(--color-mm-purple-500);
+  background: linear-gradient(
+    90deg,
+    var(--color-mm-purple-500),
+    #facc15,
+    var(--color-mm-purple-500)
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gold-shimmer-slide 3s ease-in-out infinite;
+}
+
+@keyframes gold-shimmer-slide {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
 .text-gradient-gold { color: var(--color-mm-purple-600); }
 .text-gradient-blue { color: var(--color-mm-purple-500); }
-.noise-mask { display: none; }
+.noise-mask {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0.045;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+}
 .section-divider { height: 1px; background: var(--color-border); }
 
 .tab-rail { scrollbar-width: none; }
