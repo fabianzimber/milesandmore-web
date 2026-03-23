@@ -12,14 +12,28 @@ import type {
 
 const API_BASE = process.env.NEXT_PUBLIC_BOT_API_URL || "http://localhost:3001";
 
+function resolveInternalApiSecret(): string | undefined {
+  return process.env.MILESANDMORE_INTERNAL_API_SECRET || process.env.INTERNAL_JOB_SECRET || undefined;
+}
+
+function resolveApiBase(): string {
+  if (typeof window !== "undefined") {
+    return "/api/backend";
+  }
+  return process.env.BACKEND_PUBLIC_URL || API_BASE;
+}
+
 
 async function botFetch<T = unknown>(path: string, options?: RequestInit): Promise<T> {
-  const res = await fetch(`${API_BASE}${path}`, {
+  const secret = typeof window === "undefined" ? resolveInternalApiSecret() : undefined;
+  const res = await fetch(`${resolveApiBase()}${path}`, {
     ...options,
     headers: {
       "Content-Type": "application/json",
+      ...(secret ? { "x-internal-job-secret": secret } : {}),
       ...options?.headers,
     },
+    cache: "no-store",
   });
 
   if (!res.ok) {
