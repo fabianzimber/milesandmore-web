@@ -76,8 +76,8 @@ export default function CommandsPageClient({ initialCommands }: { initialCommand
 
   return (
     <PageShell tone="night">
-      <div className="relative flex flex-col min-h-[100dvh] lg:h-[100dvh] text-white">
-        <header className="relative shrink-0 overflow-hidden pb-8 pt-6 sm:pb-12 sm:pt-8 lg:pb-14 lg:pt-10">
+      <div className="relative flex flex-col min-h-[100dvh] pb-20 text-white">
+        <header className="relative shrink-0 overflow-hidden pb-8 pt-6 sm:pb-12 sm:pt-8 lg:pb-14 lg:pt-10 ">
           <div className="absolute inset-0 bg-mesh-dark opacity-90" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(123,164,255,0.18),transparent_24%),radial-gradient(circle_at_88%_12%,rgba(202,169,109,0.15),transparent_18%)]" />
           <div className="page-frame relative">
@@ -94,7 +94,7 @@ export default function CommandsPageClient({ initialCommands }: { initialCommand
                   </p>
                 </div>
 
-                <div className="night-panel rounded-[2rem] p-5 sm:p-6 lg:p-8 lg:-mb-8">
+                <div className="night-panel rounded-[2rem] p-5 sm:p-6 lg:p-8 lg:mb-0">
                   <p className="metric-kicker !text-white/40">Atlas Overview</p>
                   <div className="mt-4 sm:mt-5 lg:mt-6 grid grid-cols-2 gap-4">
                     <div>
