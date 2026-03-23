@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import {
   Trophy,
   Globe,
@@ -101,9 +102,12 @@ export default function LeaderboardPageClient({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
             >
-              <p className="eyebrow">Global Rankings</p>
+              <div className="flex items-center gap-3 mb-4 sm:mb-6">
+                <Image src="/logo.svg" alt="Miles & More Logo" width={36} height={36} className="rounded-lg" />
+                <p className="eyebrow">Global Rankings</p>
+              </div>
 
-              <div className="mt-4 sm:mt-6 lg:mt-8 grid gap-6 lg:gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
+              <div className="mt-2 sm:mt-4 lg:mt-6 grid gap-6 lg:gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
                 <div>
                   <h1 className="max-w-3xl text-4xl font-black tracking-[-0.05em] text-glow-white sm:text-5xl lg:text-6xl leading-tight">
                     Wer fliegt am<br />
