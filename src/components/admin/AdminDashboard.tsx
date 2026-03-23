@@ -16,6 +16,7 @@ import SASButton from "@/components/ui/SASButton";
 import type { BotLogEntry, BotRuntimeSettings, BotStatus, Flight } from "@/lib/types";
 import { getBotStatus, getFlights } from "@/lib/botApi";
 import { Plane, Users, BarChart3, ScrollText, LogOut, Radio, KeyRound } from "lucide-react";
+import Image from "next/image";
 
 type Tab = "bot" | "simbrief" | "simlink" | "channels" | "boarding" | "logs";
 
@@ -86,8 +87,8 @@ export default function AdminDashboard({
                   transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
                   className="hidden sm:block mt-1 lg:mt-2"
                 >
-                  <div className="flex h-12 w-12 sm:h-14 sm:w-14 lg:h-16 lg:w-16 items-center justify-center rounded-2xl bg-sas-midnight text-white shadow-[0_18px_40px_rgba(5,11,25,0.18)]">
-                    <Plane size={24} className="sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-sas-gold" />
+                  <div className="flex h-12 w-12 sm:h-14 sm:w-14 lg:h-16 lg:w-16 items-center justify-center rounded-2xl bg-sas-midnight shadow-[0_18px_40px_rgba(5,11,25,0.18)] overflow-hidden p-1.5">
+                    <Image src="/logo.svg" alt="Miles & More" width={56} height={56} className="w-full h-full object-contain" />
                   </div>
                 </motion.div>
                 <div>

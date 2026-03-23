@@ -2,6 +2,7 @@
 
 import { useDeferredValue, useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
 import {
   Armchair,
   ChevronRight,
@@ -86,7 +87,10 @@ export default function CommandsPageClient({ initialCommands }: { initialCommand
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(123,164,255,0.18),transparent_24%),radial-gradient(circle_at_88%_12%,rgba(202,169,109,0.15),transparent_18%)]" />
           <div className="page-frame relative">
             <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-              <p className="eyebrow">Command Atlas</p>
+              <div className="flex items-center gap-3 mb-4 sm:mb-6">
+                <Image src="/logo.svg" alt="Miles & More Logo" width={36} height={36} className="rounded-lg" />
+                <p className="eyebrow">Command Atlas</p>
+              </div>
               <div className="mt-4 sm:mt-6 lg:mt-8 grid gap-6 lg:gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
                 <div>
                   <h1 className="max-w-3xl text-4xl font-black tracking-[-0.05em] text-glow-white sm:text-5xl lg:text-6xl">
