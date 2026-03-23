@@ -17,7 +17,7 @@ const barcode = Libre_Barcode_128({
 });
 
 export const metadata: Metadata = {
-  title: "MilesAndMore — Twitch Flight Operations",
+  title: "Miles & More — Twitch Flight Operations",
   description: "Twitch flight boarding bot, admin cockpit and passenger dashboard running on Next.js and Vercel.",
 };
 

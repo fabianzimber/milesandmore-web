@@ -7,9 +7,13 @@ type RouteContext = {
 };
 
 function getBackendBaseUrl(): string {
-  const baseUrl = process.env.BACKEND_PUBLIC_URL || process.env.NEXT_PUBLIC_BOT_API_URL;
+  let baseUrl = process.env.BACKEND_PUBLIC_URL || process.env.NEXT_PUBLIC_BOT_API_URL;
   if (!baseUrl) {
     throw new Error("Missing backend URL. Set BACKEND_PUBLIC_URL or NEXT_PUBLIC_BOT_API_URL.");
+  }
+  // Force HTTPS to prevent 301 redirects that downgrade POST to GET
+  if (baseUrl.startsWith("http://") && baseUrl.includes(".up.railway.app")) {
+    baseUrl = baseUrl.replace("http://", "https://");
   }
   return baseUrl;
 }
@@ -38,13 +42,18 @@ async function forward(request: NextRequest, context: RouteContext): Promise<Res
     headers.set("x-internal-job-secret", internalSecret);
   }
 
-  const body = ["GET", "HEAD"].includes(request.method) ? undefined : await request.text();
+  const bodyText = ["GET", "HEAD"].includes(request.method) ? undefined : await request.text();
+  const body = bodyText ? bodyText : undefined;
+
+  // DEBUG: console.log what we are fetching
+  console.log(`[PROXY] Forwarding ${request.method} to ${targetUrl.toString()}`);
 
   const upstream = await fetch(targetUrl, {
     method: request.method,
     headers,
     body,
     cache: "no-store",
+    redirect: "manual",
   });
 
   const responseHeaders = new Headers();

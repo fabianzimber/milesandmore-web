@@ -32,7 +32,7 @@ export default async function AdminSignInPage({ searchParams }: AdminSignInPageP
         <div className="w-16 h-16 rounded-2xl bg-sas-midnight mx-auto mb-5 flex items-center justify-center">
           <Plane size={28} className="text-sas-gold" />
         </div>
-        <h1 className="text-xl font-bold text-sas-midnight mb-2">MilesAndMore Cockpit</h1>
+        <h1 className="text-xl font-bold text-sas-midnight mb-2">Miles & More Cockpit</h1>
         <p className="text-sm text-sas-gray-400 mb-6">
           Melde dich mit einem freigeschalteten Twitch-Account an, um das Admin-Dashboard zu verwenden.
         </p>

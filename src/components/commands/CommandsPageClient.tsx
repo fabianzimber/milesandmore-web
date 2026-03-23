@@ -86,7 +86,7 @@ export default function CommandsPageClient({ initialCommands }: { initialCommand
               <div className="mt-6 grid gap-4 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:gap-8">
                 <div>
                   <h1 className="max-w-3xl text-4xl font-black tracking-[-0.05em] text-glow-white sm:text-5xl lg:text-6xl">
-                    Alle MilesAndMore-Kommandos in einer scanbaren Flight-Karte.
+                    Alle Miles & More-Kommandos in einer scanbaren Flight-Karte.
                   </h1>
                   <p className="mt-5 max-w-2xl text-base leading-7 text-white/64">
                     Statt einer Command-Liste wie aus einem Adminpanel zeigt diese Seite, welche Aktionen im Chat

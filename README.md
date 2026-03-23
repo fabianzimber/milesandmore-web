@@ -1,6 +1,6 @@
-# MilesAndMore Web
+# Miles & More Web
 
-Standalone Next.js web frontend for MilesAndMore, intended for Vercel deployment.
+Standalone Next.js web frontend for Miles & More, intended for Vercel deployment.
 
 ## What is included
 

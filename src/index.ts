@@ -1,1 +1,1 @@
-console.log("MilesAndMore Web scaffold");
+console.log("Miles & More Web scaffold");

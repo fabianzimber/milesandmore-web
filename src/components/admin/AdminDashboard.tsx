@@ -90,7 +90,7 @@ export default function AdminDashboard({
                 <div>
                   <p className="metric-kicker">Operations Desk</p>
                   <h1 className="mt-3 text-4xl font-black tracking-[-0.05em] text-sas-midnight sm:text-5xl">
-                    MilesAndMore Control Room
+                    Miles & More Control Room
                   </h1>
                   <p className="mt-4 max-w-2xl text-sm leading-7 text-sas-gray-500">
                     Importe, Credentials, SimLink, Boarding und Logs bleiben fachlich dicht und ruhig im gleichen
