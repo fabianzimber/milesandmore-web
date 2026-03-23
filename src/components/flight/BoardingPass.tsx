@@ -60,7 +60,7 @@ export default function BoardingPass({ data }: { data: BoardingPassData }) {
         >
           <div className="h-1.5 holographic" />
 
-          <div className="relative bg-gradient-to-br from-sas-midnight via-[#07152f] to-[#102d63] px-5 py-4 text-white sm:px-7 sm:py-5">
+          <div className="relative overflow-hidden bg-gradient-to-br from-sas-midnight via-[#07152f] to-[#102d63] px-5 py-4 text-white sm:px-7 sm:py-5">
             <div className="absolute inset-0 shimmer opacity-20" />
             <div className="relative z-10 flex flex-wrap items-center justify-between gap-4">
               <div className="flex items-center gap-3">
