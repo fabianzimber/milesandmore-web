@@ -40,7 +40,12 @@ export async function generateMetadata({
 
 export default async function FlightPage({ params }: { params: Promise<{ hash: string }> }) {
   const { hash } = await params;
-  const participantData = await getParticipant(hash);
+  let participantData: Awaited<ReturnType<typeof getParticipant>> | null = null;
+  try {
+    participantData = await getParticipant(hash);
+  } catch {
+    // API error (e.g. network issue or backend down) – treat as not found
+  }
 
   if (!participantData) {
     return <FlightDashboard hash={hash} initialFlight={null} initialParticipant={null} initialParticipants={[]} />;
