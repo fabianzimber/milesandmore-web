@@ -150,7 +150,7 @@ export default function FlightDashboard({
   return (
     <PageShell tone="night">
       <div className="relative flex flex-col min-h-[100dvh] lg:h-[100dvh] lg:overflow-hidden">
-        <header className="relative shrink-0 overflow-hidden pb-8 pt-4 sm:pb-10 sm:pt-6 text-white">
+        <header className="relative shrink-0 overflow-hidden pb-8 pt-16 sm:pb-10 sm:pt-6 text-white">
           <AirspaceScene density="compact" className="opacity-90" />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,8,20,0.18),rgba(3,8,20,0.6)_65%,rgba(233,238,248,0)_100%)]" />
 
