@@ -45,9 +45,6 @@ async function forward(request: NextRequest, context: RouteContext): Promise<Res
   const bodyText = ["GET", "HEAD"].includes(request.method) ? undefined : await request.text();
   const body = bodyText ? bodyText : undefined;
 
-  // DEBUG: console.log what we are fetching
-  console.log(`[PROXY] Forwarding ${request.method} to ${targetUrl.toString()}`);
-
   const upstream = await fetch(targetUrl, {
     method: request.method,
     headers,
