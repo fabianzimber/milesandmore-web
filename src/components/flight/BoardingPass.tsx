@@ -52,10 +52,10 @@ export default function BoardingPass({ data }: { data: BoardingPassData }) {
           transformStyle: "preserve-3d",
           transform: canTilt ? `perspective(1200px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)` : undefined,
         }}
-        className="relative w-full my-auto"
+        className="relative w-full max-w-2xl my-auto"
       >
         <div
-          className="rounded-[2rem] border border-white/70 bg-white shadow-[0_28px_90px_rgba(5,11,25,0.16)]"
+          className="overflow-hidden rounded-[2rem] border border-white/70 bg-white shadow-[0_28px_90px_rgba(5,11,25,0.16)]"
           style={{ backfaceVisibility: "hidden" }}
         >
           <div className="h-1.5 holographic" />
