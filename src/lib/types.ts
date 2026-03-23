@@ -279,11 +279,3 @@ export interface SimLinkIngestPayload {
   on_ground?: boolean;
   onGround?: boolean;
 }
-
-export interface EventSubSubscriptionRecord {
-  id: string;
-  status: string;
-  broadcaster_user_id: string;
-  channel_name: string;
-  created_at: string;
-}
