@@ -235,13 +235,16 @@ button, input, select, textarea { font: inherit; }
 /* ═══════════ UTILITY ═══════════ */
 .shimmer {
   background: linear-gradient(
-    120deg,
-    transparent 30%,
-    rgba(255, 255, 255, 0.35) 50%,
-    transparent 70%
+    110deg,
+    transparent 24%,
+    rgba(255, 255, 255, 0.08) 34%,
+    rgba(255, 255, 255, 0.32) 50%,
+    rgba(255, 255, 255, 0.08) 66%,
+    transparent 76%
   );
-  background-size: 200% 100%;
-  animation: shimmer-slide 3s ease-in-out infinite;
+  background-size: 240% 100%;
+  animation: shimmer-slide 3.8s ease-in-out infinite;
+  will-change: background-position;
 }
 
 @keyframes shimmer-slide {
@@ -252,16 +255,18 @@ button, input, select, textarea { font: inherit; }
 .holographic {
   background: linear-gradient(
     90deg,
-    #94a3b8,
-    #e2e8f0,
-    #f8fafc,
-    #cbd5e1,
-    #e2e8f0,
-    #f8fafc,
-    #94a3b8
+    #7f8ea4 0%,
+    #c7d2e3 18%,
+    #f8fbff 36%,
+    #a2b0c6 52%,
+    #d7e0ee 68%,
+    #ffffff 84%,
+    #7f8ea4 100%
   );
-  background-size: 300% 100%;
-  animation: holo-shift 4s linear infinite;
+  background-size: 340% 100%;
+  animation: holo-shift 5s linear infinite;
+  will-change: background-position;
+  filter: saturate(0.9) contrast(1.05);
 }
 
 @keyframes holo-shift {

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Libre_Barcode_128 } from "next/font/google";
 import SessionProvider from "@/components/SessionProvider";
-import SmoothScrollProvider from "@/components/layout/SmoothScrollProvider";
 import "./globals.css";
 
 const inter = Inter({
@@ -30,7 +29,7 @@ export default function RootLayout({
     <html lang="de" className={`h-full antialiased ${inter.variable} ${barcode.variable}`}>
       <body className="min-h-full flex flex-col font-sans bg-background text-foreground">
         <SessionProvider>
-          <SmoothScrollProvider>{children}</SmoothScrollProvider>
+          {children}
         </SessionProvider>
       </body>
     </html>

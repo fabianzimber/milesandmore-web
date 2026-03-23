@@ -1,6 +1,6 @@
 "use client";
 
-import { useDeferredValue, useMemo, useState } from "react";
+import { useDeferredValue, useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   Armchair,
@@ -66,6 +66,10 @@ export default function CommandsPageClient({ initialCommands }: { initialCommand
   );
   const filtered = deferredFilter === "all" ? commands : commands.filter((command) => command.category === deferredFilter);
 
+  useEffect(() => {
+    window.dispatchEvent(new Event("resize"));
+  }, [deferredFilter]);
+
   const categories: TabRailItem<string>[] = [
     { id: "all", label: "Alle", icon: <Sparkles size={14} /> },
     { id: "flight", label: "Flug", icon: <Plane size={14} /> },
@@ -114,12 +118,12 @@ export default function CommandsPageClient({ initialCommands }: { initialCommand
           </div>
         </header>
 
-        <main className="page-frame relative z-10 flex-1 flex flex-col min-h-0 pb-6 sm:pb-8 lg:pb-10 text-sas-midnight">
+        <main className="page-frame relative z-10 pb-6 sm:pb-8 lg:pb-10 text-sas-midnight">
           <MotionSection as="div" className="z-30 mb-4 sm:mb-6 lg:mb-8 rounded-[1.75rem] bg-white/10 p-2 sm:p-3 backdrop-blur-xl shrink-0 -mt-8 sm:-mt-10 lg:-mt-12 max-w-3xl mx-auto w-full">
             <ResponsiveTabRail items={categories} active={filter} onChange={setFilter} tone="dark" />
           </MotionSection>
 
-          <div className="flex-1 min-h-0 relative px-1 pb-4 sm:pb-6 lg:pb-8 lg:px-4">
+          <div className="relative px-1 pb-4 sm:pb-6 lg:pb-8 lg:px-4">
             <div className="space-y-6 sm:space-y-8 lg:space-y-10">
               <MotionSection className="control-panel rounded-[2rem] p-5 sm:p-7 lg:p-8" delay={0.06}>
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
