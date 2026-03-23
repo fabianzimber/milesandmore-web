@@ -37,6 +37,10 @@ export default function SeatMap({ flight, participants, currentUser, onSeatChang
     const occupant = occupancyMap.get(seatId);
     if (occupant?.user_id === currentUser.user_id) return;
     if (occupant) return;
+    if (selectedSeat === seatId) {
+      confirmSeatChange();
+      return;
+    }
     setSelectedSeat(seatId);
   };
 
