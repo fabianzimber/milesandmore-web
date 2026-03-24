@@ -167,47 +167,51 @@ button, input, select, textarea { font: inherit; }
 }
 
 .bg-hero-gradient {
-  background-color: var(--color-mm-purple-950);
+  background-color: #FAFAFA;
   background-image: 
-    radial-gradient(circle at 15% 50%, rgba(99, 65, 163, 0.25), transparent 45%),
-    radial-gradient(circle at 85% 30%, rgba(123, 92, 181, 0.15), transparent 45%),
-    radial-gradient(circle at 50% 100%, rgba(37, 99, 235, 0.1), transparent 50%);
-  background-size: 150% 150%, 120% 120%, 180% 180%;
+    radial-gradient(circle at 15% 50%, rgba(99, 65, 163, 0.04), transparent 45%),
+    radial-gradient(circle at 85% 30%, rgba(37, 99, 235, 0.03), transparent 45%);
+  background-size: 150% 150%, 120% 120%;
   animation: ambient-drift 40s ease-in-out infinite;
 }
 
 .bg-aurora {
-  background-color: var(--color-background);
+  background-color: #FFFFFF;
   background-image: 
-    radial-gradient(ellipse at 20% -10%, rgba(99, 65, 163, 0.08), transparent 70%),
-    radial-gradient(ellipse at 80% 110%, rgba(37, 99, 235, 0.08), transparent 70%),
-    radial-gradient(ellipse at -20% 50%, rgba(123, 92, 181, 0.04), transparent 50%);
-  background-size: 200% 200%, 250% 250%, 150% 150%;
+    radial-gradient(ellipse at 20% -10%, rgba(123, 92, 181, 0.03), transparent 70%),
+    radial-gradient(ellipse at 80% 110%, rgba(37, 99, 235, 0.03), transparent 70%);
+  background-size: 200% 200%, 250% 250%;
   animation: ambient-drift 45s ease-in-out infinite reverse;
 }
 
 .bg-mesh-dark {
-  background-color: var(--color-mm-purple-950);
+  background-color: #FAFAFA;
   background-image: 
-    radial-gradient(circle at 50% 0%, rgba(123, 92, 181, 0.15), transparent 60%),
-    radial-gradient(circle at 0% 100%, rgba(37, 99, 235, 0.1), transparent 50%),
-    radial-gradient(circle at 100% 100%, rgba(99, 65, 163, 0.1), transparent 50%);
-  background-size: 180% 180%, 200% 200%, 150% 150%;
+    radial-gradient(circle at 50% 0%, rgba(99, 65, 163, 0.04), transparent 60%),
+    radial-gradient(circle at 0% 100%, rgba(37, 99, 235, 0.03), transparent 50%);
+  background-size: 180% 180%, 200% 200%;
   animation: ambient-drift 35s ease-in-out infinite;
 }
 
+/* Original Dark Header, White Bottom */
 .site-shell {
   position: relative;
   min-height: 100svh;
 }
 
 .night-shell {
-  background-color: var(--color-mm-purple-950);
+  background-color: #FAFAFA; 
   background-image: 
-    radial-gradient(ellipse at 50% -20%, rgba(123, 92, 181, 0.12) 0%, transparent 60%),
-    linear-gradient(135deg, rgba(99, 65, 163, 0.03) 0%, transparent 50%, rgba(37, 99, 235, 0.03) 100%);
-  background-size: 100% 100%, 300% 300%;
-  animation: aurora-wave 60s linear infinite alternate;
+    /* Volumetric cinematic orb solely in the header area */
+    radial-gradient(ellipse at 50% 0%, rgba(123, 92, 181, 0.15) 0%, transparent 60%),
+    /* The core header gradient ensuring white text readability */
+    linear-gradient(180deg, #1A0F30 0%, #2D1B4E 35%, #FAFAFA 100%),
+    /* Ultra-minimalist, faint glassy sweep running across the white section */
+    linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.7) 50%, transparent 60%),
+    radial-gradient(circle at 100% 100%, rgba(99, 65, 163, 0.03) 0%, transparent 70%);
+  background-size: 100% 110vh, 100% 110vh, 200vw 200vh, 100% 100%;
+  background-repeat: no-repeat;
+  animation: ambient-drift 40s ease-in-out infinite;
 }
 
 .control-shell {
