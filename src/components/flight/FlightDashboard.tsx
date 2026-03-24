@@ -255,7 +255,7 @@ export default function FlightDashboard({
               </motion.div>
             )}
           </AnimatePresence>
-          <div className="surface-glass z-30 mx-auto mb-32 w-full max-w-3xl lg:-mt-10">
+          <div className="surface-glass p-4 z-30 mx-auto mb-32 w-full max-w-3xl lg:-mt-10">
             <ResponsiveTabRail items={tabs} active={activeTab} onChange={setActiveTab} tone="dark" />
           </div>
 
