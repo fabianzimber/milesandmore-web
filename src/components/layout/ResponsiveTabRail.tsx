@@ -41,14 +41,14 @@ export default function ResponsiveTabRail<T extends string>({
           const isActive = active === item.id;
 
           return (
-            <button
-              key={item.id}
-              onClick={() => onChange(item.id)}
-              className={cn(
-                "relative flex min-w-0 flex-1 items-center justify-center gap-1.5 px-3 py-3 text-xs font-semibold uppercase tracking-[0.16em] transition cursor-pointer sm:gap-2 sm:px-4 sm:text-sm",
-                isActive
-                  ? tone === "dark"
-                    ? "text-foreground"
+              <button
+                key={item.id}
+                onClick={() => onChange(item.id)}
+                className={cn(
+                  "relative flex min-w-0 flex-1 items-center justify-center gap-0.5 px-1.5 py-2.5 text-[10px] font-semibold uppercase tracking-[0.12em] transition cursor-pointer sm:gap-2 sm:px-4 sm:py-3 sm:text-sm sm:tracking-[0.16em]",
+                  isActive
+                    ? tone === "dark"
+                      ? "text-foreground"
                     : "text-foreground"
                   : tone === "dark"
                     ? "hover:text-foreground"
@@ -68,7 +68,8 @@ export default function ResponsiveTabRail<T extends string>({
                 />
               )}
               <span className="relative z-10">{item.icon}</span>
-              <span className="relative z-10 whitespace-nowrap">{item.label}</span>
+              <span className="relative z-10 whitespace-nowrap sm:hidden">{item.shortLabel ?? item.label}</span>
+              <span className="relative z-10 hidden whitespace-nowrap sm:inline">{item.label}</span>
             </button>
           );
         })}

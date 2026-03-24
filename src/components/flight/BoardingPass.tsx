@@ -35,7 +35,7 @@ export default function BoardingPass({ data }: { data: BoardingPassData }) {
   }, []);
 
   return (
-    <div className="flex justify-center items-center min-h-full py-2 sm:py-4" style={{ perspective: 1200 }}>
+    <div className="flex min-h-full items-center justify-center py-0 sm:py-2" style={{ perspective: 1200 }}>
       <motion.div
         ref={cardRef}
         onMouseMove={handleMouseMove}
@@ -60,11 +60,11 @@ export default function BoardingPass({ data }: { data: BoardingPassData }) {
         >
           <div className="h-1.5 holographic" />
 
-          <div className="relative overflow-hidden bg-gradient-to-br from-navy-900 via-navy-800 to-[#102d63] px-5 py-4 text-white sm:px-7 sm:py-5">
+          <div className="relative overflow-hidden bg-gradient-to-br from-navy-900 via-navy-800 to-[#102d63] px-4 py-3.5 text-white sm:px-6 sm:py-[1.125rem] lg:px-7 lg:py-5">
             <div className="absolute inset-0 shimmer opacity-20" />
-            <div className="relative z-10 flex flex-wrap items-center justify-between gap-4">
+            <div className="relative z-10 flex flex-wrap items-center justify-between gap-3 sm:gap-4">
               <div className="flex items-center gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/6 backdrop-blur-md">
+                <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/6 backdrop-blur-md sm:h-11 sm:w-11">
                   <Plane size={18} className="text-sas-gold" />
                 </div>
                 <div>
@@ -72,18 +72,18 @@ export default function BoardingPass({ data }: { data: BoardingPassData }) {
                   <span className="block text-[10px] tracking-[0.24em] text-white/40">AIRLINES EXPERIENCE</span>
                 </div>
               </div>
-              <div className="rounded-full border border-sas-gold/22 bg-sas-gold/10 px-4 py-1.5 text-[10px] font-semibold tracking-[0.28em] text-sas-gold uppercase">
+              <div className="rounded-full border border-sas-gold/22 bg-sas-gold/10 px-3.5 py-1.5 text-[10px] font-semibold tracking-[0.28em] text-sas-gold uppercase">
                 Boarding Pass
               </div>
             </div>
           </div>
 
-          <div className="grid gap-0 lg:grid-cols-[1.08fr_0.92fr]">
-            <div className="px-5 pb-5 pt-4 sm:px-7 sm:pb-6 sm:pt-5">
+          <div className="grid gap-0 lg:grid-cols-[1.03fr_0.97fr]">
+            <div className="px-4 pb-4 pt-3.5 sm:px-6 sm:pb-5 sm:pt-[1.125rem] lg:px-7 lg:pb-6 lg:pt-5">
               <Label>PASSENGER NAME</Label>
-              <p className="mt-1 text-lg font-black tracking-[0.08em] text-sas-midnight sm:text-xl">{data.passenger_name}</p>
+              <p className="mt-1 text-lg font-black tracking-[0.06em] text-sas-midnight sm:text-xl">{data.passenger_name}</p>
 
-              <div className="mt-4 sm:mt-5 rounded-[1.8rem] bg-sas-gray-50 px-4 py-4">
+              <div className="mt-3.5 rounded-[1.8rem] bg-sas-gray-50 px-4 py-3.5 sm:mt-4 sm:px-5 sm:py-4">
                 <div className="flex items-center justify-between gap-3">
                   <div>
                     <Label>FROM</Label>
@@ -115,7 +115,7 @@ export default function BoardingPass({ data }: { data: BoardingPassData }) {
                 </div>
               </div>
 
-              <div className="mt-4 sm:mt-5 grid gap-2 sm:grid-cols-2">
+              <div className="mt-3.5 grid gap-2.5 sm:mt-4 sm:grid-cols-2">
                 <DetailCard icon={<Ticket size={14} />} label="FLIGHT" value={data.flight_number} />
                 <DetailCard icon={<CalendarDays size={14} />} label="DATE" value={data.date} />
                 <DetailCard icon={<DoorOpen size={14} />} label="GATE" value={data.gate} />
@@ -124,9 +124,9 @@ export default function BoardingPass({ data }: { data: BoardingPassData }) {
             </div>
 
             <div className="flex flex-col border-t border-white/8 bg-[linear-gradient(180deg,rgba(11,16,32,0.92),rgba(8,12,24,0.98))] lg:border-l lg:border-t-0">
-              <div className="flex-1 px-5 py-4 sm:px-7 sm:py-5">
+              <div className="px-4 py-3.5 sm:px-6 sm:py-[1.125rem] lg:px-7 lg:py-5">
                 <Label>SEAT ASSIGNMENT</Label>
-                <div className="mt-2 rounded-[1.8rem] bg-gradient-to-br from-navy-900 via-navy-800 to-sas-navy p-4 text-white">
+                <div className="mt-2 rounded-[1.8rem] bg-gradient-to-br from-navy-900 via-navy-800 to-sas-navy p-4 text-white sm:p-5">
                   <p className="text-xs font-semibold tracking-[0.24em] text-white/48 uppercase">Your Seat</p>
                   <p className="mt-1 sm:mt-2 text-4xl sm:text-5xl font-black leading-none text-glow-gold gold-shimmer">{data.seat}</p>
                   <div className="mt-3 sm:mt-4 flex items-end justify-between gap-3">
@@ -141,7 +141,7 @@ export default function BoardingPass({ data }: { data: BoardingPassData }) {
                   </div>
                 </div>
 
-                <div className="mt-4 rounded-[1.5rem] border border-white/8 bg-white/4 p-3 sm:p-4">
+                <div className="mt-3.5 rounded-[1.5rem] border border-white/8 bg-white/4 p-3 sm:mt-4 sm:p-4">
                   <Label className="text-sas-gray-500">TRAVEL NOTES</Label>
                   <p className="mt-1 sm:mt-1.5 text-xs leading-5 sm:leading-6 text-sas-gray-500">
                     Tippe im Dashboard auf den Sitzplan, um den Platz zu wechseln. Auf Touch-Geräten bleibt die Karte
@@ -151,7 +151,7 @@ export default function BoardingPass({ data }: { data: BoardingPassData }) {
               </div>
               <div className="tear-line" />
 
-              <div className="relative px-5 py-4 sm:px-7 sm:py-5">
+              <div className="relative px-4 py-3.5 sm:px-6 sm:py-[1.125rem] lg:px-7 lg:py-5">
                 <div className="relative text-center">
                   <p
                     className="text-4xl leading-none text-sas-midnight sm:text-5xl lg:text-6xl"
@@ -196,7 +196,7 @@ function DetailCard({
   value: string;
 }) {
   return (
-    <div className="rounded-[1.2rem] border border-white/8 bg-white/4 px-3 py-3 shadow-[0_16px_34px_rgba(5,11,25,0.12)]">
+    <div className="rounded-[1.2rem] border border-white/8 bg-white/4 px-3 py-3.5 shadow-[0_16px_34px_rgba(5,11,25,0.12)]">
       <div className="flex items-center gap-1.5 text-sas-blue">
         {icon}
         <Label>{label}</Label>

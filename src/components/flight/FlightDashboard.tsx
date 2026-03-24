@@ -161,10 +161,10 @@ export default function FlightDashboard({
     seat: currentParticipant.seat || boardingPassBase.seat || "TBD",
   };
 
-  const tabs: { id: Tab; label: string; icon: React.ReactNode }[] = [
-    { id: "pass", label: "Boarding Pass", icon: <Ticket size={16} /> },
-    { id: "seats", label: "Sitzplan", icon: <Armchair size={16} /> },
-    { id: "map", label: "Live Map", icon: <Map size={16} /> },
+  const tabs: { id: Tab; label: string; shortLabel?: string; icon: React.ReactNode }[] = [
+    { id: "pass", label: "Boarding Pass", shortLabel: "Pass", icon: <Ticket size={16} /> },
+    { id: "seats", label: "Sitzplan", shortLabel: "Seats", icon: <Armchair size={16} /> },
+    { id: "map", label: "Live Map", shortLabel: "Map", icon: <Map size={16} /> },
     { id: "stats", label: "Stats", icon: <Trophy size={16} /> },
   ];
 
@@ -172,16 +172,16 @@ export default function FlightDashboard({
 
   return (
     <PageShell tone="night" showNavigation={false}>
-      <div className="relative flex flex-col min-h-[100dvh] pb-20">
-        <header className="relative shrink-0 overflow-hidden pb-8 pt-4 sm:pb-12 sm:pt-8 lg:pb-14 lg:pt-10 text-white">
+      <div className="relative flex flex-col min-h-[100dvh] pb-16 sm:pb-[4.5rem] lg:pb-20">
+        <header className="relative shrink-0 overflow-hidden pb-6 pt-3 sm:pb-9 sm:pt-6 lg:pb-11 lg:pt-8 text-white">
           <AirspaceScene density="compact" className="opacity-90" />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,8,20,0.18),rgba(3,8,20,0.6)_65%,rgba(233,238,248,0)_100%)]" />
 
           <div className="page-frame relative">
-            <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} className="grid gap-6 lg:gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
-              <div className="pt-2 sm:pt-4">
+            <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} className="grid gap-5 lg:gap-7 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
+              <div className="pt-1 sm:pt-3">
                 <p className="eyebrow">Passenger Surface</p>
-                <div className="mt-3 sm:mt-5 lg:mt-6 flex flex-col gap-2 sm:gap-3">
+                <div className="mt-3 sm:mt-4 lg:mt-5 flex flex-col gap-2 sm:gap-3">
                   <h1 className="text-4xl font-black tracking-[-0.05em] text-glow-white sm:text-5xl lg:text-6xl">
                     {`SK${flight.flight_number || flight.id}`}
                   </h1>
@@ -203,13 +203,13 @@ export default function FlightDashboard({
                     </div>
                   </div>
                 </div>
-                <p className="mt-4 sm:mt-5 lg:mt-6 max-w-xl text-sm leading-6 sm:text-base sm:leading-7 lg:text-lg lg:leading-8 text-white/60 line-clamp-2 sm:line-clamp-none">
+                <p className="mt-3 sm:mt-4 lg:mt-5 max-w-xl text-sm leading-6 sm:text-base sm:leading-7 lg:text-lg lg:leading-8 text-white/60 line-clamp-2 sm:line-clamp-none">
                   Persönlicher Flight Link, Seat Control, Live-Tracking und eigene Länder-/Meilenstatistik in einer
                   mobilen Oberfläche, die wie eine Boarding Experience statt wie ein Roh-Dashboard wirkt.
                 </p>
               </div>
 
-              <div className="night-panel rounded-[2rem] p-5 sm:p-6 lg:p-8 lg:mb-2">
+              <div className="night-panel rounded-[2rem] p-4 sm:p-5 lg:mb-2 lg:p-7">
                 <div className="flex flex-wrap items-start justify-between gap-4">
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/38">Passenger</p>
@@ -219,7 +219,7 @@ export default function FlightDashboard({
                     Seat {currentParticipant.seat || "TBD"}
                   </div>
                 </div>
-                <div className="mt-5 sm:mt-6 grid gap-3 sm:gap-4 sm:grid-cols-2">
+                <div className="mt-4 sm:mt-5 grid gap-3 sm:gap-4 sm:grid-cols-2">
                   <div className="rounded-[1.4rem] border border-white/8 bg-white/[0.045] p-4 sm:p-5">
                     <p className="text-xs uppercase tracking-[0.18em] text-white/35">Live Link</p>
                     <p className="mt-1 sm:mt-2 text-sm sm:text-base leading-6 text-white/72">
@@ -239,7 +239,7 @@ export default function FlightDashboard({
           </div>
         </header>
 
-        <main className="page-frame relative z-10 pb-6 sm:pb-8 lg:pb-10">
+        <main className="page-frame relative z-10 pb-4 sm:pb-6 lg:pb-8">
           <AnimatePresence>
             {error && (
               <motion.div
@@ -255,11 +255,11 @@ export default function FlightDashboard({
               </motion.div>
             )}
           </AnimatePresence>
-          <div className="surface-glass z-30 mb-4 max-w-3xl p-2 sm:mb-6 sm:p-3 lg:mb-8 lg:-mt-12 mx-auto w-full">
+          <div className="surface-glass z-30 mx-auto mb-3 w-full max-w-3xl p-1.5 sm:mb-5 sm:p-2.5 lg:-mt-10 lg:mb-6">
             <ResponsiveTabRail items={tabs} active={activeTab} onChange={setActiveTab} tone="dark" />
           </div>
 
-          <div className="relative px-1 sm:px-2 lg:px-4 pb-4 sm:pb-6 lg:pb-8">
+          <div className="relative px-0 sm:px-1 lg:px-3 pb-3 sm:pb-5 lg:pb-6">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeTab}
