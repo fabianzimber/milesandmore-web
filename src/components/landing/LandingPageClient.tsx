@@ -108,7 +108,6 @@ export default function LandingPageClient({
             <div className="page-frame relative flex h-full flex-col justify-between pb-16 pt-32 sm:pb-20 sm:pt-40 lg:pb-24">
               <div className="grid gap-16 lg:grid-cols-[minmax(0,31rem)_minmax(20rem,25rem)] lg:items-center lg:justify-between lg:gap-24">
                 <div className="max-w-[32rem]">
-                  <span className="eyebrow">Twitch Flight Operations</span>
                   <div className="mt-6">
                     <TextReveal
                       text="MILES &"
@@ -170,7 +169,7 @@ export default function LandingPageClient({
                 </div>
               </div>
 
-              <div className="grid gap-5 sm:grid-cols-3">
+              <div className="grid gap-5 sm:grid-cols-3 mt-16">
                 <CountStat label="Piloten" value={stats.pilots} />
                 <CountStat label="Meilen" value={stats.miles} />
                 <CountStat label="Flüge" value={stats.flights} />
