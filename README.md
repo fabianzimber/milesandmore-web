@@ -42,8 +42,8 @@ npm run dev
 
 ## 📜 License & Credits
 
-**Non-Commercial License**  
-This project is licensed strictly for **non-commercial use**. You are not permitted to use this frontend, its cinematic assets, design language, or any of its code for commercial projects, financial gain, or paid services.
+**CC BY-NC 4.0 License**  
+This project is licensed under the **Creative Commons Attribution-NonCommercial 4.0 International License**. You are not permitted to use this frontend, its cinematic assets, design language, or any of its code for commercial projects, financial gain, or paid services.
 
 **Requirements for Credits**  
 If you adapt or reference this project for personal/educational use, you **must prominently credit the original creator** clearly matching the application's source and linking back to the original author. Professional courtesy is required.
