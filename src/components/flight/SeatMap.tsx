@@ -111,9 +111,16 @@ export default function SeatMap({ flight, participants, currentUser, onSeatChang
           )}
         </AnimatePresence>
 
-        <div className="relative mx-auto max-w-3xl overflow-x-auto pb-2">
-          <div className="relative mx-auto min-w-[18rem] max-w-sm sm:min-w-[21rem] sm:max-w-md">
-            <div className="relative mx-auto w-56 sm:w-64">
+        <div className="relative mx-auto max-w-3xl overflow-x-auto pb-4">
+          <div className="relative mx-auto w-max px-8 sm:px-12 pt-4">
+            
+            {/* Simple Implied Wings */}
+            <div className="absolute top-[35%] left-0 right-0 flex justify-between pointer-events-none z-0 opacity-80">
+              <div className="w-12 sm:w-16 h-32 sm:h-48 bg-gradient-to-r from-sas-gray-200 to-sas-gray-50 border border-sas-gray-300 rounded-bl-[4rem] rounded-tl-md shadow-sm" style={{ transform: "skewY(22deg) translateY(-10px)" }} />
+              <div className="w-12 sm:w-16 h-32 sm:h-48 bg-gradient-to-l from-sas-gray-200 to-sas-gray-50 border border-sas-gray-300 rounded-br-[4rem] rounded-tr-md shadow-sm" style={{ transform: "skewY(-22deg) translateY(-10px)" }} />
+            </div>
+
+            <div className="relative mx-auto w-48 sm:w-56 z-10">
             <svg viewBox="0 0 200 90" className="w-full">
               <path d="M 20 90 Q 20 8, 100 0 Q 180 8, 180 90" fill="#eef0f4" stroke="#dde1e8" strokeWidth="1.5" />
               <line x1="60" y1="52" x2="140" y2="52" stroke="#dde1e8" strokeWidth="1" />
@@ -126,25 +133,25 @@ export default function SeatMap({ flight, participants, currentUser, onSeatChang
             </svg>
             </div>
 
-            <div className="relative mx-2 overflow-hidden rounded-[1.5rem] border border-sas-gray-200 bg-gradient-to-b from-sas-gray-50 to-white">
-              <div className="absolute left-0.5 top-0 bottom-0 flex w-2 flex-col items-center justify-start gap-3 pt-10">
+            <div className="relative z-10 overflow-hidden rounded-[1.5rem] border border-sas-gray-200 bg-gradient-to-b from-sas-gray-50 to-white shadow-sm mx-auto">
+              <div className="absolute left-0.5 top-0 bottom-0 flex w-1.5 flex-col items-center justify-start gap-3 pt-10">
               {Array.from({ length: Math.min(totalRows, 30) }, (_, i) => (
-                <div key={`wl${i}`} className="w-1 h-2.5 rounded-full bg-sas-blue/10 border border-sas-blue/15" />
+                <div key={`wl${i}`} className="w-1 h-2 rounded-full bg-sas-blue/10 border border-sas-blue/15" />
               ))}
             </div>
-            <div className="absolute right-0.5 top-0 bottom-0 flex w-2 flex-col items-center justify-start gap-3 pt-10">
+            <div className="absolute right-0.5 top-0 bottom-0 flex w-1.5 flex-col items-center justify-start gap-3 pt-10">
               {Array.from({ length: Math.min(totalRows, 30) }, (_, i) => (
-                <div key={`wr${i}`} className="w-1 h-2.5 rounded-full bg-sas-blue/10 border border-sas-blue/15" />
+                <div key={`wr${i}`} className="w-1 h-2 rounded-full bg-sas-blue/10 border border-sas-blue/15" />
               ))}
             </div>
 
-            <div className="px-1 py-3 sm:px-2 sm:py-4">
+            <div className="px-1.5 py-4 sm:px-2.5 sm:py-5">
               <div className="sticky top-0 z-10 mb-3 flex items-center justify-center gap-0 rounded-xl bg-white/92 py-2 backdrop-blur-sm">
-                <div className="w-5 sm:w-7" />
+                <div className="w-5 sm:w-6" />
                 {letters.map((letter, i) => (
                   <div key={letter} className="flex items-center">
                     <div className="w-8 text-center text-[9px] font-bold text-sas-gray-400 sm:w-9 sm:text-[10px]">{letter}</div>
-                    {aislePositions.includes(i + 1) && <div className="w-5 sm:w-7" />}
+                    {aislePositions.includes(i + 1) && <div className="w-4 sm:w-6" />}
                   </div>
                 ))}
               </div>
@@ -165,7 +172,7 @@ export default function SeatMap({ flight, participants, currentUser, onSeatChang
                       </div>
                     )}
                     <div className="flex items-center justify-center gap-0 mb-1">
-                      <div className="w-5 text-right pr-1 text-[8px] font-semibold text-sas-gray-300 sm:w-7 sm:pr-1.5 sm:text-[9px]">{rowNum}</div>
+                      <div className="w-5 text-right pr-1 text-[8px] font-semibold text-sas-gray-300 sm:w-6 sm:pr-1.5 sm:text-[9px]">{rowNum}</div>
                       {letters.map((letter, letterIdx) => {
                         const seatId = formatSeatId(rowNum, letter);
                         const occupant = occupancyMap.get(seatId);
@@ -218,7 +225,7 @@ export default function SeatMap({ flight, participants, currentUser, onSeatChang
                               </AnimatePresence>
                             </motion.button>
                             {aislePositions.includes(letterIdx + 1) && (
-                              <div className="w-5 flex items-center justify-center sm:w-7">
+                              <div className="w-4 flex items-center justify-center sm:w-6">
                                 {rowIdx % 4 === 0 && <div className="w-px h-4 bg-sas-gray-200" />}
                               </div>
                             )}
@@ -231,7 +238,7 @@ export default function SeatMap({ flight, participants, currentUser, onSeatChang
               })}
             </div>
 
-            <div className="mx-auto w-28">
+            <div className="mx-auto w-24 z-10 relative">
               <svg viewBox="0 0 120 40" className="w-full">
                 <path d="M 10 0 Q 10 35, 60 40 Q 110 35, 110 0" fill="#eef0f4" stroke="#dde1e8" strokeWidth="1.5" />
               </svg>
