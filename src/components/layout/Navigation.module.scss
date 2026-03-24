@@ -1,0 +1,16 @@
+// Navigation component styles
+// Overlay backdrop and layout for the mobile menu — using SCSS for clarity.
+
+.mobileOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem;
+  background: rgba(5, 5, 16, 0.92);
+  backdrop-filter: blur(24px);
+  // Clear the fixed navigation bar height with a small buffer.
+  padding-top: calc(var(--nav-height) + 1rem);
+}

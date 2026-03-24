@@ -80,7 +80,7 @@ function CountStat({
   }, [value]);
 
   return (
-    <div className="surface-glass px-6 py-6 sm:px-7 sm:py-7">
+    <div className="surface-glass px-7 py-7">
       <p className="mono-label !gap-2 !text-[0.62rem] !tracking-[0.2em] !text-sas-gray-500 before:hidden">{label}</p>
       <p
         ref={ref}
@@ -105,9 +105,9 @@ export default function LandingPageClient({
             <HeroGlobe />
             <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,5,16,0.15),rgba(5,5,16,0.35)_38%,rgba(5,5,16,0.74)_100%)]" />
 
-            <div className="page-frame relative flex h-full flex-col justify-between pb-16 pt-32 sm:pb-20 sm:pt-40 lg:pb-24">
+            <div className="page-frame relative flex h-full flex-col justify-between pb-16 pt-32 sm:pb-20 sm:pt-40 lg:pb-28 lg:pt-48">
               <div className="grid gap-16 lg:grid-cols-[minmax(0,31rem)_minmax(20rem,25rem)] lg:items-center lg:justify-between lg:gap-24">
-                <div className="max-w-[32rem]">
+                <div>
                   <div className="mt-6">
                     <TextReveal
                       text="MILES &"
@@ -123,12 +123,12 @@ export default function LandingPageClient({
                       delay={0.12}
                     />
                   </div>
-                  <div className="mt-8 space-y-3 text-base leading-7 text-white/72 sm:text-lg sm:leading-8">
+                  <div className="mt-8 space-y-3 text-base leading-7 text-white/72 sm:text-lg sm:leading-8 lg:text-xl">
                     <TextReveal text="Sammle Meilen." as="p" mode="words" delay={0.18} />
                     <TextReveal text="Erkunde die Welt." as="p" mode="words" delay={0.28} />
                     <TextReveal text="Steige im Ranking auf." as="p" mode="words" delay={0.38} />
                   </div>
-                  <p className="mt-8 max-w-md text-sm leading-7 text-white/56 sm:text-base sm:leading-8">
+                  <p className="mt-8 text-sm leading-7 text-white/56 sm:text-base sm:leading-8">
                     Miles & More verbindet Twitch-Community, Flugerlebnis und Echtzeitdaten zu einer einzigen,
                     cineastischen Vielflieger-Oberfläche.
                   </p>
@@ -144,7 +144,7 @@ export default function LandingPageClient({
                 </div>
 
                 <div className="hidden justify-self-end lg:block">
-                  <div className="surface-gold-accent w-[min(24rem,100%)] px-8 py-9 sm:px-9 sm:py-10">
+                  <div className="surface-gold-accent px-9 py-10">
                     <p className="mono-label !gap-2 !text-[0.62rem] !tracking-[0.2em] !text-sas-gray-500 before:hidden">
                       Current Signals
                     </p>
@@ -169,7 +169,7 @@ export default function LandingPageClient({
                 </div>
               </div>
 
-              <div className="grid gap-5 sm:grid-cols-3 mt-16">
+              <div className="mt-16 grid gap-5 sm:grid-cols-3">
                 <CountStat label="Piloten" value={stats.pilots} />
                 <CountStat label="Meilen" value={stats.miles} />
                 <CountStat label="Flüge" value={stats.flights} />
@@ -178,7 +178,7 @@ export default function LandingPageClient({
           </div>
         </section>
 
-        <section className="page-frame pt-20 sm:pt-28">
+        <section className="page-frame pt-20 sm:pt-28 lg:pt-36">
           <div className="mb-14 flex items-end justify-between gap-6 sm:mb-16">
             <div>
               <span className="eyebrow">Core Surfaces</span>
@@ -199,15 +199,15 @@ export default function LandingPageClient({
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-10% 0px" }}
                   transition={{ duration: 0.7, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
-                  className="surface-glass card-hover-lift min-h-[22rem] px-8 py-9 sm:px-10 sm:py-11"
+                  className="surface-glass card-hover-lift min-h-[20rem] px-9 py-10 lg:min-h-[22rem]"
                 >
                   <div className="inline-flex rounded-full border border-gold-300/20 bg-gold-400/10 p-3 text-gold-300">
                     <Icon size={18} />
                   </div>
-                  <h3 className="mt-9 text-3xl font-black tracking-[-0.04em] text-foreground sm:text-4xl">
+                  <h3 className="mt-9 text-3xl font-black tracking-[-0.04em] text-foreground sm:text-4xl lg:text-5xl">
                     {feature.title}
                   </h3>
-                  <p className="mt-5 max-w-sm text-sm leading-7 text-white/56">{feature.description}</p>
+                  <p className="mt-5 text-sm leading-7 text-white/56">{feature.description}</p>
                   <Link
                     href={feature.href}
                     className="mt-10 inline-flex text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-gold-300 transition-colors hover:text-foreground"
@@ -220,15 +220,15 @@ export default function LandingPageClient({
           </div>
         </section>
 
-        <section className="page-frame py-20 sm:py-28">
-          <ParallaxSection className="surface-gold-accent overflow-hidden px-8 py-12 sm:px-14 sm:py-16">
+        <section className="page-frame py-20 sm:py-28 lg:py-36">
+          <ParallaxSection className="surface-gold-accent overflow-hidden px-8 py-14 sm:px-14 sm:py-16 lg:px-20 lg:py-20">
             <div className="grid gap-14 lg:grid-cols-[0.88fr_1.12fr] lg:items-start lg:gap-[4.5rem]">
               <div>
                 <span className="eyebrow">Flight Loop</span>
                 <h2 className="mt-4 text-4xl font-black tracking-[-0.05em] text-foreground sm:text-5xl lg:text-6xl">
                   So wird aus Chat ein <span className="display-accent text-gold-300">Passagierfluss</span>.
                 </h2>
-                <p className="mt-5 max-w-lg text-sm leading-7 text-white/58 sm:text-base sm:leading-8">
+                <p className="mt-5 text-sm leading-7 text-white/58 sm:text-base sm:leading-8 lg:text-lg">
                   Die bestehende Logik bleibt intakt. Der neue Auftritt macht nur sichtbarer, wie sauber Boarding,
                   Tracking, Meilen und Ranking ineinandergreifen.
                 </p>
@@ -242,12 +242,12 @@ export default function LandingPageClient({
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-10% 0px" }}
                     transition={{ duration: 0.65, delay: index * 0.08 }}
-                    className="surface-glass min-h-[14rem] px-7 py-7 sm:px-8 sm:py-8"
+                    className="surface-glass min-h-[14rem] px-8 py-8"
                   >
                     <div className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-sm font-semibold text-gold-300">
                       {String(index + 1).padStart(2, "0")}
                     </div>
-                    <p className="mt-6 max-w-xs text-base leading-7 text-foreground">{step}</p>
+                    <p className="mt-6 text-base leading-7 text-foreground">{step}</p>
                   </motion.div>
                 ))}
               </div>
@@ -255,15 +255,15 @@ export default function LandingPageClient({
           </ParallaxSection>
         </section>
 
-        <section className="page-frame pb-24 pt-8 sm:pb-32 sm:pt-10">
-          <div className="surface-glass px-8 py-10 sm:px-12 sm:py-14">
+        <section className="page-frame pb-24 pt-8 sm:pb-32 sm:pt-10 lg:pb-40 lg:pt-12">
+          <div className="surface-glass px-8 py-12 sm:px-14 sm:py-16 lg:px-20 lg:py-20">
             <div className="grid gap-12 lg:grid-cols-[1fr_auto] lg:items-end">
               <div>
                 <span className="eyebrow">Final Approach</span>
                 <h2 className="mt-4 text-4xl font-black tracking-[-0.05em] text-foreground sm:text-5xl lg:text-6xl">
                   Bereit für den nächsten Flug?
                 </h2>
-                <p className="mt-4 max-w-xl text-sm leading-7 text-white/58 sm:text-base sm:leading-8">
+                <p className="mt-4 text-sm leading-7 text-white/58 sm:text-base sm:leading-8 lg:text-lg">
                   Öffne Ranking, Commands oder den Passenger-Demo-Flow und prüfe die neue Oberfläche direkt im
                   operativen Kontext.
                 </p>
