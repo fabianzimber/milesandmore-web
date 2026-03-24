@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Inter, Libre_Barcode_128 } from "next/font/google";
+import { Inter, Libre_Barcode_128, Playfair_Display } from "next/font/google";
+import SmoothScrollProvider from "@/components/layout/SmoothScrollProvider";
 import SessionProvider from "@/components/SessionProvider";
 import "./globals.css";
 
@@ -13,6 +14,13 @@ const barcode = Libre_Barcode_128({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-barcode",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-playfair",
 });
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://milesandmore.live";
@@ -62,7 +70,7 @@ export const metadata: Metadata = {
     ],
     apple: { url: "/apple-touch-icon.png", sizes: "180x180" },
     other: [
-      { rel: "mask-icon", url: "/logo.svg", color: "#3D2668" },
+      { rel: "mask-icon", url: "/logo.svg", color: "#C8A96E" },
     ],
   },
   manifest: "/manifest.webmanifest",
@@ -74,10 +82,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="de" className={`h-full antialiased ${inter.variable} ${barcode.variable}`}>
+    <html lang="de" className={`h-full antialiased ${inter.variable} ${barcode.variable} ${playfair.variable}`}>
       <body className="min-h-full flex flex-col font-sans bg-background text-foreground">
         <SessionProvider>
-          {children}
+          <SmoothScrollProvider>{children}</SmoothScrollProvider>
         </SessionProvider>
       </body>
     </html>

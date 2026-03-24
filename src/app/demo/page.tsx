@@ -96,7 +96,7 @@ const mockParticipants: Participant[] = [
 
 export default function DemoPage() {
   return (
-    <div className="bg-sas-midnight">
+    <div className="bg-background">
       <FlightDashboard
         hash="demo-hash-123456"
         initialFlight={mockFlight}

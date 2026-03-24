@@ -38,10 +38,10 @@ export default function FlightTracker({ flight, position }: FlightTrackerProps) 
   return (
     <div className="space-y-5">
       <div className="night-panel relative overflow-hidden rounded-[2rem] border border-white/10">
-        <div className="h-[42svh] min-h-[300px] bg-sas-gray-900 sm:h-[420px] relative">
+        <div className="relative h-[42svh] min-h-[300px] bg-navy-900 sm:h-[420px]">
           <FlightMap lat={currentPos?.lat} lon={currentPos?.lon} />
           {!currentPos && (
-            <div className="absolute inset-0 z-[1000] flex items-center justify-center bg-sas-gray-900/60 backdrop-blur-[2px]">
+            <div className="absolute inset-0 z-[1000] flex items-center justify-center bg-navy-900/60 backdrop-blur-[2px]">
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -97,7 +97,7 @@ export default function FlightTracker({ flight, position }: FlightTrackerProps) 
                 animate={{ rotate: currentData.heading || 90 }}
                 style={{ left: "50%" }}
               >
-                <div className="flex h-8 w-8 -translate-x-1/2 items-center justify-center rounded-full bg-gradient-to-br from-sas-midnight to-sas-navy shadow-lg shadow-sas-navy/30">
+                <div className="flex h-8 w-8 -translate-x-1/2 items-center justify-center rounded-full bg-gradient-to-br from-navy-900 to-sas-navy shadow-lg shadow-sas-navy/30">
                   <Plane size={12} className="text-sas-gold rotate-90" />
                 </div>
               </motion.div>

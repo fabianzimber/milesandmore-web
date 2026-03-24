@@ -20,7 +20,7 @@ function SplitFlapDigit({ value }: { value: string }) {
       initial={{ rotateX: -90, opacity: 0 }}
       animate={{ rotateX: 0, opacity: 1 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
-      className="inline-block bg-sas-gray-900 text-white text-lg font-mono font-bold px-1.5 py-0.5 rounded mx-px shadow-inner"
+      className="mx-px inline-block rounded bg-navy-800 px-1.5 py-0.5 text-lg font-mono font-bold text-white shadow-inner"
       style={{ perspective: 200 }}
     >
       {value}

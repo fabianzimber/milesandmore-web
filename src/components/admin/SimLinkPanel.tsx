@@ -75,7 +75,7 @@ export default function SimLinkPanel() {
             </div>
           </div>
 
-          <div className="rounded-xl bg-sas-gray-900 p-4 font-mono text-xs text-sas-gray-200">
+          <div className="rounded-xl bg-navy-900 p-4 font-mono text-xs text-sas-gray-200">
             {relayCommand}
           </div>
         </div>

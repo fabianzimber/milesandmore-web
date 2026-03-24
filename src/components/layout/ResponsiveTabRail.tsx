@@ -31,10 +31,10 @@ export default function ResponsiveTabRail<T extends string>({
     <div className={cn("tab-rail overflow-x-auto", className)}>
       <div
         className={cn(
-          "inline-flex min-w-full items-center gap-1 rounded-full border p-1",
+          "inline-flex min-w-full items-center gap-2 border-b pb-1",
           tone === "dark"
-            ? "border-white/10 bg-white/5 text-white/70 backdrop-blur-md"
-            : "border-sas-gray-200/70 bg-white/70 text-sas-gray-500 backdrop-blur-xl",
+            ? "border-white/10 text-white/68"
+            : "border-white/8 text-sas-gray-500",
         )}
       >
         {items.map((item) => {
@@ -45,24 +45,24 @@ export default function ResponsiveTabRail<T extends string>({
               key={item.id}
               onClick={() => onChange(item.id)}
               className={cn(
-                "relative flex min-w-0 flex-1 items-center justify-center gap-1.5 rounded-full px-3 py-2.5 text-xs font-semibold transition cursor-pointer sm:gap-2 sm:px-4 sm:py-3 sm:text-sm",
+                "relative flex min-w-0 flex-1 items-center justify-center gap-1.5 px-3 py-3 text-xs font-semibold uppercase tracking-[0.16em] transition cursor-pointer sm:gap-2 sm:px-4 sm:text-sm",
                 isActive
                   ? tone === "dark"
-                    ? "text-white"
-                    : "text-sas-midnight"
+                    ? "text-foreground"
+                    : "text-foreground"
                   : tone === "dark"
-                    ? "hover:text-white"
-                    : "hover:text-sas-midnight",
+                    ? "hover:text-foreground"
+                    : "hover:text-foreground",
               )}
             >
               {isActive && (
                 <motion.span
                   layoutId={`tab-rail-${tone}`}
                   className={cn(
-                    "absolute inset-0 rounded-full",
+                    "absolute inset-x-3 bottom-0 h-px",
                     tone === "dark"
-                      ? "bg-white/12 shadow-[0_10px_30px_rgba(3,8,20,0.24)]"
-                      : "bg-white shadow-[0_12px_30px_rgba(5,11,25,0.1)]",
+                      ? "bg-gradient-to-r from-transparent via-gold-400 to-transparent shadow-[0_0_24px_rgba(200,169,110,0.42)]"
+                      : "bg-gradient-to-r from-transparent via-gold-400 to-transparent",
                   )}
                   transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                 />

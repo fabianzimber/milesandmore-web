@@ -55,16 +55,16 @@ export default function BoardingPass({ data }: { data: BoardingPassData }) {
         className="relative w-full my-auto"
       >
         <div
-          className="overflow-hidden rounded-[2rem] border border-white/70 bg-white shadow-[0_28px_90px_rgba(5,11,25,0.16)]"
+          className="overflow-hidden rounded-[2rem] border border-white/8 bg-[linear-gradient(180deg,rgba(10,15,29,0.98),rgba(6,10,20,0.98))] shadow-[0_28px_90px_rgba(5,11,25,0.3)]"
           style={{ backfaceVisibility: "hidden" }}
         >
           <div className="h-1.5 holographic" />
 
-          <div className="relative overflow-hidden bg-gradient-to-br from-sas-midnight via-[#07152f] to-[#102d63] px-5 py-4 text-white sm:px-7 sm:py-5">
+          <div className="relative overflow-hidden bg-gradient-to-br from-navy-900 via-navy-800 to-[#102d63] px-5 py-4 text-white sm:px-7 sm:py-5">
             <div className="absolute inset-0 shimmer opacity-20" />
             <div className="relative z-10 flex flex-wrap items-center justify-between gap-4">
               <div className="flex items-center gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/8 backdrop-blur-md">
+                <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/6 backdrop-blur-md">
                   <Plane size={18} className="text-sas-gold" />
                 </div>
                 <div>
@@ -123,10 +123,10 @@ export default function BoardingPass({ data }: { data: BoardingPassData }) {
               </div>
             </div>
 
-            <div className="flex flex-col border-t border-sas-gray-100 bg-[linear-gradient(180deg,#f9fbff,#eef3fb)] lg:border-l lg:border-t-0">
+            <div className="flex flex-col border-t border-white/8 bg-[linear-gradient(180deg,rgba(11,16,32,0.92),rgba(8,12,24,0.98))] lg:border-l lg:border-t-0">
               <div className="flex-1 px-5 py-4 sm:px-7 sm:py-5">
                 <Label>SEAT ASSIGNMENT</Label>
-                <div className="mt-2 rounded-[1.8rem] bg-gradient-to-br from-sas-midnight via-[#07152f] to-sas-navy p-4 text-white">
+                <div className="mt-2 rounded-[1.8rem] bg-gradient-to-br from-navy-900 via-navy-800 to-sas-navy p-4 text-white">
                   <p className="text-xs font-semibold tracking-[0.24em] text-white/48 uppercase">Your Seat</p>
                   <p className="mt-1 sm:mt-2 text-4xl sm:text-5xl font-black leading-none text-glow-gold gold-shimmer">{data.seat}</p>
                   <div className="mt-3 sm:mt-4 flex items-end justify-between gap-3">
@@ -141,7 +141,7 @@ export default function BoardingPass({ data }: { data: BoardingPassData }) {
                   </div>
                 </div>
 
-                <div className="mt-4 rounded-[1.5rem] border border-sas-gray-200 bg-white/80 p-3 sm:p-4">
+                <div className="mt-4 rounded-[1.5rem] border border-white/8 bg-white/4 p-3 sm:p-4">
                   <Label className="text-sas-gray-500">TRAVEL NOTES</Label>
                   <p className="mt-1 sm:mt-1.5 text-xs leading-5 sm:leading-6 text-sas-gray-500">
                     Tippe im Dashboard auf den Sitzplan, um den Platz zu wechseln. Auf Touch-Geräten bleibt die Karte
@@ -196,7 +196,7 @@ function DetailCard({
   value: string;
 }) {
   return (
-    <div className="rounded-[1.2rem] border border-sas-gray-200 bg-white/92 px-3 py-3 shadow-[0_16px_34px_rgba(5,11,25,0.04)]">
+    <div className="rounded-[1.2rem] border border-white/8 bg-white/4 px-3 py-3 shadow-[0_16px_34px_rgba(5,11,25,0.12)]">
       <div className="flex items-center gap-1.5 text-sas-blue">
         {icon}
         <Label>{label}</Label>

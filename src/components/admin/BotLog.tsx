@@ -69,7 +69,7 @@ export default function BotLog({ logs, setLogs }: BotLogProps) {
 
         <div
           ref={scrollRef}
-          className="h-[300px] overflow-y-auto bg-sas-gray-900 p-4 font-mono text-[11px] sm:h-[500px] sm:text-xs"
+          className="h-[300px] overflow-y-auto bg-navy-900 p-4 font-mono text-[11px] sm:h-[500px] sm:text-xs"
         >
           {logs.map((log, i) => (
             <motion.div

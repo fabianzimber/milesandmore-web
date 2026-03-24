@@ -133,7 +133,7 @@ export default function SeatMap({ flight, participants, currentUser, onSeatChang
             </svg>
             </div>
 
-            <div className="relative z-10 overflow-hidden rounded-[1.5rem] border border-sas-gray-200 bg-gradient-to-b from-sas-gray-50 to-white shadow-sm mx-auto">
+            <div className="relative z-10 mx-auto overflow-hidden rounded-[1.5rem] border border-white/8 bg-gradient-to-b from-sas-gray-50 to-sas-gray-100 shadow-sm">
               <div className="absolute left-0.5 top-0 bottom-0 flex w-1.5 flex-col items-center justify-start gap-3 pt-10">
               {Array.from({ length: Math.min(totalRows, 30) }, (_, i) => (
                 <div key={`wl${i}`} className="w-1 h-2 rounded-full bg-sas-blue/10 border border-sas-blue/15" />
@@ -146,7 +146,7 @@ export default function SeatMap({ flight, participants, currentUser, onSeatChang
             </div>
 
             <div className="px-1.5 py-4 sm:px-2.5 sm:py-5">
-              <div className="sticky top-0 z-10 mb-3 flex items-center justify-center gap-0 rounded-xl bg-white/92 py-2 backdrop-blur-sm">
+              <div className="sticky top-0 z-10 mb-3 flex items-center justify-center gap-0 rounded-xl bg-[rgba(10,15,29,0.88)] py-2 backdrop-blur-sm">
                 <div className="w-5 sm:w-6" />
                 {letters.map((letter, i) => (
                   <div key={letter} className="flex items-center">
@@ -157,7 +157,7 @@ export default function SeatMap({ flight, participants, currentUser, onSeatChang
               </div>
 
               <div className="flex justify-center mb-2">
-                <span className="text-[8px] font-bold text-sas-red tracking-widest bg-red-50 px-2 py-0.5 rounded">EXIT</span>
+                <span className="rounded bg-red-400/12 px-2 py-0.5 text-[8px] font-bold tracking-widest text-sas-red">EXIT</span>
               </div>
 
               {Array.from({ length: totalRows }, (_, rowIdx) => {
@@ -168,7 +168,7 @@ export default function SeatMap({ flight, participants, currentUser, onSeatChang
                   <div key={rowNum}>
                     {isExitRow && (
                       <div className="flex justify-center my-2">
-                        <span className="text-[8px] font-bold text-sas-red tracking-widest bg-red-50 px-2 py-0.5 rounded">EXIT</span>
+                        <span className="rounded bg-red-400/12 px-2 py-0.5 text-[8px] font-bold tracking-widest text-sas-red">EXIT</span>
                       </div>
                     )}
                     <div className="flex items-center justify-center gap-0 mb-1">
@@ -193,7 +193,7 @@ export default function SeatMap({ flight, participants, currentUser, onSeatChang
                                 "relative h-7 w-8 rounded-t-xl border text-[9px] font-bold transition-all duration-200 cursor-pointer sm:h-9 sm:w-11 sm:text-[10px]",
                                 isOwn && "bg-gradient-to-b from-sas-gold to-sas-gold-dim text-white border-sas-gold glow-gold",
                                 !isOwn && isOccupied && "bg-gradient-to-b from-sas-gray-200 to-sas-gray-300 text-sas-gray-500 border-sas-gray-300 cursor-not-allowed",
-                                !isOccupied && !isSelected && "bg-gradient-to-b from-white to-sas-blue/10 text-sas-blue border-sas-blue/20 hover:border-sas-cyan/50 hover:shadow-md hover:shadow-sas-cyan/20",
+                                !isOccupied && !isSelected && "bg-gradient-to-b from-sas-gray-100 to-sas-blue/10 text-sas-blue border-sas-blue/20 hover:border-sas-cyan/50 hover:shadow-md hover:shadow-sas-cyan/20",
                                 isSelected && "bg-gradient-to-b from-sas-cyan/70 to-sas-cyan text-white border-sas-cyan glow-cyan",
                               )}
                               disabled={isOccupied && !isOwn}
@@ -216,10 +216,10 @@ export default function SeatMap({ flight, participants, currentUser, onSeatChang
                                     initial={{ opacity: 0, y: 4, scale: 0.9 }}
                                     animate={{ opacity: 1, y: 0, scale: 1 }}
                                     exit={{ opacity: 0, y: 4, scale: 0.9 }}
-                                    className="absolute -top-9 left-1/2 -translate-x-1/2 bg-sas-gray-900 text-white text-[8px] px-2 py-1 rounded-md whitespace-nowrap z-20 shadow-lg"
+                                    className="absolute -top-9 left-1/2 z-20 -translate-x-1/2 whitespace-nowrap rounded-md bg-navy-800 px-2 py-1 text-[8px] text-white shadow-lg"
                                   >
                                     {isSelected ? "Nochmal klicken ✓" : isOwn ? "Dein Sitz" : occupant?.user_name}
-                                    <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-sas-gray-900" />
+                                    <div className="absolute left-1/2 top-full h-0 w-0 -translate-x-1/2 border-l-4 border-r-4 border-t-4 border-transparent border-t-navy-800" />
                                   </motion.div>
                                 )}
                               </AnimatePresence>
@@ -269,7 +269,7 @@ export default function SeatMap({ flight, participants, currentUser, onSeatChang
 
 function LegendItem({ className, label }: { className: string; label: string }) {
   return (
-    <div className="flex items-center gap-1.5 rounded-full bg-white/70 px-3 py-1.5">
+    <div className="flex items-center gap-1.5 rounded-full border border-white/8 bg-white/5 px-3 py-1.5">
       <div className={`w-5 h-4 rounded-t-md ${className}`} />
       <span className="text-sas-gray-500">{label}</span>
     </div>

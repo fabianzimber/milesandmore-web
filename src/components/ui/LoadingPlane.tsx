@@ -14,7 +14,7 @@ export default function LoadingPlane({ text = "Loading..." }: { text?: string })
         <svg viewBox="0 0 260 80" className="w-full h-full" fill="none">
           <motion.path
             d="M 10 60 Q 65 10, 130 40 Q 195 70, 250 20"
-            stroke="rgba(123,164,255,0.2)"
+            stroke="rgba(74,144,217,0.18)"
             strokeWidth="2"
             strokeDasharray="6 4"
             initial={{ pathLength: 0 }}
@@ -23,7 +23,7 @@ export default function LoadingPlane({ text = "Loading..." }: { text?: string })
           />
           <motion.path
             d="M 10 60 Q 65 10, 130 40 Q 195 70, 250 20"
-            stroke="rgba(123,164,255,0.76)"
+            stroke="rgba(200,169,110,0.76)"
             strokeWidth="2"
             strokeDasharray="6 4"
             initial={{ pathLength: 0 }}
@@ -49,7 +49,7 @@ export default function LoadingPlane({ text = "Loading..." }: { text?: string })
             offsetRotate: "auto",
           }}
         >
-          ✈️
+          <span className="text-gold-300">✈</span>
         </motion.div>
 
         <motion.div
@@ -65,7 +65,7 @@ export default function LoadingPlane({ text = "Loading..." }: { text?: string })
       </div>
 
       <div className="flex flex-col items-center gap-2">
-        <span className="eyebrow !text-white/60">FlightOps Runtime</span>
+          <span className="eyebrow !text-gold-300/80">FlightOps Runtime</span>
         <div className="flex items-center gap-1">
           <span className="text-sm font-medium tracking-widest uppercase text-white/82">
             {text}
@@ -74,7 +74,7 @@ export default function LoadingPlane({ text = "Loading..." }: { text?: string })
             {[0, 1, 2].map((i) => (
               <motion.span
                 key={i}
-                className="w-1 h-1 rounded-full bg-sas-blue-light"
+                className="w-1 h-1 rounded-full bg-sas-gold-light"
                 animate={{ opacity: [0.2, 1, 0.2], y: [0, -4, 0] }}
                 transition={{ duration: 1, repeat: Infinity, delay: i * 0.2 }}
               />

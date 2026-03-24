@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import SASCard from "@/components/ui/SASCard";
 import { getUserStats, getCountryLeaderboard } from "@/lib/botApi";
@@ -8,6 +8,27 @@ import type { UserCountry } from "@/lib/types";
 import { Globe, Trophy, Plane, MapPin } from "lucide-react";
 
 export default function CountryLeaderboard({ userId, isDemo }: { userId: string; isDemo?: boolean }) {
+  const demoUserStats = useMemo(
+    () => ({
+      miles: { total_miles: 84500, total_flights: 42 },
+      countries: [
+        { country_code: "DE", country_name: "Deutschland", unlocked_at: "" },
+        { country_code: "US", country_name: "USA", unlocked_at: "" },
+        { country_code: "JP", country_name: "Japan", unlocked_at: "" },
+        { country_code: "GB", country_name: "Großbritannien", unlocked_at: "" },
+      ],
+    }),
+    [],
+  );
+  const demoLeaderboard = useMemo(
+    () => [
+      { user_name: "ShiftbloomFan", total_miles: 125000, countries_count: 15 },
+      { user_name: "DemoPassenger", total_miles: 84500, countries_count: 4 },
+      { user_name: "FrequentFlyer", total_miles: 52000, countries_count: 8 },
+      { user_name: "TwitchLurker", total_miles: 34000, countries_count: 3 },
+    ],
+    [],
+  );
   const [userStats, setUserStats] = useState<{
     miles: { total_miles: number; total_flights: number };
     countries: UserCountry[];
@@ -19,21 +40,6 @@ export default function CountryLeaderboard({ userId, isDemo }: { userId: string;
 
   useEffect(() => {
     if (isDemo) {
-      setUserStats({
-        miles: { total_miles: 84500, total_flights: 42 },
-        countries: [
-          { country_code: "DE", country_name: "Deutschland", unlocked_at: "" },
-          { country_code: "US", country_name: "USA", unlocked_at: "" },
-          { country_code: "JP", country_name: "Japan", unlocked_at: "" },
-          { country_code: "GB", country_name: "Großbritannien", unlocked_at: "" },
-        ]
-      });
-      setLeaderboard([
-        { user_name: "ShiftbloomFan", total_miles: 125000, countries_count: 15 },
-        { user_name: "DemoPassenger", total_miles: 84500, countries_count: 4 },
-        { user_name: "FrequentFlyer", total_miles: 52000, countries_count: 8 },
-        { user_name: "TwitchLurker", total_miles: 34000, countries_count: 3 },
-      ]);
       return;
     }
 
@@ -49,6 +55,9 @@ export default function CountryLeaderboard({ userId, isDemo }: { userId: string;
     })();
   }, [userId, isDemo]);
 
+  const resolvedUserStats = isDemo ? demoUserStats : userStats;
+  const resolvedLeaderboard = isDemo ? demoLeaderboard : leaderboard;
+
   return (
     <div className="space-y-6">
       {fetchError && (
@@ -57,14 +66,14 @@ export default function CountryLeaderboard({ userId, isDemo }: { userId: string;
         </SASCard>
       )}
       {/* Stats */}
-      {userStats && (
+      {resolvedUserStats && (
         <SASCard variant="glass">
           <h3 className="text-xs font-bold tracking-[0.15em] text-sas-gray-400 uppercase mb-5 text-center">Deine Statistiken</h3>
           <div className="grid grid-cols-3 gap-6">
             {[
-              { icon: <Plane size={22} className="text-sas-gold" />, value: userStats.miles.total_flights, label: "Flüge" },
-              { icon: <MapPin size={22} className="text-sas-blue" />, value: userStats.miles.total_miles.toLocaleString(), label: "Meilen" },
-              { icon: <Globe size={22} className="text-sas-green" />, value: userStats.countries.length, label: "Länder" },
+              { icon: <Plane size={22} className="text-sas-gold" />, value: resolvedUserStats.miles.total_flights, label: "Flüge" },
+              { icon: <MapPin size={22} className="text-sas-blue" />, value: resolvedUserStats.miles.total_miles.toLocaleString(), label: "Meilen" },
+              { icon: <Globe size={22} className="text-sas-green" />, value: resolvedUserStats.countries.length, label: "Länder" },
             ].map((stat, i) => (
               <motion.div
                 key={i}
@@ -90,11 +99,11 @@ export default function CountryLeaderboard({ userId, isDemo }: { userId: string;
       )}
 
       {/* Countries unlocked */}
-      {userStats && userStats.countries.length > 0 && (
+      {resolvedUserStats && resolvedUserStats.countries.length > 0 && (
         <SASCard variant="glass">
           <h3 className="text-xs font-bold tracking-[0.15em] text-sas-gray-400 uppercase mb-4">Freigeschaltete Länder</h3>
           <div className="flex flex-wrap gap-2">
-            {userStats.countries.map((country, i) => (
+            {resolvedUserStats.countries.map((country, i) => (
               <motion.div
                 key={country.country_code}
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -118,13 +127,13 @@ export default function CountryLeaderboard({ userId, isDemo }: { userId: string;
         </div>
 
         <div className="divide-y divide-sas-gray-100/50">
-          {leaderboard.map((entry, i) => (
+          {resolvedLeaderboard.map((entry, i) => (
             <motion.div
               key={entry.user_name}
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: i * 0.05 }}
-              className="flex items-center justify-between px-5 py-3 hover:bg-white/40 transition-colors"
+              className="flex items-center justify-between px-5 py-3 transition-colors hover:bg-white/4"
             >
               <div className="flex items-center gap-3">
                 <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-black ${
@@ -143,7 +152,7 @@ export default function CountryLeaderboard({ userId, isDemo }: { userId: string;
               </div>
             </motion.div>
           ))}
-          {leaderboard.length === 0 && (
+          {resolvedLeaderboard.length === 0 && (
             <div className="px-5 py-12 text-center text-sas-gray-400 text-sm">Noch keine Daten</div>
           )}
         </div>

@@ -171,7 +171,7 @@ export default function FlightDashboard({
   const isLive = !!position && position.lat !== 0 && position.lon !== 0;
 
   return (
-    <PageShell tone="night">
+    <PageShell tone="night" showNavigation={false}>
       <div className="relative flex flex-col min-h-[100dvh] pb-20">
         <header className="relative shrink-0 overflow-hidden pb-8 pt-4 sm:pb-12 sm:pt-8 lg:pb-14 lg:pt-10 text-white">
           <AirspaceScene density="compact" className="opacity-90" />
@@ -255,7 +255,7 @@ export default function FlightDashboard({
               </motion.div>
             )}
           </AnimatePresence>
-          <div className="z-30 mb-4 sm:mb-6 lg:mb-8 rounded-[1.75rem] bg-white/10 p-2 sm:p-3 backdrop-blur-xl shrink-0 -mt-8 sm:-mt-10 lg:-mt-12 max-w-3xl mx-auto w-full">
+          <div className="surface-glass z-30 mb-4 max-w-3xl p-2 sm:mb-6 sm:p-3 lg:mb-8 lg:-mt-12 mx-auto w-full">
             <ResponsiveTabRail items={tabs} active={activeTab} onChange={setActiveTab} tone="dark" />
           </div>
 
