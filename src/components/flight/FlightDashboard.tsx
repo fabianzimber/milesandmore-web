@@ -163,7 +163,7 @@ export default function FlightDashboard({
 
   const tabs: { id: Tab; label: string; shortLabel?: string; icon: React.ReactNode }[] = [
     { id: "pass", label: "Boarding Pass", shortLabel: "Pass", icon: <Ticket size={16} /> },
-    { id: "seats", label: "Sitzplan", shortLabel: "Seats", icon: <Armchair size={16} /> },
+    { id: "seats", label: "Sitzplan", shortLabel: "Sitze", icon: <Armchair size={16} /> },
     { id: "map", label: "Live Map", shortLabel: "Map", icon: <Map size={16} /> },
     { id: "stats", label: "Stats", icon: <Trophy size={16} /> },
   ];

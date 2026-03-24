@@ -80,9 +80,12 @@ function CountStat({
   }, [value]);
 
   return (
-    <div className="surface-glass px-5 py-5 sm:px-7 sm:py-6">
+    <div className="surface-glass px-6 py-6 sm:px-7 sm:py-7">
       <p className="mono-label !gap-2 !text-[0.62rem] !tracking-[0.2em] !text-sas-gray-500 before:hidden">{label}</p>
-      <p ref={ref} className="mt-3 text-3xl font-black tracking-[-0.05em] text-foreground sm:text-4xl lg:text-5xl">
+      <p
+        ref={ref}
+        className="mt-3 text-4xl font-black leading-none tracking-[-0.05em] text-foreground sm:text-5xl lg:text-6xl"
+      >
         {display.toLocaleString("de-DE")}
       </p>
     </div>
@@ -97,13 +100,13 @@ export default function LandingPageClient({
   return (
     <PageShell tone="night">
       <main className="relative">
-        <section className="relative min-h-[155svh]">
+        <section className="relative min-h-[165svh]">
           <div className="sticky top-0 h-[100svh] overflow-hidden">
             <HeroGlobe />
             <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,5,16,0.15),rgba(5,5,16,0.35)_38%,rgba(5,5,16,0.74)_100%)]" />
 
-            <div className="page-frame relative flex h-full flex-col justify-between pb-14 pt-30 sm:pb-16 sm:pt-36">
-              <div className="grid gap-14 lg:grid-cols-[minmax(0,32rem)_1fr] lg:items-center lg:gap-20">
+            <div className="page-frame relative flex h-full flex-col justify-between pb-16 pt-32 sm:pb-20 sm:pt-40 lg:pb-24">
+              <div className="grid gap-16 lg:grid-cols-[minmax(0,31rem)_minmax(20rem,25rem)] lg:items-center lg:justify-between lg:gap-24">
                 <div className="max-w-[32rem]">
                   <span className="eyebrow">Twitch Flight Operations</span>
                   <div className="mt-6">
@@ -121,16 +124,16 @@ export default function LandingPageClient({
                       delay={0.12}
                     />
                   </div>
-                  <div className="mt-7 space-y-2.5 text-base leading-7 text-white/72 sm:text-lg sm:leading-8">
+                  <div className="mt-8 space-y-3 text-base leading-7 text-white/72 sm:text-lg sm:leading-8">
                     <TextReveal text="Sammle Meilen." as="p" mode="words" delay={0.18} />
                     <TextReveal text="Erkunde die Welt." as="p" mode="words" delay={0.28} />
                     <TextReveal text="Steige im Ranking auf." as="p" mode="words" delay={0.38} />
                   </div>
-                  <p className="mt-7 max-w-md text-sm leading-7 text-white/56 sm:text-base sm:leading-8">
+                  <p className="mt-8 max-w-md text-sm leading-7 text-white/56 sm:text-base sm:leading-8">
                     Miles & More verbindet Twitch-Community, Flugerlebnis und Echtzeitdaten zu einer einzigen,
                     cineastischen Vielflieger-Oberfläche.
                   </p>
-                  <div className="mt-10 flex flex-wrap items-center gap-5">
+                  <div className="mt-12 flex flex-wrap items-center gap-5">
                     <MagneticButton href="/leaderboard">Open Leaderboard</MagneticButton>
                     <Link
                       href="/commands"
@@ -141,17 +144,17 @@ export default function LandingPageClient({
                   </div>
                 </div>
 
-                <div className="hidden justify-self-end lg:block lg:pr-4">
-                  <div className="surface-gold-accent w-[min(28rem,34vw)] px-8 py-8">
+                <div className="hidden justify-self-end lg:block">
+                  <div className="surface-gold-accent w-[min(24rem,100%)] px-8 py-9 sm:px-9 sm:py-10">
                     <p className="mono-label !gap-2 !text-[0.62rem] !tracking-[0.2em] !text-sas-gray-500 before:hidden">
                       Current Signals
                     </p>
-                    <div className="mt-6 space-y-5">
-                      <div className="flex items-center justify-between border-b border-white/8 pb-4">
+                    <div className="mt-7 space-y-6">
+                      <div className="flex items-center justify-between border-b border-white/8 pb-5">
                         <span className="text-white/52">Top Pilot</span>
                         <span className="text-xl font-semibold text-foreground">{topPilot ?? "Wird geladen"}</span>
                       </div>
-                      <div className="flex items-center justify-between border-b border-white/8 pb-4">
+                      <div className="flex items-center justify-between border-b border-white/8 pb-5">
                         <span className="text-white/52">Top Explorer</span>
                         <span className="text-xl font-semibold text-foreground">{topExplorer ?? "Wird geladen"}</span>
                       </div>
@@ -167,7 +170,7 @@ export default function LandingPageClient({
                 </div>
               </div>
 
-              <div className="grid gap-4 sm:grid-cols-3 lg:max-w-6xl">
+              <div className="grid gap-5 sm:grid-cols-3">
                 <CountStat label="Piloten" value={stats.pilots} />
                 <CountStat label="Meilen" value={stats.miles} />
                 <CountStat label="Flüge" value={stats.flights} />
@@ -176,17 +179,17 @@ export default function LandingPageClient({
           </div>
         </section>
 
-        <section className="page-frame pt-16 sm:pt-24">
-          <div className="mb-12 flex items-end justify-between gap-6 sm:mb-14">
+        <section className="page-frame pt-20 sm:pt-28">
+          <div className="mb-14 flex items-end justify-between gap-6 sm:mb-16">
             <div>
               <span className="eyebrow">Core Surfaces</span>
-              <h2 className="mt-4 text-3xl font-black tracking-[-0.05em] text-foreground sm:text-5xl">
+              <h2 className="mt-4 text-4xl font-black tracking-[-0.05em] text-foreground sm:text-5xl lg:text-6xl">
                 Drei Oberflächen. <span className="display-accent text-gold-300">Ein</span> Luftbild.
               </h2>
             </div>
           </div>
 
-          <div className="grid gap-6 lg:grid-cols-3">
+          <div className="grid gap-8 lg:grid-cols-3">
             {FEATURES.map((feature, index) => {
               const Icon = feature.icon;
 
@@ -197,12 +200,14 @@ export default function LandingPageClient({
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-10% 0px" }}
                   transition={{ duration: 0.7, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
-                  className="surface-glass card-hover-lift min-h-[22rem] px-7 py-8 sm:px-9 sm:py-10"
+                  className="surface-glass card-hover-lift min-h-[22rem] px-8 py-9 sm:px-10 sm:py-11"
                 >
                   <div className="inline-flex rounded-full border border-gold-300/20 bg-gold-400/10 p-3 text-gold-300">
                     <Icon size={18} />
                   </div>
-                  <h3 className="mt-9 text-2xl font-black tracking-[-0.04em] text-foreground">{feature.title}</h3>
+                  <h3 className="mt-9 text-3xl font-black tracking-[-0.04em] text-foreground sm:text-4xl">
+                    {feature.title}
+                  </h3>
                   <p className="mt-5 max-w-sm text-sm leading-7 text-white/56">{feature.description}</p>
                   <Link
                     href={feature.href}
@@ -216,12 +221,12 @@ export default function LandingPageClient({
           </div>
         </section>
 
-        <section className="page-frame py-16 sm:py-24">
-          <ParallaxSection className="surface-gold-accent overflow-hidden px-7 py-10 sm:px-12 sm:py-14">
-            <div className="grid gap-12 lg:grid-cols-[0.88fr_1.12fr] lg:items-start lg:gap-16">
+        <section className="page-frame py-20 sm:py-28">
+          <ParallaxSection className="surface-gold-accent overflow-hidden px-8 py-12 sm:px-14 sm:py-16">
+            <div className="grid gap-14 lg:grid-cols-[0.88fr_1.12fr] lg:items-start lg:gap-[4.5rem]">
               <div>
                 <span className="eyebrow">Flight Loop</span>
-                <h2 className="mt-4 text-3xl font-black tracking-[-0.05em] text-foreground sm:text-5xl">
+                <h2 className="mt-4 text-4xl font-black tracking-[-0.05em] text-foreground sm:text-5xl lg:text-6xl">
                   So wird aus Chat ein <span className="display-accent text-gold-300">Passagierfluss</span>.
                 </h2>
                 <p className="mt-5 max-w-lg text-sm leading-7 text-white/58 sm:text-base sm:leading-8">
@@ -230,7 +235,7 @@ export default function LandingPageClient({
                 </p>
               </div>
 
-              <div className="grid gap-5 md:grid-cols-2">
+              <div className="grid gap-6 md:grid-cols-2">
                 {STEPS.map((step, index) => (
                   <motion.div
                     key={step}
@@ -238,7 +243,7 @@ export default function LandingPageClient({
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-10% 0px" }}
                     transition={{ duration: 0.65, delay: index * 0.08 }}
-                    className="surface-glass min-h-[13rem] px-6 py-6 sm:px-7 sm:py-7"
+                    className="surface-glass min-h-[14rem] px-7 py-7 sm:px-8 sm:py-8"
                   >
                     <div className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-sm font-semibold text-gold-300">
                       {String(index + 1).padStart(2, "0")}
@@ -251,12 +256,12 @@ export default function LandingPageClient({
           </ParallaxSection>
         </section>
 
-        <section className="page-frame pb-20 pt-6 sm:pb-28">
-          <div className="surface-glass px-7 py-9 sm:px-10 sm:py-12">
-            <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
+        <section className="page-frame pb-24 pt-8 sm:pb-32 sm:pt-10">
+          <div className="surface-glass px-8 py-10 sm:px-12 sm:py-14">
+            <div className="grid gap-12 lg:grid-cols-[1fr_auto] lg:items-end">
               <div>
                 <span className="eyebrow">Final Approach</span>
-                <h2 className="mt-4 text-3xl font-black tracking-[-0.05em] text-foreground sm:text-5xl">
+                <h2 className="mt-4 text-4xl font-black tracking-[-0.05em] text-foreground sm:text-5xl lg:text-6xl">
                   Bereit für den nächsten Flug?
                 </h2>
                 <p className="mt-4 max-w-xl text-sm leading-7 text-white/58 sm:text-base sm:leading-8">
@@ -273,7 +278,7 @@ export default function LandingPageClient({
             </div>
           </div>
 
-          <footer className="flex flex-col gap-5 py-12 text-sm text-white/42 sm:flex-row sm:items-center sm:justify-between">
+          <footer className="flex flex-col gap-5 py-14 text-sm text-white/42 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-3">
               <Plane size={16} className="text-gold-300" />
               <span>Miles & More live surfaces for Twitch flight operations.</span>

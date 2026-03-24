@@ -78,10 +78,10 @@ export default function BoardingPass({ data }: { data: BoardingPassData }) {
             </div>
           </div>
 
-          <div className="grid gap-0 lg:grid-cols-[1.03fr_0.97fr]">
+          <div className="grid gap-0 lg:grid-cols-[1.08fr_0.92fr]">
             <div className="px-4 pb-4 pt-3.5 sm:px-6 sm:pb-5 sm:pt-[1.125rem] lg:px-7 lg:pb-6 lg:pt-5">
               <Label>PASSENGER NAME</Label>
-              <p className="mt-1 text-lg font-black tracking-[0.06em] text-sas-midnight sm:text-xl">{data.passenger_name}</p>
+              <p className="mt-1 text-lg font-black tracking-[0.08em] text-sas-midnight sm:text-xl">{data.passenger_name}</p>
 
               <div className="mt-3.5 rounded-[1.8rem] bg-sas-gray-50 px-4 py-3.5 sm:mt-4 sm:px-5 sm:py-4">
                 <div className="flex items-center justify-between gap-3">
