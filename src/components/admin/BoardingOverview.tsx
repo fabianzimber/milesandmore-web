@@ -70,7 +70,7 @@ export default function BoardingOverview({ flight }: { flight: Flight }) {
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: i * 0.04, type: "spring", stiffness: 300, damping: 25 }}
-              className="flex items-center justify-between px-5 py-2.5 border-b border-sas-gray-100/50 hover:bg-white/40 transition-colors"
+              className="flex items-center justify-between px-5 py-2.5 border-b border-sas-gray-100/50 transition-colors hover:bg-white/4"
             >
               <div className="flex items-center gap-3">
                 {/* Avatar */}
@@ -81,7 +81,7 @@ export default function BoardingOverview({ flight }: { flight: Flight }) {
               </div>
 
               {p.seat ? (
-                <span className="text-[11px] font-mono font-bold bg-gradient-to-r from-sas-midnight to-sas-navy text-white px-2.5 py-1 rounded-md shadow-sm">
+                <span className="rounded-md bg-gradient-to-r from-navy-800 to-sas-navy px-2.5 py-1 text-[11px] font-mono font-bold text-white shadow-sm">
                   {p.seat}
                 </span>
               ) : (

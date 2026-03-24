@@ -38,6 +38,7 @@ export default function AdminDashboard({
   const [botStatus, setBotStatus] = useState<BotStatus>(initialBotStatus);
   const [logs, setLogs] = useState<BotLogEntry[]>(initialLogs);
   const [importedFlightPlan, setImportedFlightPlan] = useState<Record<string, unknown> | null>(null);
+  const hasCurrentFlight = Boolean(currentFlight);
 
   useEffect(() => {
     const refresh = async () => {
@@ -57,11 +58,11 @@ export default function AdminDashboard({
     };
 
     // Poll faster (5s) when there's an active flight, slower (15s) when idle
-    const pollInterval = currentFlight ? 5000 : 15000;
+    const pollInterval = hasCurrentFlight ? 5000 : 15000;
     refresh();
     const interval = setInterval(refresh, pollInterval);
     return () => clearInterval(interval);
-  }, [currentFlight !== null]);
+  }, [hasCurrentFlight]);
 
   const isLive = Boolean(botStatus.lastEventAt);
 
@@ -75,7 +76,7 @@ export default function AdminDashboard({
   ];
 
   return (
-    <PageShell tone="control">
+    <PageShell tone="control" showNavigation={false}>
       <div className="relative flex flex-col min-h-[100dvh] lg:h-[100dvh] lg:overflow-hidden text-sas-midnight">
         <header className="relative shrink-0 overflow-hidden border-b border-sas-gray-200/60 pb-6 pt-4 sm:pb-8 sm:pt-6 lg:pb-10 lg:pt-8">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_12%,rgba(123,164,255,0.16),transparent_24%),radial-gradient(circle_at_88%_10%,rgba(202,169,109,0.12),transparent_22%)]" />
@@ -87,7 +88,7 @@ export default function AdminDashboard({
                   transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
                   className="hidden sm:block mt-1 lg:mt-2"
                 >
-                  <div className="flex h-12 w-12 sm:h-14 sm:w-14 lg:h-16 lg:w-16 items-center justify-center rounded-2xl bg-white shadow-[0_18px_40px_rgba(5,11,25,0.18)] overflow-hidden p-1.5">
+                  <div className="surface-glass flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl p-1.5 sm:h-14 sm:w-14 lg:h-16 lg:w-16">
                     <Image src="/logo.svg" alt="Miles & More" width={56} height={56} className="w-full h-full object-contain" />
                   </div>
                 </motion.div>
@@ -137,13 +138,13 @@ export default function AdminDashboard({
           <FlightStatusBar flight={currentFlight} importedFlightPlan={importedFlightPlan} />
         </div>
 
-        <div className="shrink-0 z-30 border-b border-sas-gray-200/60 bg-white/70 backdrop-blur-xl">
+        <div className="shrink-0 z-30 border-b border-sas-gray-200/60 bg-[rgba(6,10,20,0.78)] backdrop-blur-xl">
           <div className="page-frame-wide py-2 sm:py-3 lg:py-4">
             <ResponsiveTabRail items={tabs} active={activeTab} onChange={setActiveTab} tone="light" />
           </div>
         </div>
 
-        <main className="flex-1 min-h-0 overflow-y-auto custom-scrollbar relative bg-sas-gray-50/50">
+        <main className="custom-scrollbar relative flex-1 min-h-0 overflow-y-auto bg-sas-gray-50/60">
           <div className="page-frame-wide py-6 sm:py-8 lg:py-10">
             <AnimatePresence mode="wait">
               <motion.div

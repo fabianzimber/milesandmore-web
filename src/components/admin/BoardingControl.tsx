@@ -40,6 +40,8 @@ export default function BoardingControl({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [actionLoading, setActionLoading] = useState<string | null>(null);
+  const currentFlightId = currentFlight?.id;
+  const currentFlightStatus = currentFlight?.status;
 
   useEffect(() => {
     const fetchChannels = async () => {
@@ -68,13 +70,13 @@ export default function BoardingControl({
         if (active.length > 0) {
           // Update to latest server state (or recover if we had no flight)
           const latest = active[0];
-          if (!currentFlight || currentFlight.id === latest.id) {
+          if (!currentFlightId || currentFlightId === latest.id) {
             setCurrentFlight(latest);
           }
-        } else if (currentFlight && ["boarding", "in_flight"].includes(currentFlight.status)) {
+        } else if (currentFlightId && ["boarding", "in_flight"].includes(currentFlightStatus || "")) {
           // Flight was completed/cancelled server-side - re-fetch to get final state
           const { getFlight } = await import("@/lib/botApi");
-          const final = (await getFlight(currentFlight.id)) as Flight | null;
+          const final = (await getFlight(currentFlightId)) as Flight | null;
           if (final) {
             setCurrentFlight(final);
           }
@@ -86,7 +88,7 @@ export default function BoardingControl({
     syncFlightStatus();
     const interval = setInterval(syncFlightStatus, 5000);
     return () => clearInterval(interval);
-  }, [currentFlight?.id, currentFlight?.status, setCurrentFlight]);
+  }, [currentFlightId, currentFlightStatus, setCurrentFlight]);
 
   const handleStartBoarding = async () => {
     if (!selectedChannel || !importedFlightPlan) return;

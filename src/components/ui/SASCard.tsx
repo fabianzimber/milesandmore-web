@@ -20,12 +20,12 @@ export default function SASCard({
     <div
       className={cn(
         "rounded-[1.5rem] transition-all duration-300",
-        variant === "default" && "control-panel text-sas-midnight",
-        variant === "glass" && "glass text-sas-midnight",
-        variant === "elevated" && "bg-white/88 shadow-[0_24px_70px_rgba(5,11,25,0.08)] border border-white/80 text-sas-midnight",
+        variant === "default" && "control-panel text-foreground",
+        variant === "glass" && "glass text-foreground",
+        variant === "elevated" && "surface-elevated border border-white/8 text-foreground",
         variant === "dark" && "night-panel text-white shadow-2xl",
-        variant === "outlined" && "bg-transparent border border-sas-blue/18",
-        variant === "glow" && "glass glow-blue border border-sas-blue/12 text-sas-midnight",
+        variant === "outlined" && "bg-transparent border border-sas-blue/18 text-foreground",
+        variant === "glow" && "glass glow-blue border border-sas-blue/12 text-foreground",
         padding === "none" && "p-0",
         padding === "sm" && "p-4",
         padding === "md" && "p-6",

@@ -21,16 +21,21 @@ export default function SASButton({
     <button
       disabled={disabled || loading}
       className={cn(
-        "relative inline-flex items-center justify-center overflow-hidden rounded-full font-semibold tracking-[0.02em] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-transparent disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer",
+        "relative inline-flex items-center justify-center overflow-hidden rounded-full font-semibold uppercase tracking-[0.14em] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-transparent disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer",
         "active:scale-[0.98] hover:-translate-y-0.5",
-        variant === "primary" && "bg-gradient-to-r from-sas-blue via-[#4d86ff] to-sas-blue-light text-white shadow-[0_18px_40px_rgba(46,108,255,0.28)] focus:ring-sas-blue",
-        variant === "secondary" && "bg-white/90 text-sas-midnight border border-white shadow-[0_18px_40px_rgba(5,11,25,0.08)] hover:border-sas-blue/20 hover:text-sas-blue focus:ring-sas-blue",
-        variant === "ghost" && "bg-transparent text-sas-gray-500 hover:bg-white/70 hover:text-sas-midnight focus:ring-sas-blue",
-        variant === "danger" && "bg-gradient-to-r from-rose-600 to-red-500 text-white shadow-[0_16px_34px_rgba(239,91,107,0.24)] focus:ring-red-500",
-        variant === "gold" && "bg-gradient-to-r from-sas-gold-dim via-sas-gold to-sas-gold-light text-sas-midnight shadow-[0_18px_42px_rgba(202,169,109,0.28)] focus:ring-sas-gold",
-        size === "sm" && "text-xs px-4 py-2 gap-1.5",
-        size === "md" && "text-sm px-5 py-3 gap-2",
-        size === "lg" && "text-base px-7 py-4 gap-2.5",
+        variant === "primary" &&
+          "border border-sas-blue/30 bg-gradient-to-r from-sas-blue via-[#5aa2f0] to-sas-blue-light text-white shadow-[0_22px_50px_rgba(74,144,217,0.28)] focus:ring-sas-blue",
+        variant === "secondary" &&
+          "border border-white/10 bg-white/6 text-foreground shadow-[0_18px_40px_rgba(0,0,0,0.18)] hover:border-sas-blue/28 hover:text-sas-blue focus:ring-sas-blue",
+        variant === "ghost" &&
+          "bg-transparent text-sas-gray-500 hover:bg-white/6 hover:text-foreground focus:ring-sas-blue",
+        variant === "danger" &&
+          "border border-red-400/20 bg-gradient-to-r from-rose-600 to-red-500 text-white shadow-[0_18px_40px_rgba(239,91,107,0.24)] focus:ring-red-500",
+        variant === "gold" &&
+          "border border-gold-300/35 bg-gradient-to-r from-sas-gold-dim via-sas-gold to-sas-gold-light text-navy-950 shadow-[0_22px_52px_rgba(200,169,110,0.26)] focus:ring-sas-gold",
+        size === "sm" && "text-[0.68rem] px-4 py-2.5 gap-1.5",
+        size === "md" && "text-[0.72rem] px-5 py-3.5 gap-2",
+        size === "lg" && "text-[0.78rem] px-7 py-4 gap-2.5",
         className
       )}
       {...props}

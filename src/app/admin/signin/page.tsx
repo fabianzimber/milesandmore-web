@@ -28,17 +28,17 @@ export default async function AdminSignInPage({ searchParams }: AdminSignInPageP
 
   return (
     <div className="min-h-screen bg-aurora flex items-center justify-center px-4">
-      <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-10 text-center max-w-sm">
-        <div className="w-16 h-16 rounded-2xl bg-sas-midnight mx-auto mb-5 flex items-center justify-center">
+      <div className="surface-gold-accent w-full max-w-sm p-10 text-center">
+        <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-navy-900">
           <Plane size={28} className="text-sas-gold" />
         </div>
-        <h1 className="text-xl font-bold text-sas-midnight mb-2">Miles & More Cockpit</h1>
-        <p className="text-sm text-sas-gray-400 mb-6">
+        <h1 className="mb-2 text-xl font-bold text-foreground">Miles & More Cockpit</h1>
+        <p className="mb-6 text-sm text-sas-gray-500">
           Melde dich mit einem freigeschalteten Twitch-Account an, um das Admin-Dashboard zu verwenden.
         </p>
 
         {errorMessage && (
-          <p className="mb-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700">
+          <p className="mb-4 rounded-xl border border-red-400/20 bg-red-400/10 px-4 py-3 text-sm font-medium text-red-200">
             {errorMessage}
           </p>
         )}
@@ -54,8 +54,8 @@ export default async function AdminSignInPage({ searchParams }: AdminSignInPageP
           </SASButton>
         </form>
 
-        <p className="mt-4 text-xs leading-5 text-sas-gray-400">
-          Twitch Redirect URL: <span className="font-medium text-sas-gray-500">/api/auth/callback/twitch</span>
+        <p className="mt-4 text-xs leading-5 text-sas-gray-500">
+          Twitch Redirect URL: <span className="font-medium text-sas-gray-600">/api/auth/callback/twitch</span>
         </p>
       </div>
     </div>
