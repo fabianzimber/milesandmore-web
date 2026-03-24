@@ -204,7 +204,6 @@ pre {
 .page-frame-wide {
   width: min(100% - clamp(2.5rem, 7vw, 7rem), var(--page-max));
   margin-inline: auto;
-  padding-block: clamp(2.25rem, 3.5vw, 4rem);
 }
 
 .page-frame-wide {
