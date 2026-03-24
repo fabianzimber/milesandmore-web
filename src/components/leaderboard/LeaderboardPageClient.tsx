@@ -101,7 +101,7 @@ export default function LeaderboardPageClient({
 
   return (
     <PageShell tone="night">
-      <div className="relative pb-24 pt-28 text-white sm:pt-32">
+      <div className="relative pb-24 pt-28 text-white sm:pt-32 lg:pt-28">
         <header className="page-frame">
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_24rem] lg:items-end lg:gap-16">
             <div>
@@ -119,7 +119,7 @@ export default function LeaderboardPageClient({
                   delay={0.1}
                 />
               </div>
-              <p className="mt-6 max-w-2xl text-sm leading-7 text-white/56 sm:text-base sm:leading-8">
+              <p className="mt-6 max-w-2xl text-sm leading-7 text-white/56 sm:text-base sm:leading-8 lg:text-sm lg:leading-7">
                 Alle Meilen, Länder und Vielreisenden bleiben identisch. Neu ist nur die Bühne: dunkler, präziser
                 und klarer im Scan.
               </p>
@@ -162,7 +162,7 @@ export default function LeaderboardPageClient({
                       Rank {index + 1}
                     </span>
                   </div>
-                  <p className="mt-9 text-2xl font-black tracking-[-0.04em] text-foreground sm:text-3xl">
+                  <p className="mt-9 text-2xl font-black tracking-[-0.04em] text-foreground sm:text-3xl lg:text-2xl">
                     {entry.user_name}
                   </p>
                   <p className="mt-3 text-sm leading-7 text-white/54">
@@ -187,19 +187,19 @@ export default function LeaderboardPageClient({
 
           <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem]">
             <MotionSection className="surface-glass overflow-hidden p-0" delay={0.04}>
-              <div className="flex items-center justify-between border-b border-white/8 px-6 py-5 sm:px-8">
+              <div className="flex items-center justify-between border-b border-white/8 px-6 py-5 sm:px-8 lg:px-6">
                 <div className="flex items-center gap-3">
                   {activeTab === "miles" ? (
                     <Trophy size={16} className="text-gold-300" />
                   ) : (
                     <Globe size={16} className="text-sas-blue" />
                   )}
-                  <h2 className="text-base font-black tracking-tight text-foreground sm:text-lg">
+                  <h2 className="text-base font-black tracking-tight text-foreground sm:text-lg lg:text-base">
                     {activeTab === "miles" ? "Miles Ranking" : "Country Ranking"}
                   </h2>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="hidden text-[0.65rem] uppercase tracking-[0.18em] text-white/38 sm:block">
+                  <span className="hidden text-[0.65rem] uppercase tracking-[0.18em] text-white/38 sm:block lg:hidden">
                     {lastUpdated.toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" })} Uhr
                   </span>
                   <button
@@ -254,7 +254,7 @@ export default function LeaderboardPageClient({
             </MotionSection>
 
             <div className="space-y-8">
-              <MotionSection className="surface-glass px-6 py-7 sm:px-7" delay={0.08}>
+              <MotionSection className="surface-glass px-6 py-7 sm:px-7 lg:px-6" delay={0.08}>
                 <span className="eyebrow">Signal Notes</span>
                 <div className="mt-6 space-y-4">
                   <InfoRow label="Top Explorer" value={countryBoard[0]?.user_name ?? "—"} />
@@ -263,7 +263,7 @@ export default function LeaderboardPageClient({
                 </div>
               </MotionSection>
 
-              <MotionSection className="surface-glass px-6 py-7 sm:px-7" delay={0.12}>
+              <MotionSection className="surface-glass px-6 py-7 sm:px-7 lg:px-6" delay={0.12}>
                 <span className="eyebrow">Quick Commands</span>
                 <div className="mt-6 space-y-4">
                   {[
@@ -334,21 +334,21 @@ function Row({
       initial={{ opacity: 0, x: -10 }}
       animate={{ opacity: 1, x: 0 }}
       className={cn(
-        "flex items-center justify-between gap-4 px-5 py-4 transition-colors hover:bg-white/[0.03] sm:px-7",
+        "flex items-center justify-between gap-4 px-5 py-4 transition-colors hover:bg-white/[0.03] sm:px-7 lg:px-5",
         rank === 1 && "bg-gradient-to-r from-gold-400/10 via-transparent to-transparent",
       )}
     >
       <div className="flex min-w-0 items-center gap-4">
         <MedalBadge rank={Math.min(rank, 3)} />
         <div className="min-w-0">
-          <p className="truncate text-sm font-semibold text-foreground sm:text-base">{name}</p>
-          <p className="text-[0.72rem] text-white/42 sm:text-xs">{sublabel}</p>
+          <p className="truncate text-sm font-semibold text-foreground sm:text-base lg:text-sm">{name}</p>
+          <p className="text-[0.72rem] text-white/42 sm:text-xs lg:text-[0.72rem]">{sublabel}</p>
         </div>
       </div>
       <div className="flex shrink-0 items-center gap-2">
         {icon}
-        <span className="text-sm font-black text-foreground sm:text-base">{value}</span>
-        <span className="hidden text-[0.65rem] uppercase tracking-[0.18em] text-white/36 sm:block">{suffix}</span>
+        <span className="text-sm font-black text-foreground sm:text-base lg:text-sm">{value}</span>
+        <span className="hidden text-[0.65rem] uppercase tracking-[0.18em] text-white/36 sm:block lg:hidden">{suffix}</span>
       </div>
     </motion.div>
   );

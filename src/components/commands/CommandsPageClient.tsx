@@ -81,7 +81,7 @@ export default function CommandsPageClient({ initialCommands }: { initialCommand
 
   return (
     <PageShell tone="night">
-      <div className="relative pb-24 pt-28 text-white sm:pt-32">
+      <div className="relative pb-24 pt-28 text-white sm:pt-32 lg:pt-28">
         <header className="page-frame">
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_24rem] lg:items-end lg:gap-16">
             <div>
@@ -95,7 +95,7 @@ export default function CommandsPageClient({ initialCommands }: { initialCommand
                   delay={0.1}
                 />
               </div>
-              <p className="mt-6 max-w-2xl text-sm leading-7 text-white/56 sm:text-base sm:leading-8">
+              <p className="mt-6 max-w-2xl text-sm leading-7 text-white/56 sm:text-base sm:leading-8 lg:text-sm lg:leading-7">
                 Dieselbe Command-Sammlung, aber als dunkles Cockpit-Layer mit klaren Berechtigungen, Cooldowns und
                 sofort lesbaren Chat-Strings.
               </p>
@@ -127,11 +127,11 @@ export default function CommandsPageClient({ initialCommands }: { initialCommand
             />
           </MotionSection>
 
-          <MotionSection className="surface-glass scan-lines px-6 py-6 sm:px-8 sm:py-7">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <MotionSection className="surface-glass scan-lines px-6 py-6 sm:px-8 sm:py-7 lg:px-6 lg:py-6">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between lg:flex-col lg:items-start lg:justify-start">
               <div>
                 <p className="metric-kicker">Filtered View</p>
-                <h2 className="mt-3 text-3xl font-black tracking-[-0.05em] text-foreground sm:text-4xl">
+                <h2 className="mt-3 text-3xl font-black tracking-[-0.05em] text-foreground sm:text-4xl lg:text-3xl">
                   {filtered.length} Commands im Fokus.
                 </h2>
               </div>
@@ -160,7 +160,7 @@ export default function CommandsPageClient({ initialCommands }: { initialCommand
                       initial={{ opacity: 0, y: 12 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.02, duration: 0.3 }}
-                      className="surface-glass border-l-2 border-l-gold-400/60 px-5 py-5 sm:px-6 sm:py-6"
+                      className="surface-glass border-l-2 border-l-gold-400/60 px-5 py-5 sm:px-6 sm:py-6 lg:px-5 lg:py-5"
                     >
                       <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                         <div className="min-w-0 flex-1">
@@ -208,7 +208,7 @@ export default function CommandsPageClient({ initialCommands }: { initialCommand
           </MotionSection>
 
           <div className="grid gap-8 lg:grid-cols-[0.86fr_1.14fr]">
-            <MotionSection className="surface-gold-accent px-7 py-7 sm:px-9 sm:py-9">
+            <MotionSection className="surface-gold-accent px-7 py-7 sm:px-9 sm:py-9 lg:px-7 lg:py-7">
               <span className="eyebrow">Quickstart</span>
               <h3 className="mt-5 text-3xl font-black tracking-[-0.05em] text-foreground">
                 Die vier schnellsten Einstiege.
@@ -219,14 +219,14 @@ export default function CommandsPageClient({ initialCommands }: { initialCommand
               </p>
             </MotionSection>
 
-            <MotionSection className="grid gap-5 sm:grid-cols-2" delay={0.08}>
+            <MotionSection className="grid gap-5 sm:grid-cols-2 lg:grid-cols-1" delay={0.08}>
               {[
                 { icon: <Plane size={16} />, cmd: "&joinflight", desc: "Flug beitreten und den Dashboard-Link direkt im Chat erhalten." },
                 { icon: <Armchair size={16} />, cmd: "&seat", desc: "Aktuellen Sitz sowie den persönlichen Passagier-Link anzeigen." },
                 { icon: <Compass size={16} />, cmd: "&miles", desc: "Meilen, Flüge und bereiste Länder auf einen Blick." },
                 { icon: <Trophy size={16} />, cmd: "&topmiles", desc: "Leaderboard der fleißigsten Vielflieger im Stream." },
               ].map((item) => (
-                <div key={item.cmd} className="surface-glass px-6 py-6 sm:px-7 sm:py-7">
+                <div key={item.cmd} className="surface-glass px-6 py-6 sm:px-7 sm:py-7 lg:px-6 lg:py-6">
                   <span className="inline-flex rounded-full border border-gold-300/20 bg-gold-400/8 p-3 text-gold-300">
                     {item.icon}
                   </span>
@@ -237,13 +237,13 @@ export default function CommandsPageClient({ initialCommands }: { initialCommand
             </MotionSection>
           </div>
 
-          <MotionSection className="grid gap-5 sm:grid-cols-3" delay={0.12}>
+          <MotionSection className="grid gap-5 sm:grid-cols-3 lg:grid-cols-1" delay={0.12}>
             {[
               { icon: <Terminal size={16} />, title: "Usage zuerst", body: "Der Chat-String bleibt immer der lauteste Bezugspunkt." },
               { icon: <TerminalSquare size={16} />, title: "Filter bleibt direkt", body: "Auf Mobile scrollt die Rail, verliert aber nie ihre Priorität." },
               { icon: <Info size={16} />, title: "Keine Hover-Abhängigkeit", body: "Alle entscheidenden Daten bleiben auch ohne Pointer sichtbar." },
             ].map((item) => (
-              <div key={item.title} className="surface-glass px-6 py-6 sm:px-7 sm:py-7">
+              <div key={item.title} className="surface-glass px-6 py-6 sm:px-7 sm:py-7 lg:px-6 lg:py-6">
                 <span className="inline-flex rounded-full border border-white/8 bg-white/4 p-3 text-sas-blue">
                   {item.icon}
                 </span>

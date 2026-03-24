@@ -45,7 +45,7 @@ export default function ResponsiveTabRail<T extends string>({
               key={item.id}
               onClick={() => onChange(item.id)}
               className={cn(
-                "relative flex min-w-0 flex-1 items-center justify-center gap-1.5 px-3 py-3 text-xs font-semibold uppercase tracking-[0.16em] transition cursor-pointer sm:gap-2 sm:px-4 sm:text-sm",
+                "relative flex min-w-0 flex-1 items-center justify-center gap-1.5 px-3 py-3 text-xs font-semibold uppercase tracking-[0.16em] transition cursor-pointer sm:gap-2 sm:px-4 sm:text-sm lg:gap-1.5 lg:px-3 lg:text-xs",
                 isActive
                   ? tone === "dark"
                     ? "text-foreground"

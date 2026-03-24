@@ -80,7 +80,7 @@ function CountStat({
   }, [value]);
 
   return (
-    <div className="surface-glass px-5 py-5 sm:px-7 sm:py-6">
+    <div className="surface-glass px-5 py-5 sm:px-7 sm:py-6 lg:px-5 lg:py-5">
       <p className="mono-label !gap-2 !text-[0.62rem] !tracking-[0.2em] !text-sas-gray-500 before:hidden">{label}</p>
       <p ref={ref} className="mt-3 text-3xl font-black tracking-[-0.05em] text-foreground sm:text-4xl lg:text-5xl">
         {display.toLocaleString("de-DE")}
@@ -102,7 +102,7 @@ export default function LandingPageClient({
             <HeroGlobe />
             <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,5,16,0.15),rgba(5,5,16,0.35)_38%,rgba(5,5,16,0.74)_100%)]" />
 
-            <div className="page-frame relative flex h-full flex-col justify-between pb-14 pt-30 sm:pb-16 sm:pt-36">
+            <div className="page-frame relative flex h-full flex-col justify-between pb-14 pt-30 sm:pb-16 sm:pt-36 lg:pb-14 lg:pt-30">
               <div className="grid gap-14 lg:grid-cols-[minmax(0,32rem)_1fr] lg:items-center lg:gap-20">
                 <div className="max-w-[32rem]">
                   <span className="eyebrow">Twitch Flight Operations</span>
@@ -121,12 +121,12 @@ export default function LandingPageClient({
                       delay={0.12}
                     />
                   </div>
-                  <div className="mt-7 space-y-2.5 text-base leading-7 text-white/72 sm:text-lg sm:leading-8">
+                  <div className="mt-7 space-y-2.5 text-base leading-7 text-white/72 sm:text-lg sm:leading-8 lg:text-base lg:leading-7">
                     <TextReveal text="Sammle Meilen." as="p" mode="words" delay={0.18} />
                     <TextReveal text="Erkunde die Welt." as="p" mode="words" delay={0.28} />
                     <TextReveal text="Steige im Ranking auf." as="p" mode="words" delay={0.38} />
                   </div>
-                  <p className="mt-7 max-w-md text-sm leading-7 text-white/56 sm:text-base sm:leading-8">
+                  <p className="mt-7 max-w-md text-sm leading-7 text-white/56 sm:text-base sm:leading-8 lg:text-sm lg:leading-7">
                     Miles & More verbindet Twitch-Community, Flugerlebnis und Echtzeitdaten zu einer einzigen,
                     cineastischen Vielflieger-Oberfläche.
                   </p>
@@ -167,7 +167,7 @@ export default function LandingPageClient({
                 </div>
               </div>
 
-              <div className="grid gap-4 sm:grid-cols-3 lg:max-w-6xl">
+              <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1 lg:max-w-6xl">
                 <CountStat label="Piloten" value={stats.pilots} />
                 <CountStat label="Meilen" value={stats.miles} />
                 <CountStat label="Flüge" value={stats.flights} />
@@ -176,11 +176,11 @@ export default function LandingPageClient({
           </div>
         </section>
 
-        <section className="page-frame pt-16 sm:pt-24">
-          <div className="mb-12 flex items-end justify-between gap-6 sm:mb-14">
+        <section className="page-frame pt-16 sm:pt-24 lg:pt-16">
+          <div className="mb-12 flex items-end justify-between gap-6 sm:mb-14 lg:mb-12">
             <div>
               <span className="eyebrow">Core Surfaces</span>
-              <h2 className="mt-4 text-3xl font-black tracking-[-0.05em] text-foreground sm:text-5xl">
+              <h2 className="mt-4 text-3xl font-black tracking-[-0.05em] text-foreground sm:text-5xl lg:text-3xl">
                 Drei Oberflächen. <span className="display-accent text-gold-300">Ein</span> Luftbild.
               </h2>
             </div>
@@ -197,7 +197,7 @@ export default function LandingPageClient({
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-10% 0px" }}
                   transition={{ duration: 0.7, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
-                  className="surface-glass card-hover-lift min-h-[22rem] px-7 py-8 sm:px-9 sm:py-10"
+                  className="surface-glass card-hover-lift min-h-[22rem] px-7 py-8 sm:px-9 sm:py-10 lg:px-7 lg:py-8"
                 >
                   <div className="inline-flex rounded-full border border-gold-300/20 bg-gold-400/10 p-3 text-gold-300">
                     <Icon size={18} />
@@ -216,15 +216,15 @@ export default function LandingPageClient({
           </div>
         </section>
 
-        <section className="page-frame py-16 sm:py-24">
-          <ParallaxSection className="surface-gold-accent overflow-hidden px-7 py-10 sm:px-12 sm:py-14">
+        <section className="page-frame py-16 sm:py-24 lg:py-16">
+          <ParallaxSection className="surface-gold-accent overflow-hidden px-7 py-10 sm:px-12 sm:py-14 lg:px-7 lg:py-10">
             <div className="grid gap-12 lg:grid-cols-[0.88fr_1.12fr] lg:items-start lg:gap-16">
               <div>
                 <span className="eyebrow">Flight Loop</span>
-                <h2 className="mt-4 text-3xl font-black tracking-[-0.05em] text-foreground sm:text-5xl">
+                <h2 className="mt-4 text-3xl font-black tracking-[-0.05em] text-foreground sm:text-5xl lg:text-3xl">
                   So wird aus Chat ein <span className="display-accent text-gold-300">Passagierfluss</span>.
                 </h2>
-                <p className="mt-5 max-w-lg text-sm leading-7 text-white/58 sm:text-base sm:leading-8">
+                <p className="mt-5 max-w-lg text-sm leading-7 text-white/58 sm:text-base sm:leading-8 lg:text-sm lg:leading-7">
                   Die bestehende Logik bleibt intakt. Der neue Auftritt macht nur sichtbarer, wie sauber Boarding,
                   Tracking, Meilen und Ranking ineinandergreifen.
                 </p>
@@ -238,7 +238,7 @@ export default function LandingPageClient({
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-10% 0px" }}
                     transition={{ duration: 0.65, delay: index * 0.08 }}
-                    className="surface-glass min-h-[13rem] px-6 py-6 sm:px-7 sm:py-7"
+                    className="surface-glass min-h-[13rem] px-6 py-6 sm:px-7 sm:py-7 lg:px-6 lg:py-6"
                   >
                     <div className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-sm font-semibold text-gold-300">
                       {String(index + 1).padStart(2, "0")}
@@ -251,15 +251,15 @@ export default function LandingPageClient({
           </ParallaxSection>
         </section>
 
-        <section className="page-frame pb-20 pt-6 sm:pb-28">
-          <div className="surface-glass px-7 py-9 sm:px-10 sm:py-12">
+        <section className="page-frame pb-20 pt-6 sm:pb-28 lg:pb-20">
+          <div className="surface-glass px-7 py-9 sm:px-10 sm:py-12 lg:px-7 lg:py-9">
             <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
               <div>
                 <span className="eyebrow">Final Approach</span>
-                <h2 className="mt-4 text-3xl font-black tracking-[-0.05em] text-foreground sm:text-5xl">
+                <h2 className="mt-4 text-3xl font-black tracking-[-0.05em] text-foreground sm:text-5xl lg:text-3xl">
                   Bereit für den nächsten Flug?
                 </h2>
-                <p className="mt-4 max-w-xl text-sm leading-7 text-white/58 sm:text-base sm:leading-8">
+                <p className="mt-4 max-w-xl text-sm leading-7 text-white/58 sm:text-base sm:leading-8 lg:text-sm lg:leading-7">
                   Öffne Ranking, Commands oder den Passenger-Demo-Flow und prüfe die neue Oberfläche direkt im
                   operativen Kontext.
                 </p>
@@ -273,7 +273,7 @@ export default function LandingPageClient({
             </div>
           </div>
 
-          <footer className="flex flex-col gap-5 py-12 text-sm text-white/42 sm:flex-row sm:items-center sm:justify-between">
+          <footer className="flex flex-col gap-5 py-12 text-sm text-white/42 sm:flex-row sm:items-center sm:justify-between lg:flex-col lg:items-start lg:justify-start">
             <div className="flex items-center gap-3">
               <Plane size={16} className="text-gold-300" />
               <span>Miles & More live surfaces for Twitch flight operations.</span>
