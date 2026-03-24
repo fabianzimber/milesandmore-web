@@ -173,7 +173,7 @@ export default function FlightDashboard({
   return (
     <PageShell tone="night" showNavigation={false}>
       <div className="relative flex flex-col min-h-[100dvh] pb-16 sm:pb-[4.5rem] lg:pb-20">
-        <header className="relative shrink-0 overflow-hidden pb-6 pt-3 sm:pb-9 sm:pt-6 lg:pb-11 lg:pt-8 text-white">
+        <header className="relative shrink-0 overflow-hidden pb-6 pt-16 sm:pb-20 sm:pt-6 lg:pb-11 lg:pt-8 text-white">
           <AirspaceScene density="compact" className="opacity-90" />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,8,20,0.18),rgba(3,8,20,0.6)_65%,rgba(233,238,248,0)_100%)]" />
 
@@ -239,14 +239,14 @@ export default function FlightDashboard({
           </div>
         </header>
 
-        <main className="page-frame relative z-10 pb-4 sm:pb-6 lg:pb-8">
+        <main className="page-frame relative z-10 pb-16 sm:pb-6 lg:pb-8">
           <AnimatePresence>
             {error && (
               <motion.div
                 initial={{ opacity: 0, y: -8 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
-                className="mb-4 flex items-center justify-between gap-3 rounded-xl bg-red-500/15 border border-red-400/20 px-4 py-3 text-sm text-red-300"
+                className="mb-2 flex items-center justify-between gap-3 rounded-xl bg-red-500/15 border border-red-400/20 px-4 py-3 text-sm text-red-300"
               >
                 <span>{error}</span>
                 <button onClick={() => setError(null)} className="shrink-0 p-0.5 hover:bg-white/10 rounded">
@@ -255,7 +255,7 @@ export default function FlightDashboard({
               </motion.div>
             )}
           </AnimatePresence>
-          <div className="surface-glass z-30 mx-auto mb-3 w-full max-w-3xl p-1.5 sm:mb-5 sm:p-2.5 lg:-mt-10 lg:mb-6">
+          <div className="surface-glass z-30 mx-auto mb-20 w-full max-w-3xl p-4 sm:mb-5 sm:p-2.5 lg:-mt-10 lg:mb-6">
             <ResponsiveTabRail items={tabs} active={activeTab} onChange={setActiveTab} tone="dark" />
           </div>
 
