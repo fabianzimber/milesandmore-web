@@ -84,7 +84,7 @@ export default function TextReveal({
 
   if (as === "h1") {
     return (
-      <h1 ref={rootRef as React.RefObject<HTMLHeadingElement>} className={cn("overflow-hidden", className)}>
+      <h1 ref={rootRef as React.RefObject<HTMLHeadingElement>} className={cn("overflow-hidden whitespace-nowrap", className)}>
         {content}
       </h1>
     );
@@ -92,7 +92,7 @@ export default function TextReveal({
 
   if (as === "h2") {
     return (
-      <h2 ref={rootRef as React.RefObject<HTMLHeadingElement>} className={cn("overflow-hidden", className)}>
+      <h2 ref={rootRef as React.RefObject<HTMLHeadingElement>} className={cn("overflow-hidden whitespace-nowrap", className)}>
         {content}
       </h2>
     );
@@ -100,7 +100,7 @@ export default function TextReveal({
 
   if (as === "h3") {
     return (
-      <h3 ref={rootRef as React.RefObject<HTMLHeadingElement>} className={cn("overflow-hidden", className)}>
+      <h3 ref={rootRef as React.RefObject<HTMLHeadingElement>} className={cn("overflow-hidden whitespace-nowrap", className)}>
         {content}
       </h3>
     );
