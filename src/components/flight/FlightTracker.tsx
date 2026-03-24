@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { motion } from "framer-motion";
 import SASCard from "@/components/ui/SASCard";
 import { formatAltitude, formatSpeed } from "@/lib/utils";
@@ -8,9 +8,7 @@ import type { Flight, PositionUpdate } from "@/lib/types";
 import { Mountain, Gauge, Compass, Navigation, MapPin, Plane, Route } from "lucide-react";
 import dynamic from "next/dynamic";
 
-const MapContainer = dynamic(() => import("react-leaflet").then((m) => m.MapContainer), { ssr: false });
-const TileLayer = dynamic(() => import("react-leaflet").then((m) => m.TileLayer), { ssr: false });
-const Marker = dynamic(() => import("react-leaflet").then((m) => m.Marker), { ssr: false });
+const FlightMap = dynamic(() => import("./FlightMap"), { ssr: false });
 
 interface FlightTrackerProps {
   flight: Flight;
@@ -18,13 +16,6 @@ interface FlightTrackerProps {
 }
 
 export default function FlightTracker({ flight, position }: FlightTrackerProps) {
-  useEffect(() => {
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
-    document.head.appendChild(link);
-    return () => { document.head.removeChild(link); };
-  }, []);
 
   const currentPos = useMemo(() => {
     if (position && position.lat !== 0) return { lat: position.lat, lon: position.lon };
@@ -47,27 +38,20 @@ export default function FlightTracker({ flight, position }: FlightTrackerProps) 
   return (
     <div className="space-y-5">
       <div className="night-panel relative overflow-hidden rounded-[2rem] border border-white/10">
-        <div className="h-[42svh] min-h-[300px] bg-sas-gray-900 sm:h-[420px]">
-          {currentPos ? (
-            <MapContainer center={[currentPos.lat, currentPos.lon]} zoom={7} className="h-full w-full z-0" scrollWheelZoom={true}>
-              <TileLayer
-                attribution='&copy; <a href="https://carto.com/">CARTO</a>'
-                url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-              />
-              <Marker position={[currentPos.lat, currentPos.lon]} />
-            </MapContainer>
-          ) : (
-            <div className="h-full flex items-center justify-center">
+        <div className="h-[42svh] min-h-[300px] bg-sas-gray-900 sm:h-[420px] relative">
+          <FlightMap lat={currentPos?.lat} lon={currentPos?.lon} />
+          {!currentPos && (
+            <div className="absolute inset-0 z-[1000] flex items-center justify-center bg-sas-gray-900/60 backdrop-blur-[2px]">
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="text-center"
               >
                 <motion.div animate={{ y: [0, -6, 0] }} transition={{ duration: 3, repeat: Infinity }}>
-                  <MapPin size={44} className="mx-auto text-sas-blue/30" />
+                  <MapPin size={44} className="mx-auto text-sas-blue/40" />
                 </motion.div>
-                <p className="text-sm text-white/62 mt-3 font-medium">Warte auf Positionsdaten...</p>
-                <p className="text-xs text-white/42 mt-1">Verbinde SimLink um Live-Tracking zu aktivieren</p>
+                <p className="mt-3 text-sm font-medium text-white/80">Warte auf Positionsdaten...</p>
+                <p className="mt-1 text-xs text-white/60">Verbinde SimLink um Live-Tracking zu aktivieren</p>
               </motion.div>
             </div>
           )}

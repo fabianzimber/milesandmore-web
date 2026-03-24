@@ -44,6 +44,17 @@ function FlightLane({
     return new CatmullRomCurve3(points.map((point) => new Vector3(...point)));
   }, [points]);
 
+  useEffect(() => {
+    return () => {
+      geometry.dispose();
+      if (Array.isArray(lineObject.material)) {
+        lineObject.material.forEach((m) => m.dispose());
+      } else {
+        lineObject.material.dispose();
+      }
+    };
+  }, [geometry, lineObject]);
+
   useFrame(({ clock }) => {
     if (!markerRef.current) return;
     const t = (clock.elapsedTime * speed) % 1;
