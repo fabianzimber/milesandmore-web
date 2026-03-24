@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import styles from "./Navigation.module.scss";
 
 const NAV_ITEMS = [
   { href: "/", label: "Home" },
@@ -51,7 +52,7 @@ export default function Navigation({ tone = "night" }: NavigationProps) {
           isScrolled || tone === "control" ? "pt-3" : "pt-0",
         )}
       >
-        <div className="page-frame !py-0">
+        <div className="page-frame">
           <nav
             className={cn(
               "flex items-center justify-between gap-4 rounded-full px-4 py-3 transition-all duration-300 sm:px-6",
@@ -111,8 +112,8 @@ export default function Navigation({ tone = "night" }: NavigationProps) {
       </header>
 
       {isOpen ? (
-        <div className="fixed inset-0 z-40 bg-[rgba(5,5,16,0.92)] backdrop-blur-2xl md:hidden">
-          <div className="page-frame flex min-h-screen flex-col justify-center gap-6 pt-24">
+        <div className={cn("fixed inset-0 z-40 md:hidden", styles.mobileOverlay)}>
+          <div className="page-frame flex flex-col gap-6">
             {NAV_ITEMS.map((item, index) => {
               const isActive = pathname === item.href;
 
