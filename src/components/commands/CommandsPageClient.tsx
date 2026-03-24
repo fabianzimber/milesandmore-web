@@ -81,9 +81,9 @@ export default function CommandsPageClient({ initialCommands }: { initialCommand
 
   return (
     <PageShell tone="night">
-      <div className="relative pb-20 pt-24 text-white sm:pt-28">
+      <div className="relative pb-24 pt-28 text-white sm:pt-32">
         <header className="page-frame">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-end">
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_24rem] lg:items-end lg:gap-16">
             <div>
               <span className="eyebrow">Command Surface</span>
               <div className="mt-5">
@@ -101,7 +101,7 @@ export default function CommandsPageClient({ initialCommands }: { initialCommand
               </p>
             </div>
 
-            <div className="surface-gold-accent px-6 py-6">
+            <div className="surface-gold-accent px-7 py-7">
               <p className="mono-label !gap-2 !text-[0.62rem] !tracking-[0.2em] !text-sas-gray-500 before:hidden">
                 Atlas Overview
               </p>
@@ -116,7 +116,7 @@ export default function CommandsPageClient({ initialCommands }: { initialCommand
           </div>
         </header>
 
-        <main className="page-frame space-y-10">
+        <main className="page-frame space-y-16">
           <MotionSection className="flex justify-center">
             <ResponsiveTabRail
               items={categories}
@@ -127,7 +127,7 @@ export default function CommandsPageClient({ initialCommands }: { initialCommand
             />
           </MotionSection>
 
-          <MotionSection className="surface-glass scan-lines px-5 py-5 sm:px-7 sm:py-6">
+          <MotionSection className="surface-glass scan-lines px-6 py-6 sm:px-8 sm:py-7">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <p className="metric-kicker">Filtered View</p>
@@ -148,7 +148,7 @@ export default function CommandsPageClient({ initialCommands }: { initialCommand
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-                className="mt-8 space-y-3"
+                className="mt-10 space-y-4"
               >
                 {filtered.map((command, index) => {
                   const permClass = PERM_BADGES[command.permissionLevel] || PERM_BADGES.Everyone;
@@ -160,7 +160,7 @@ export default function CommandsPageClient({ initialCommands }: { initialCommand
                       initial={{ opacity: 0, y: 12 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.02, duration: 0.3 }}
-                      className="surface-glass border-l-2 border-l-gold-400/60 px-4 py-4 sm:px-5 sm:py-5"
+                      className="surface-glass border-l-2 border-l-gold-400/60 px-5 py-5 sm:px-6 sm:py-6"
                     >
                       <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                         <div className="min-w-0 flex-1">
@@ -207,8 +207,8 @@ export default function CommandsPageClient({ initialCommands }: { initialCommand
             </AnimatePresence>
           </MotionSection>
 
-          <div className="grid gap-6 lg:grid-cols-[0.86fr_1.14fr]">
-            <MotionSection className="surface-gold-accent px-6 py-6 sm:px-8 sm:py-8">
+          <div className="grid gap-8 lg:grid-cols-[0.86fr_1.14fr]">
+            <MotionSection className="surface-gold-accent px-7 py-7 sm:px-9 sm:py-9">
               <span className="eyebrow">Quickstart</span>
               <h3 className="mt-5 text-3xl font-black tracking-[-0.05em] text-foreground">
                 Die vier schnellsten Einstiege.
@@ -219,14 +219,14 @@ export default function CommandsPageClient({ initialCommands }: { initialCommand
               </p>
             </MotionSection>
 
-            <MotionSection className="grid gap-3 sm:grid-cols-2" delay={0.08}>
+            <MotionSection className="grid gap-5 sm:grid-cols-2" delay={0.08}>
               {[
                 { icon: <Plane size={16} />, cmd: "&joinflight", desc: "Flug beitreten und den Dashboard-Link direkt im Chat erhalten." },
                 { icon: <Armchair size={16} />, cmd: "&seat", desc: "Aktuellen Sitz sowie den persönlichen Passagier-Link anzeigen." },
                 { icon: <Compass size={16} />, cmd: "&miles", desc: "Meilen, Flüge und bereiste Länder auf einen Blick." },
                 { icon: <Trophy size={16} />, cmd: "&topmiles", desc: "Leaderboard der fleißigsten Vielflieger im Stream." },
               ].map((item) => (
-                <div key={item.cmd} className="surface-glass px-5 py-5 sm:px-6 sm:py-6">
+                <div key={item.cmd} className="surface-glass px-6 py-6 sm:px-7 sm:py-7">
                   <span className="inline-flex rounded-full border border-gold-300/20 bg-gold-400/8 p-3 text-gold-300">
                     {item.icon}
                   </span>
@@ -237,13 +237,13 @@ export default function CommandsPageClient({ initialCommands }: { initialCommand
             </MotionSection>
           </div>
 
-          <MotionSection className="grid gap-4 sm:grid-cols-3" delay={0.12}>
+          <MotionSection className="grid gap-5 sm:grid-cols-3" delay={0.12}>
             {[
               { icon: <Terminal size={16} />, title: "Usage zuerst", body: "Der Chat-String bleibt immer der lauteste Bezugspunkt." },
               { icon: <TerminalSquare size={16} />, title: "Filter bleibt direkt", body: "Auf Mobile scrollt die Rail, verliert aber nie ihre Priorität." },
               { icon: <Info size={16} />, title: "Keine Hover-Abhängigkeit", body: "Alle entscheidenden Daten bleiben auch ohne Pointer sichtbar." },
             ].map((item) => (
-              <div key={item.title} className="surface-glass px-5 py-5 sm:px-6 sm:py-6">
+              <div key={item.title} className="surface-glass px-6 py-6 sm:px-7 sm:py-7">
                 <span className="inline-flex rounded-full border border-white/8 bg-white/4 p-3 text-sas-blue">
                   {item.icon}
                 </span>

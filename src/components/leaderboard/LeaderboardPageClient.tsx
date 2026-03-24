@@ -101,9 +101,9 @@ export default function LeaderboardPageClient({
 
   return (
     <PageShell tone="night">
-      <div className="relative pb-20 pt-24 text-white sm:pt-28">
+      <div className="relative pb-24 pt-28 text-white sm:pt-32">
         <header className="page-frame">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-end">
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_24rem] lg:items-end lg:gap-16">
             <div>
               <span className="eyebrow">Global Ranking Surface</span>
               <div className="mt-5">
@@ -125,11 +125,11 @@ export default function LeaderboardPageClient({
               </p>
             </div>
 
-            <div className="surface-gold-accent px-6 py-6">
+            <div className="surface-gold-accent px-7 py-7">
               <p className="mono-label !gap-2 !text-[0.62rem] !tracking-[0.2em] !text-sas-gray-500 before:hidden">
                 Overview
               </p>
-              <div className="mt-5 grid grid-cols-3 gap-4">
+              <div className="mt-6 grid grid-cols-3 gap-5">
                 <StatTile label="Piloten" value={milesBoard.length.toLocaleString("de-DE")} icon={<Users size={15} />} />
                 <StatTile label="Meilen" value={formatCompact(totalMiles)} icon={<MapPin size={15} />} />
                 <StatTile label="Flüge" value={totalFlights.toLocaleString("de-DE")} icon={<Plane size={15} />} />
@@ -138,7 +138,7 @@ export default function LeaderboardPageClient({
           </div>
         </header>
 
-        <main className="page-frame space-y-12">
+        <main className="page-frame space-y-16">
           <MotionSection className="flex justify-center">
             <ResponsiveTabRail
               items={TABS}
@@ -149,12 +149,12 @@ export default function LeaderboardPageClient({
             />
           </MotionSection>
 
-          <MotionSection className="grid gap-4 lg:grid-cols-3">
+          <MotionSection className="grid gap-6 lg:grid-cols-3">
             {featuredEntries.map((entry, index) => {
               const isMiles = activeTab === "miles";
 
               return (
-                <article key={`${entry.user_name}-${index}`} className="surface-gold-accent min-h-[17rem] px-6 py-6">
+                <article key={`${entry.user_name}-${index}`} className="surface-gold-accent min-h-[18.5rem] px-7 py-7">
                   <div className="flex items-start justify-between gap-4">
                     <MedalBadge rank={index + 1} />
                     <span className="inline-flex items-center gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white/52">
@@ -162,7 +162,7 @@ export default function LeaderboardPageClient({
                       Rank {index + 1}
                     </span>
                   </div>
-                  <p className="mt-8 text-2xl font-black tracking-[-0.04em] text-foreground sm:text-3xl">
+                  <p className="mt-9 text-2xl font-black tracking-[-0.04em] text-foreground sm:text-3xl">
                     {entry.user_name}
                   </p>
                   <p className="mt-3 text-sm leading-7 text-white/54">
@@ -170,7 +170,7 @@ export default function LeaderboardPageClient({
                       ? `${(entry as UserMiles).total_flights} Flüge`
                       : `${(entry as CountryEntry).total_miles.toLocaleString("de-DE")} Gesamtmeilen`}
                   </p>
-                  <div className="mt-8 flex items-end justify-between gap-4">
+                  <div className="mt-10 flex items-end justify-between gap-4">
                     <span className="text-4xl font-black tracking-[-0.06em] text-gold-300">
                       {isMiles
                         ? (entry as UserMiles).total_miles.toLocaleString("de-DE")
@@ -185,9 +185,9 @@ export default function LeaderboardPageClient({
             })}
           </MotionSection>
 
-          <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_20rem]">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem]">
             <MotionSection className="surface-glass overflow-hidden p-0" delay={0.04}>
-              <div className="flex items-center justify-between border-b border-white/8 px-5 py-4 sm:px-7">
+              <div className="flex items-center justify-between border-b border-white/8 px-6 py-5 sm:px-8">
                 <div className="flex items-center gap-3">
                   {activeTab === "miles" ? (
                     <Trophy size={16} className="text-gold-300" />
@@ -253,8 +253,8 @@ export default function LeaderboardPageClient({
               </AnimatePresence>
             </MotionSection>
 
-            <div className="space-y-6">
-              <MotionSection className="surface-glass px-5 py-6 sm:px-6" delay={0.08}>
+            <div className="space-y-8">
+              <MotionSection className="surface-glass px-6 py-7 sm:px-7" delay={0.08}>
                 <span className="eyebrow">Signal Notes</span>
                 <div className="mt-6 space-y-4">
                   <InfoRow label="Top Explorer" value={countryBoard[0]?.user_name ?? "—"} />
@@ -263,7 +263,7 @@ export default function LeaderboardPageClient({
                 </div>
               </MotionSection>
 
-              <MotionSection className="surface-glass px-5 py-6 sm:px-6" delay={0.12}>
+              <MotionSection className="surface-glass px-6 py-7 sm:px-7" delay={0.12}>
                 <span className="eyebrow">Quick Commands</span>
                 <div className="mt-6 space-y-4">
                   {[
