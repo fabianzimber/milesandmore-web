@@ -56,8 +56,8 @@ export default function ChannelManager() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-lg font-semibold text-sas-gray-900">Twitch Channels</h2>
-        <p className="text-sm text-sas-gray-500 mt-1">
+        <h2 className="text-lg font-semibold text-foreground">Twitch Channels</h2>
+        <p className="text-sm text-foreground/50 mt-1">
           Nur eigene freigeschaltete Kanaele. Vor dem Aktivieren bitte einmal <span className="font-medium">/mod milesandmorebot</span> im Kanal ausfuehren.
         </p>
       </div>
@@ -70,7 +70,7 @@ export default function ChannelManager() {
             value={newChannel}
             onChange={(e) => setNewChannel(e.target.value)}
             placeholder="Eigener Twitch Username"
-            className="flex-1 px-4 py-2.5 border border-sas-gray-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-sas-blue focus:border-transparent"
+            className="flex-1 px-4 py-2.5 border border-white/[0.06] rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-aviation-blue focus:border-transparent"
             onKeyDown={(e) => e.key === "Enter" && handleAdd()}
           />
           <SASButton onClick={handleAdd} loading={loading}>
@@ -84,8 +84,8 @@ export default function ChannelManager() {
       {/* Channel List */}
       <SASCard padding="none">
         <div className="px-5 py-3 border-b border-border flex items-center gap-2">
-          <Users size={16} className="text-sas-gray-400" />
-          <span className="text-sm font-medium text-sas-gray-700">
+          <Users size={16} className="text-foreground/40" />
+          <span className="text-sm font-medium text-foreground/70">
             {channels.length} Channel{channels.length !== 1 ? "s" : ""}
           </span>
         </div>
@@ -103,22 +103,22 @@ export default function ChannelManager() {
                 <div className="flex items-center gap-3">
                   <div
                     className={`w-2 h-2 rounded-full ${
-                      channel.active ? "bg-sas-green" : "bg-sas-gray-300"
+                      channel.active ? "bg-mm-success" : "bg-foreground/30"
                     }`}
                   />
                   <div>
-                    <p className="text-sm font-medium text-sas-gray-900">{channel.channel_name}</p>
-                    <p className="text-xs text-sas-gray-400">
+                    <p className="text-sm font-medium text-foreground">{channel.channel_name}</p>
+                    <p className="text-xs text-foreground/40">
                       Hinzugefügt: {new Date(channel.added_at).toLocaleDateString("de-DE")}
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <Radio size={14} className={channel.active ? "text-sas-green" : "text-sas-gray-300"} />
+                  <Radio size={14} className={channel.active ? "text-mm-success" : "text-foreground/30"} />
                   <button
                     onClick={() => handleRemove(channel.channel_name)}
-                    className="p-1.5 text-sas-gray-400 hover:text-sas-red transition-colors cursor-pointer"
+                    className="p-1.5 text-foreground/40 hover:text-mm-destructive transition-colors cursor-pointer"
                   >
                     <Trash2 size={14} />
                   </button>
@@ -128,7 +128,7 @@ export default function ChannelManager() {
           </AnimatePresence>
 
           {channels.length === 0 && (
-            <div className="px-5 py-8 text-center text-sas-gray-400 text-sm">
+            <div className="px-5 py-8 text-center text-foreground/40 text-sm">
               Noch keine Channels hinzugefügt
             </div>
           )}

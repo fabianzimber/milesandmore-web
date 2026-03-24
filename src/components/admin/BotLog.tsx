@@ -8,11 +8,11 @@ import type { BotLogEntry } from "@/lib/types";
 import { ScrollText, Trash2 } from "lucide-react";
 
 const LEVEL_COLORS: Record<string, string> = {
-  info: "text-blue-600",
-  error: "text-red-600",
-  warn: "text-amber-600",
-  irc: "text-purple-600",
-  api: "text-green-600",
+  info: "text-blue-400",
+  error: "text-red-400",
+  warn: "text-amber-400",
+  irc: "text-purple-400",
+  api: "text-green-400",
 };
 
 interface BotLogProps {
@@ -48,14 +48,14 @@ export default function BotLog({ logs, setLogs }: BotLogProps) {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-lg font-semibold text-sas-gray-900">Bot Log</h2>
-          <p className="text-sm text-sas-gray-500 mt-1">
+          <h2 className="text-lg font-semibold text-foreground">Bot Log</h2>
+          <p className="text-sm text-foreground/50 mt-1">
             Echtzeit-Logs des FlightBot Prozesses
           </p>
         </div>
         <button
           onClick={() => setLogs([])}
-          className="text-sas-gray-400 hover:text-sas-gray-600 transition-colors p-2 cursor-pointer"
+          className="text-foreground/40 hover:text-foreground/60 transition-colors p-2 cursor-pointer"
         >
           <Trash2 size={16} />
         </button>
@@ -63,22 +63,22 @@ export default function BotLog({ logs, setLogs }: BotLogProps) {
 
       <SASCard padding="none">
         <div className="px-4 py-2 border-b border-border flex items-center gap-2">
-          <ScrollText size={14} className="text-sas-gray-400" />
-          <span className="text-xs text-sas-gray-500">{logs.length} Einträge</span>
+          <ScrollText size={14} className="text-foreground/40" />
+          <span className="text-xs text-foreground/50">{logs.length} Einträge</span>
         </div>
 
         <div
           ref={scrollRef}
-          className="h-[300px] overflow-y-auto bg-sas-gray-900 p-4 font-mono text-[11px] sm:h-[500px] sm:text-xs"
+          className="h-[300px] overflow-y-auto bg-navy-900 p-4 font-mono text-[11px] sm:h-[500px] sm:text-xs"
         >
           {logs.map((log, i) => (
             <motion.div
               key={log.id || i}
               initial={i > logs.length - 5 ? { opacity: 0 } : false}
               animate={{ opacity: 1 }}
-              className="flex gap-3 py-0.5 hover:bg-sas-gray-800 px-1 rounded"
+              className="flex gap-3 py-0.5 hover:bg-white/[0.04] px-1 rounded"
             >
-              <span className="text-sas-gray-500 shrink-0">
+              <span className="text-foreground/50 shrink-0">
                 {log.timestamp
                   ? new Date(log.timestamp).toLocaleTimeString("de-DE")
                   : "--:--:--"}
@@ -91,7 +91,7 @@ export default function BotLog({ logs, setLogs }: BotLogProps) {
           ))}
 
           {logs.length === 0 && (
-            <div className="text-center text-sas-gray-500 py-8">
+            <div className="text-center text-foreground/50 py-8">
               Keine Logs vorhanden
             </div>
           )}

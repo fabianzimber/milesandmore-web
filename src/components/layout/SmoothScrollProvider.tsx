@@ -1,8 +1,12 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { cancelFrame, frame, useReducedMotion } from "framer-motion";
+import { useReducedMotion } from "framer-motion";
 import { ReactLenis, type LenisRef } from "lenis/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function SmoothScrollProvider({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<LenisRef>(null);
@@ -10,13 +14,16 @@ export default function SmoothScrollProvider({ children }: { children: React.Rea
 
   useEffect(() => {
     if (shouldReduceMotion) return;
+    const lenis = lenisRef.current?.lenis;
+    if (!lenis) return;
 
-    function update(data: { timestamp: number }) {
-      lenisRef.current?.lenis?.raf(data.timestamp);
-    }
+    lenis.on("scroll", ScrollTrigger.update);
+    gsap.ticker.add((time) => lenis.raf(time * 1000));
+    gsap.ticker.lagSmoothing(0);
 
-    frame.update(update, true);
-    return () => cancelFrame(update);
+    return () => {
+      gsap.ticker.remove((time) => lenis.raf(time * 1000));
+    };
   }, [shouldReduceMotion]);
 
   if (shouldReduceMotion) {

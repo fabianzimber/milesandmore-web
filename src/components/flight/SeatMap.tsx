@@ -68,15 +68,15 @@ export default function SeatMap({ flight, participants, currentUser, onSeatChang
     <div className="space-y-5">
       <SASCard variant="glass" className="overflow-hidden">
         <div className="text-center mb-5">
-          <h3 className="text-lg font-bold text-sas-midnight">{flight.aircraft_name || "Aircraft"}</h3>
-          <p className="text-xs text-sas-gray-400 mt-1">Tippe auf einen freien Sitz und bestätige die Umbuchung direkt oben.</p>
+          <h3 className="text-lg font-bold">{flight.aircraft_name || "Aircraft"}</h3>
+          <p className="text-xs text-foreground/30 mt-1">Tippe auf einen freien Sitz und bestätige die Umbuchung direkt oben.</p>
         </div>
 
         <div className="mb-6 flex flex-wrap justify-center gap-3 text-xs">
-          <LegendItem className="bg-gradient-to-b from-sas-gold to-sas-gold-dim" label="Dein Sitz" />
-          <LegendItem className="bg-gradient-to-b from-sas-gray-300 to-sas-gray-400" label="Besetzt" />
-          <LegendItem className="bg-gradient-to-b from-sas-blue/15 to-sas-blue/25 border border-sas-blue/20" label="Frei" />
-          <LegendItem className="bg-gradient-to-b from-sas-cyan/60 to-sas-cyan/80 glow-cyan" label="Ausgewählt" />
+          <LegendItem className="bg-gradient-to-b from-gold-400 to-gold-500" label="Dein Sitz" />
+          <LegendItem className="bg-gradient-to-b from-white/20 to-white/10" label="Besetzt" />
+          <LegendItem className="bg-gradient-to-b from-aviation-blue/15 to-aviation-blue/25 border border-aviation-blue/20" label="Frei" />
+          <LegendItem className="bg-gradient-to-b from-aviation-blue/60 to-aviation-blue/80 glow-blue" label="Ausgewählt" />
         </div>
 
         <AnimatePresence>
@@ -87,18 +87,18 @@ export default function SeatMap({ flight, participants, currentUser, onSeatChang
               exit={{ opacity: 0, y: -12 }}
               className="sticky top-2 z-20 mb-4 px-2"
             >
-              <div className="night-panel mx-auto flex max-w-sm flex-col gap-4 rounded-[1.75rem] px-4 py-4 text-white sm:max-w-lg sm:flex-row sm:items-center sm:justify-between">
+              <div className="night-panel mx-auto flex max-w-sm flex-col gap-4 rounded-[1.75rem] px-4 py-4 sm:max-w-lg sm:flex-row sm:items-center sm:justify-between">
                 <div className="flex items-center gap-3">
-                  <span className="inline-flex rounded-full bg-white/10 p-2 text-sas-cyan">
+                  <span className="inline-flex rounded-full bg-white/10 p-2 text-aviation-blue">
                     <UserRound size={16} />
                   </span>
                   <div>
-                    <p className="text-xs uppercase tracking-[0.22em] text-white/42">Selected Seat</p>
-                    <p className="text-lg font-black">{selectedSeat}</p>
+                    <p className="text-xs uppercase tracking-[0.22em] text-foreground/30">Selected Seat</p>
+                    <p className="text-lg font-extrabold">{selectedSeat}</p>
                   </div>
                 </div>
                 <div className="flex gap-2">
-                  <SASButton variant="ghost" onClick={() => setSelectedSeat(null)} className="!text-white/70 hover:!bg-white/8">
+                  <SASButton variant="ghost" onClick={() => setSelectedSeat(null)} className="!text-foreground/50 hover:!bg-white/[0.06]">
                     Verwerfen
                   </SASButton>
                   <SASButton variant="gold" onClick={confirmSeatChange} loading={saving}>
@@ -113,51 +113,51 @@ export default function SeatMap({ flight, participants, currentUser, onSeatChang
 
         <div className="relative mx-auto max-w-3xl overflow-x-auto pb-4">
           <div className="relative mx-auto w-max px-8 sm:px-12 pt-4">
-            
-            {/* Simple Implied Wings */}
-            <div className="absolute top-[35%] left-0 right-0 flex justify-between pointer-events-none z-0 opacity-80">
-              <div className="w-12 sm:w-16 h-32 sm:h-48 bg-gradient-to-r from-sas-gray-200 to-sas-gray-50 border border-sas-gray-300 rounded-bl-[4rem] rounded-tl-md shadow-sm" style={{ transform: "skewY(22deg) translateY(-10px)" }} />
-              <div className="w-12 sm:w-16 h-32 sm:h-48 bg-gradient-to-l from-sas-gray-200 to-sas-gray-50 border border-sas-gray-300 rounded-br-[4rem] rounded-tr-md shadow-sm" style={{ transform: "skewY(-22deg) translateY(-10px)" }} />
+
+            {/* Wings */}
+            <div className="absolute top-[35%] left-0 right-0 flex justify-between pointer-events-none z-0 opacity-60">
+              <div className="w-12 sm:w-16 h-32 sm:h-48 bg-gradient-to-r from-white/[0.04] to-transparent border border-white/[0.06] rounded-bl-[4rem] rounded-tl-md" style={{ transform: "skewY(22deg) translateY(-10px)" }} />
+              <div className="w-12 sm:w-16 h-32 sm:h-48 bg-gradient-to-l from-white/[0.04] to-transparent border border-white/[0.06] rounded-br-[4rem] rounded-tr-md" style={{ transform: "skewY(-22deg) translateY(-10px)" }} />
             </div>
 
             <div className="relative mx-auto w-48 sm:w-56 z-10">
             <svg viewBox="0 0 200 90" className="w-full">
-              <path d="M 20 90 Q 20 8, 100 0 Q 180 8, 180 90" fill="#eef0f4" stroke="#dde1e8" strokeWidth="1.5" />
-              <line x1="60" y1="52" x2="140" y2="52" stroke="#dde1e8" strokeWidth="1" />
-              <circle cx="78" cy="38" r="3.5" fill="#c0c7d4" />
-              <circle cx="100" cy="33" r="3.5" fill="#c0c7d4" />
-              <circle cx="122" cy="38" r="3.5" fill="#c0c7d4" />
-              <rect x="70" y="58" width="24" height="14" rx="3" fill="#dde1e8" />
-              <rect x="106" y="58" width="24" height="14" rx="3" fill="#dde1e8" />
-              <text x="100" y="82" textAnchor="middle" className="fill-sas-gray-400 font-semibold" style={{ fontSize: 9 }}>COCKPIT</text>
+              <path d="M 20 90 Q 20 8, 100 0 Q 180 8, 180 90" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" strokeWidth="1.5" />
+              <line x1="60" y1="52" x2="140" y2="52" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
+              <circle cx="78" cy="38" r="3.5" fill="rgba(255,255,255,0.1)" />
+              <circle cx="100" cy="33" r="3.5" fill="rgba(255,255,255,0.1)" />
+              <circle cx="122" cy="38" r="3.5" fill="rgba(255,255,255,0.1)" />
+              <rect x="70" y="58" width="24" height="14" rx="3" fill="rgba(255,255,255,0.06)" />
+              <rect x="106" y="58" width="24" height="14" rx="3" fill="rgba(255,255,255,0.06)" />
+              <text x="100" y="82" textAnchor="middle" className="fill-foreground/30 font-semibold" style={{ fontSize: 9 }}>COCKPIT</text>
             </svg>
             </div>
 
-            <div className="relative z-10 overflow-hidden rounded-[1.5rem] border border-sas-gray-200 bg-gradient-to-b from-sas-gray-50 to-white shadow-sm mx-auto">
+            <div className="relative z-10 overflow-hidden rounded-[1.5rem] border border-white/[0.06] bg-gradient-to-b from-white/[0.03] to-navy-900/50 mx-auto">
               <div className="absolute left-0.5 top-0 bottom-0 flex w-1.5 flex-col items-center justify-start gap-3 pt-10">
               {Array.from({ length: Math.min(totalRows, 30) }, (_, i) => (
-                <div key={`wl${i}`} className="w-1 h-2 rounded-full bg-sas-blue/10 border border-sas-blue/15" />
+                <div key={`wl${i}`} className="w-1 h-2 rounded-full bg-aviation-blue/10 border border-aviation-blue/15" />
               ))}
             </div>
             <div className="absolute right-0.5 top-0 bottom-0 flex w-1.5 flex-col items-center justify-start gap-3 pt-10">
               {Array.from({ length: Math.min(totalRows, 30) }, (_, i) => (
-                <div key={`wr${i}`} className="w-1 h-2 rounded-full bg-sas-blue/10 border border-sas-blue/15" />
+                <div key={`wr${i}`} className="w-1 h-2 rounded-full bg-aviation-blue/10 border border-aviation-blue/15" />
               ))}
             </div>
 
             <div className="px-1.5 py-4 sm:px-2.5 sm:py-5">
-              <div className="sticky top-0 z-10 mb-3 flex items-center justify-center gap-0 rounded-xl bg-white/92 py-2 backdrop-blur-sm">
+              <div className="sticky top-0 z-10 mb-3 flex items-center justify-center gap-0 rounded-xl bg-navy-900/90 py-2 backdrop-blur-sm">
                 <div className="w-5 sm:w-6" />
                 {letters.map((letter, i) => (
                   <div key={letter} className="flex items-center">
-                    <div className="w-8 text-center text-[9px] font-bold text-sas-gray-400 sm:w-9 sm:text-[10px]">{letter}</div>
+                    <div className="w-8 text-center text-[9px] font-bold text-foreground/30 sm:w-9 sm:text-[10px]">{letter}</div>
                     {aislePositions.includes(i + 1) && <div className="w-4 sm:w-6" />}
                   </div>
                 ))}
               </div>
 
               <div className="flex justify-center mb-2">
-                <span className="text-[8px] font-bold text-sas-red tracking-widest bg-red-50 px-2 py-0.5 rounded">EXIT</span>
+                <span className="text-[8px] font-bold text-mm-destructive tracking-widest bg-mm-destructive/10 px-2 py-0.5 rounded">EXIT</span>
               </div>
 
               {Array.from({ length: totalRows }, (_, rowIdx) => {
@@ -168,11 +168,11 @@ export default function SeatMap({ flight, participants, currentUser, onSeatChang
                   <div key={rowNum}>
                     {isExitRow && (
                       <div className="flex justify-center my-2">
-                        <span className="text-[8px] font-bold text-sas-red tracking-widest bg-red-50 px-2 py-0.5 rounded">EXIT</span>
+                        <span className="text-[8px] font-bold text-mm-destructive tracking-widest bg-mm-destructive/10 px-2 py-0.5 rounded">EXIT</span>
                       </div>
                     )}
                     <div className="flex items-center justify-center gap-0 mb-1">
-                      <div className="w-5 text-right pr-1 text-[8px] font-semibold text-sas-gray-300 sm:w-6 sm:pr-1.5 sm:text-[9px]">{rowNum}</div>
+                      <div className="w-5 text-right pr-1 text-[8px] font-semibold text-foreground/20 sm:w-6 sm:pr-1.5 sm:text-[9px]">{rowNum}</div>
                       {letters.map((letter, letterIdx) => {
                         const seatId = formatSeatId(rowNum, letter);
                         const occupant = occupancyMap.get(seatId);
@@ -191,42 +191,40 @@ export default function SeatMap({ flight, participants, currentUser, onSeatChang
                               onMouseLeave={() => setHoveredSeat(null)}
                               className={cn(
                                 "relative h-7 w-8 rounded-t-xl border text-[9px] font-bold transition-all duration-200 cursor-pointer sm:h-9 sm:w-11 sm:text-[10px]",
-                                isOwn && "bg-gradient-to-b from-sas-gold to-sas-gold-dim text-white border-sas-gold glow-gold",
-                                !isOwn && isOccupied && "bg-gradient-to-b from-sas-gray-200 to-sas-gray-300 text-sas-gray-500 border-sas-gray-300 cursor-not-allowed",
-                                !isOccupied && !isSelected && "bg-gradient-to-b from-white to-sas-blue/10 text-sas-blue border-sas-blue/20 hover:border-sas-cyan/50 hover:shadow-md hover:shadow-sas-cyan/20",
-                                isSelected && "bg-gradient-to-b from-sas-cyan/70 to-sas-cyan text-white border-sas-cyan glow-cyan",
+                                isOwn && "bg-gradient-to-b from-gold-400 to-gold-500 text-navy-950 border-gold-400 glow-gold",
+                                !isOwn && isOccupied && "bg-gradient-to-b from-white/[0.08] to-white/[0.04] text-foreground/30 border-white/[0.08] cursor-not-allowed",
+                                !isOccupied && !isSelected && "bg-gradient-to-b from-white/[0.02] to-aviation-blue/10 text-aviation-blue border-aviation-blue/20 hover:border-aviation-blue/40 hover:shadow-md hover:shadow-aviation-blue/10",
+                                isSelected && "bg-gradient-to-b from-aviation-blue/60 to-aviation-blue text-white border-aviation-blue glow-blue",
                               )}
                               disabled={isOccupied && !isOwn}
                             >
                               {isOwn ? "★" : seatId}
 
-                              {/* Pulse ring on own seat */}
                               {isOwn && (
                                 <motion.div
-                                  className="absolute inset-0 rounded-t-xl border-2 border-sas-gold"
+                                  className="absolute inset-0 rounded-t-xl border-2 border-gold-400"
                                   animate={{ scale: [1, 1.4, 1.4], opacity: [0.6, 0, 0] }}
                                   transition={{ duration: 2, repeat: Infinity }}
                                 />
                               )}
 
-                              {/* Tooltip */}
                               <AnimatePresence>
                                 {isHovered && (isOccupied || isSelected) && (
                                   <motion.div
                                     initial={{ opacity: 0, y: 4, scale: 0.9 }}
                                     animate={{ opacity: 1, y: 0, scale: 1 }}
                                     exit={{ opacity: 0, y: 4, scale: 0.9 }}
-                                    className="absolute -top-9 left-1/2 -translate-x-1/2 bg-sas-gray-900 text-white text-[8px] px-2 py-1 rounded-md whitespace-nowrap z-20 shadow-lg"
+                                    className="absolute -top-9 left-1/2 -translate-x-1/2 bg-navy-900 text-foreground text-[8px] px-2 py-1 rounded-md whitespace-nowrap z-20 shadow-lg border border-white/[0.08]"
                                   >
                                     {isSelected ? "Nochmal klicken ✓" : isOwn ? "Dein Sitz" : occupant?.user_name}
-                                    <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-sas-gray-900" />
+                                    <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-navy-900" />
                                   </motion.div>
                                 )}
                               </AnimatePresence>
                             </motion.button>
                             {aislePositions.includes(letterIdx + 1) && (
                               <div className="w-4 flex items-center justify-center sm:w-6">
-                                {rowIdx % 4 === 0 && <div className="w-px h-4 bg-sas-gray-200" />}
+                                {rowIdx % 4 === 0 && <div className="w-px h-4 bg-white/[0.06]" />}
                               </div>
                             )}
                           </div>
@@ -240,7 +238,7 @@ export default function SeatMap({ flight, participants, currentUser, onSeatChang
 
             <div className="mx-auto w-24 z-10 relative">
               <svg viewBox="0 0 120 40" className="w-full">
-                <path d="M 10 0 Q 10 35, 60 40 Q 110 35, 110 0" fill="#eef0f4" stroke="#dde1e8" strokeWidth="1.5" />
+                <path d="M 10 0 Q 10 35, 60 40 Q 110 35, 110 0" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" strokeWidth="1.5" />
               </svg>
             </div>
           </div>
@@ -248,17 +246,17 @@ export default function SeatMap({ flight, participants, currentUser, onSeatChang
       </div>
 
         <div className="mt-4 text-center">
-          <div className="inline-flex items-center gap-3 rounded-full bg-sas-gray-50 px-4 py-2">
-            <span className="text-xs font-semibold text-sas-midnight">{occupiedCount}</span>
-            <div className="w-20 h-1.5 bg-sas-gray-200 rounded-full overflow-hidden">
+          <div className="inline-flex items-center gap-3 rounded-full bg-white/[0.04] border border-white/[0.06] px-4 py-2">
+            <span className="text-xs font-semibold">{occupiedCount}</span>
+            <div className="w-20 h-1.5 bg-white/[0.08] rounded-full overflow-hidden">
               <motion.div
-                className="h-full bg-gradient-to-r from-sas-blue to-sas-cyan rounded-full"
+                className="h-full bg-gradient-to-r from-aviation-blue to-gold-400 rounded-full"
                 initial={{ width: 0 }}
                 animate={{ width: `${Math.min(100, (occupiedCount / flight.aircraft_total_seats) * 100)}%` }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
               />
             </div>
-            <span className="text-xs text-sas-gray-400">{flight.aircraft_total_seats}</span>
+            <span className="text-xs text-foreground/30">{flight.aircraft_total_seats}</span>
           </div>
         </div>
 
@@ -269,9 +267,9 @@ export default function SeatMap({ flight, participants, currentUser, onSeatChang
 
 function LegendItem({ className, label }: { className: string; label: string }) {
   return (
-    <div className="flex items-center gap-1.5 rounded-full bg-white/70 px-3 py-1.5">
+    <div className="flex items-center gap-1.5 rounded-full bg-white/[0.04] border border-white/[0.06] px-3 py-1.5">
       <div className={`w-5 h-4 rounded-t-md ${className}`} />
-      <span className="text-sas-gray-500">{label}</span>
+      <span className="text-foreground/40">{label}</span>
     </div>
   );
 }

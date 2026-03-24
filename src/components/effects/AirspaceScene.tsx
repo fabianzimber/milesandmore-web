@@ -102,7 +102,7 @@ function Atmosphere({ count, compact }: { count: number; compact: boolean }) {
     groupRef.current.position.y = Math.sin(clock.elapsedTime * 0.18) * 0.1;
   });
 
-  const colors = useMemo(() => [new Color("#9cc7ff"), new Color("#dcb67a"), new Color("#6fe5ff")], []);
+  const colors = useMemo(() => [new Color("#4A90D9"), new Color("#C8A96E"), new Color("#6BA5E7")], []);
 
   return (
     <group ref={groupRef}>
@@ -115,11 +115,11 @@ function Atmosphere({ count, compact }: { count: number; compact: boolean }) {
 
       <mesh position={[0, 0, -2]} rotation={[0.5, 0.2, 0]}>
         <torusGeometry args={[compact ? 2.4 : 3.1, 0.02, 16, 120]} />
-        <meshBasicMaterial color="#5e8cff" transparent opacity={0.16} />
+        <meshBasicMaterial color="#4A90D9" transparent opacity={0.12} />
       </mesh>
       <mesh position={[0.8, -0.1, -2.2]} rotation={[0.8, 0.3, 0.5]}>
         <torusGeometry args={[compact ? 1.6 : 2.2, 0.02, 16, 120]} />
-        <meshBasicMaterial color="#caa96d" transparent opacity={0.14} />
+        <meshBasicMaterial color="#C8A96E" transparent opacity={0.1} />
       </mesh>
     </group>
   );
@@ -148,7 +148,7 @@ export default function AirspaceScene({ className, density = "hero" }: AirspaceS
       <div
         className={cn(
           "pointer-events-none absolute inset-0 overflow-hidden",
-          "bg-[radial-gradient(circle_at_18%_24%,rgba(121,177,255,0.22),transparent_28%),radial-gradient(circle_at_78%_16%,rgba(202,169,109,0.18),transparent_24%),radial-gradient(circle_at_50%_88%,rgba(103,212,255,0.14),transparent_30%)]",
+          "bg-[radial-gradient(circle_at_18%_24%,rgba(74,144,217,0.15),transparent_28%),radial-gradient(circle_at_78%_16%,rgba(200,169,110,0.12),transparent_24%),radial-gradient(circle_at_50%_88%,rgba(74,144,217,0.08),transparent_30%)]",
           className,
         )}
       />
@@ -164,17 +164,17 @@ export default function AirspaceScene({ className, density = "hero" }: AirspaceS
         dpr={compact ? [0.7, 1] : [1, 1.5]}
         performance={{ min: 0.5, max: 1, debounce: 200 }}
       >
-        <color attach="background" args={["#000000"]} />
-        <fog attach="fog" args={["#030814", 5, 11]} />
+        <color attach="background" args={["#050510"]} />
+        <fog attach="fog" args={["#050510", 5, 11]} />
         <ambientLight intensity={0.7} />
-        <pointLight position={[2, 3, 4]} intensity={10} color="#7db6ff" />
-        <pointLight position={[-3, -1, 2]} intensity={6} color="#dcb67a" />
+        <pointLight position={[2, 3, 4]} intensity={10} color="#4A90D9" />
+        <pointLight position={[-3, -1, 2]} intensity={6} color="#C8A96E" />
         <Atmosphere count={compact ? 52 : 120} compact={compact} />
-        <FlightLane color="#7db6ff" speed={0.035} points={[[-3.2, 1.1, -1.4], [-1.5, 1.8, -1.6], [1.1, 0.4, -1.4], [3.3, 1.4, -1.8]]} />
-        <FlightLane color="#dcb67a" speed={0.024} points={[[-3.4, -0.8, -1.8], [-1.2, 0.3, -1.2], [1.5, -1.1, -1.4], [3.4, -0.1, -1.8]]} />
-        <FlightLane color="#6fe5ff" speed={0.03} points={[[-2.6, -1.7, -1.4], [-0.8, -0.4, -1], [1.2, -0.8, -1.1], [2.8, -1.8, -1.6]]} />
+        <FlightLane color="#4A90D9" speed={0.035} points={[[-3.2, 1.1, -1.4], [-1.5, 1.8, -1.6], [1.1, 0.4, -1.4], [3.3, 1.4, -1.8]]} />
+        <FlightLane color="#C8A96E" speed={0.024} points={[[-3.4, -0.8, -1.8], [-1.2, 0.3, -1.2], [1.5, -1.1, -1.4], [3.4, -0.1, -1.8]]} />
+        <FlightLane color="#6BA5E7" speed={0.03} points={[[-2.6, -1.7, -1.4], [-0.8, -0.4, -1], [1.2, -0.8, -1.1], [2.8, -1.8, -1.6]]} />
       </Canvas>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,rgba(2,6,19,0.24)_70%,rgba(2,6,19,0.58)_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,rgba(5,5,16,0.24)_70%,rgba(5,5,16,0.58)_100%)]" />
     </div>
   );
 }

@@ -44,8 +44,8 @@ export default function SimBriefImport({ onImport, importedPlan }: SimBriefImpor
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-lg font-semibold text-sas-gray-900">SimBrief Flugplan Import</h2>
-        <p className="text-sm text-sas-gray-500 mt-1">
+        <h2 className="text-lg font-semibold text-foreground">SimBrief Flugplan Import</h2>
+        <p className="text-sm text-foreground/50 mt-1">
           Gib deine SimBrief Pilot ID oder deinen Benutzernamen ein, um den aktuellen Flugplan zu laden.
         </p>
       </div>
@@ -58,7 +58,7 @@ export default function SimBriefImport({ onImport, importedPlan }: SimBriefImpor
             value={pilotId}
             onChange={(e) => setPilotId(e.target.value)}
             placeholder="SimBrief Pilot ID oder Username"
-            className="flex-1 px-4 py-2.5 border border-sas-gray-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-sas-blue focus:border-transparent"
+            className="flex-1 px-4 py-2.5 border border-white/[0.06] rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-aviation-blue focus:border-transparent"
             onKeyDown={(e) => e.key === "Enter" && handleFetch()}
           />
           <SASButton onClick={handleFetch} loading={loading}>
@@ -71,7 +71,7 @@ export default function SimBriefImport({ onImport, importedPlan }: SimBriefImpor
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="mt-3 text-sm text-sas-red"
+            className="mt-3 text-sm text-mm-destructive"
           >
             {error}
           </motion.p>
@@ -91,23 +91,23 @@ export default function SimBriefImport({ onImport, importedPlan }: SimBriefImpor
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
                   <div className="text-center">
-                    <p className="text-2xl font-bold text-sas-midnight">{preview.origin.icao}</p>
-                    <p className="text-xs text-sas-gray-500">{preview.origin.name}</p>
+                    <p className="text-2xl font-bold text-foreground">{preview.origin.icao}</p>
+                    <p className="text-xs text-foreground/50">{preview.origin.name}</p>
                   </div>
-                  <div className="flex items-center gap-2 text-sas-gray-300">
-                    <div className="w-12 h-px bg-sas-gray-300" />
-                    <Plane size={20} className="text-sas-gold" />
-                    <div className="w-12 h-px bg-sas-gray-300" />
+                  <div className="flex items-center gap-2 text-foreground/30">
+                    <div className="w-12 h-px bg-foreground/30" />
+                    <Plane size={20} className="text-gold-400" />
+                    <div className="w-12 h-px bg-foreground/30" />
                   </div>
                   <div className="text-center">
-                    <p className="text-2xl font-bold text-sas-midnight">{preview.destination.icao}</p>
-                    <p className="text-xs text-sas-gray-500">{preview.destination.name}</p>
+                    <p className="text-2xl font-bold text-foreground">{preview.destination.icao}</p>
+                    <p className="text-xs text-foreground/50">{preview.destination.name}</p>
                   </div>
                 </div>
 
                 <div className="text-right">
-                  <p className="text-lg font-semibold text-sas-midnight">{preview.flight_number}</p>
-                  <p className="text-xs text-sas-gray-500">{preview.aircraft.name}</p>
+                  <p className="text-lg font-semibold text-foreground">{preview.flight_number}</p>
+                  <p className="text-xs text-foreground/50">{preview.aircraft.name}</p>
                 </div>
               </div>
 
@@ -137,25 +137,25 @@ export default function SimBriefImport({ onImport, importedPlan }: SimBriefImpor
 
               {/* Seat Config */}
               {preview.seat_config && (
-                <div className="bg-sas-gray-50 rounded-md p-3 text-sm">
-                  <span className="text-sas-gray-500">Sitzplan:</span>{" "}
+                <div className="bg-white/[0.03] rounded-md p-3 text-sm">
+                  <span className="text-foreground/50">Sitzplan:</span>{" "}
                   <span className="font-medium">{preview.seat_config}</span> ·{" "}
-                  <span className="text-sas-gray-500">{preview.total_seats} Sitze</span>
+                  <span className="text-foreground/50">{preview.total_seats} Sitze</span>
                 </div>
               )}
 
               {/* Route */}
               {preview.route && (
-                <div className="bg-sas-gray-50 rounded-md p-3">
-                  <p className="text-xs text-sas-gray-500 mb-1">Route</p>
-                  <p className="text-xs font-mono text-sas-gray-700 break-all">{preview.route}</p>
+                <div className="bg-white/[0.03] rounded-md p-3">
+                  <p className="text-xs text-foreground/50 mb-1">Route</p>
+                  <p className="text-xs font-mono text-foreground/70 break-all">{preview.route}</p>
                 </div>
               )}
 
               {/* Confirm Button */}
               <div className="flex justify-end gap-3">
                 {importedPlan && (importedPlan as unknown as SimBriefFlightPlan).ofp_id === preview.ofp_id ? (
-                  <div className="flex items-center gap-2 text-sas-green text-sm font-medium">
+                  <div className="flex items-center gap-2 text-mm-success text-sm font-medium">
                     <Check size={16} />
                     Importiert
                   </div>
@@ -185,10 +185,10 @@ function DetailItem({
 }) {
   return (
     <div className="flex items-start gap-2">
-      <div className="text-sas-gray-400 mt-0.5">{icon}</div>
+      <div className="text-foreground/40 mt-0.5">{icon}</div>
       <div>
-        <p className="text-xs text-sas-gray-500">{label}</p>
-        <p className="text-sm font-medium text-sas-gray-800">{value}</p>
+        <p className="text-xs text-foreground/50">{label}</p>
+        <p className="text-sm font-medium text-foreground/80">{value}</p>
       </div>
     </div>
   );

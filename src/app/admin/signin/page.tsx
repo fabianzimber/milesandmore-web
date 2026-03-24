@@ -27,18 +27,19 @@ export default async function AdminSignInPage({ searchParams }: AdminSignInPageP
   const errorMessage = getErrorMessage(params.error);
 
   return (
-    <div className="min-h-screen bg-aurora flex items-center justify-center px-4">
-      <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-10 text-center max-w-sm">
-        <div className="w-16 h-16 rounded-2xl bg-sas-midnight mx-auto mb-5 flex items-center justify-center">
-          <Plane size={28} className="text-sas-gold" />
+    <div className="min-h-screen bg-navy-950 flex items-center justify-center px-4">
+      <div className="noise-overlay" />
+      <div className="surface-elevated rounded-2xl p-10 text-center max-w-sm relative">
+        <div className="w-16 h-16 rounded-2xl bg-navy-900 border border-white/[0.08] mx-auto mb-5 flex items-center justify-center">
+          <Plane size={28} className="text-gold-400" />
         </div>
-        <h1 className="text-xl font-bold text-sas-midnight mb-2">Miles & More Cockpit</h1>
-        <p className="text-sm text-sas-gray-400 mb-6">
+        <h1 className="text-xl font-bold mb-2">Miles & More Cockpit</h1>
+        <p className="text-sm text-foreground/40 mb-6">
           Melde dich mit einem freigeschalteten Twitch-Account an, um das Admin-Dashboard zu verwenden.
         </p>
 
         {errorMessage && (
-          <p className="mb-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700">
+          <p className="mb-4 rounded-xl border border-mm-destructive/20 bg-mm-destructive/10 px-4 py-3 text-sm font-medium text-mm-destructive">
             {errorMessage}
           </p>
         )}
@@ -54,8 +55,8 @@ export default async function AdminSignInPage({ searchParams }: AdminSignInPageP
           </SASButton>
         </form>
 
-        <p className="mt-4 text-xs leading-5 text-sas-gray-400">
-          Twitch Redirect URL: <span className="font-medium text-sas-gray-500">/api/auth/callback/twitch</span>
+        <p className="mt-4 text-xs leading-5 text-foreground/30">
+          Twitch Redirect URL: <span className="font-medium text-foreground/40">/api/auth/callback/twitch</span>
         </p>
       </div>
     </div>

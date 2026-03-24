@@ -41,8 +41,8 @@ export default function SimLinkPanel() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-lg font-semibold text-sas-gray-900">Navigraph SimLink</h2>
-        <p className="text-sm text-sas-gray-500 mt-1">
+        <h2 className="text-lg font-semibold text-foreground">Navigraph SimLink</h2>
+        <p className="text-sm text-foreground/50 mt-1">
           Sende Live-Flugdaten per signiertem HTTP-Relay an Vercel, statt den alten Bot-WebSocket zu verwenden.
         </p>
       </div>
@@ -50,32 +50,32 @@ export default function SimLinkPanel() {
       {/* Relay Control */}
       <SASCard>
         <div className="space-y-4">
-          <div className={`flex items-center gap-2 text-sm font-medium ${connected ? "text-sas-green" : "text-sas-gray-400"}`}>
+          <div className={`flex items-center gap-2 text-sm font-medium ${connected ? "text-mm-success" : "text-foreground/40"}`}>
             <Radio size={18} />
             {connected ? "Relay aktiv" : "Warte auf Relay-Daten"}
           </div>
 
           <div className="grid gap-3 md:grid-cols-2">
-            <div className="rounded-xl border border-sas-gray-200 bg-sas-gray-50 p-4">
-              <div className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-sas-gray-400">
+            <div className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-4">
+              <div className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-foreground/40">
                 <Globe size={14} />
                 Ingest URL
               </div>
-              <code className="block break-all text-xs text-sas-midnight">{ingestUrl}</code>
+              <code className="block break-all text-xs text-foreground">{ingestUrl}</code>
             </div>
 
-            <div className="rounded-xl border border-sas-gray-200 bg-sas-gray-50 p-4">
-              <div className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-sas-gray-400">
+            <div className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-4">
+              <div className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-foreground/40">
                 <KeyRound size={14} />
                 Secret
               </div>
-              <p className="text-sm text-sas-gray-600">
+              <p className="text-sm text-foreground/60">
                 Nutze `SIMLINK_INGEST_SECRET` aus Vercel. Der Relay-Prozess sendet es als `x-simlink-secret`.
               </p>
             </div>
           </div>
 
-          <div className="rounded-xl bg-sas-gray-900 p-4 font-mono text-xs text-sas-gray-200">
+          <div className="rounded-xl bg-navy-900 p-4 font-mono text-xs text-foreground/20">
             {relayCommand}
           </div>
         </div>
@@ -88,7 +88,7 @@ export default function SimLinkPanel() {
           animate={{ opacity: 1, y: 0 }}
         >
           <SASCard variant="elevated">
-            <h3 className="text-sm font-semibold text-sas-gray-700 mb-4">Live-Flugdaten</h3>
+            <h3 className="text-sm font-semibold text-foreground/70 mb-4">Live-Flugdaten</h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               <DataItem
                 icon={<Navigation size={18} />}
@@ -117,13 +117,13 @@ export default function SimLinkPanel() {
 
       {/* Setup Instructions */}
       <SASCard padding="lg">
-        <h3 className="text-sm font-semibold text-sas-gray-700 mb-3">Setup-Anleitung</h3>
-        <ol className="text-sm text-sas-gray-600 space-y-2 list-decimal list-inside">
+        <h3 className="text-sm font-semibold text-foreground/70 mb-3">Setup-Anleitung</h3>
+        <ol className="text-sm text-foreground/60 space-y-2 list-decimal list-inside">
           <li>Installiere <strong>Navigraph SimLink</strong> und starte die Anwendung</li>
           <li>Starte <strong>MSFS2024</strong> und lade dein Flugzeug am Gate</li>
-          <li>Setze lokal die Umgebungsvariable <code className="bg-sas-gray-100 px-1 rounded">SIMLINK_INGEST_SECRET</code></li>
-          <li>Starte das angepasste <code className="bg-sas-gray-100 px-1 rounded">simlink-relay.js</code> Script mit der URL oben</li>
-          <li>Das Relay liest lokal von <code className="bg-sas-gray-100 px-1 rounded">ws://localhost:8380</code> und postet die Daten an Vercel</li>
+          <li>Setze lokal die Umgebungsvariable <code className="bg-white/[0.05] px-1 rounded">SIMLINK_INGEST_SECRET</code></li>
+          <li>Starte das angepasste <code className="bg-white/[0.05] px-1 rounded">simlink-relay.js</code> Script mit der URL oben</li>
+          <li>Das Relay liest lokal von <code className="bg-white/[0.05] px-1 rounded">ws://localhost:8380</code> und postet die Daten an Vercel</li>
         </ol>
       </SASCard>
     </div>
@@ -133,10 +133,10 @@ export default function SimLinkPanel() {
 function DataItem({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
   return (
     <div className="flex items-start gap-3">
-      <div className="text-sas-blue mt-0.5">{icon}</div>
+      <div className="text-aviation-blue mt-0.5">{icon}</div>
       <div>
-        <p className="text-xs text-sas-gray-500">{label}</p>
-        <p className="text-lg font-semibold text-sas-midnight font-mono">{value}</p>
+        <p className="text-xs text-foreground/50">{label}</p>
+        <p className="text-lg font-semibold text-foreground font-mono">{value}</p>
       </div>
     </div>
   );

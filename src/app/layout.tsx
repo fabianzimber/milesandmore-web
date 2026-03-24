@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Libre_Barcode_128 } from "next/font/google";
+import { Inter, Playfair_Display, Libre_Barcode_128 } from "next/font/google";
 import SessionProvider from "@/components/SessionProvider";
 import "./globals.css";
 
@@ -7,6 +7,13 @@ const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
   variable: "--font-inter",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-playfair",
 });
 
 const barcode = Libre_Barcode_128({
@@ -62,7 +69,7 @@ export const metadata: Metadata = {
     ],
     apple: { url: "/apple-touch-icon.png", sizes: "180x180" },
     other: [
-      { rel: "mask-icon", url: "/logo.svg", color: "#3D2668" },
+      { rel: "mask-icon", url: "/logo.svg", color: "#C8A96E" },
     ],
   },
   manifest: "/manifest.webmanifest",
@@ -74,7 +81,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="de" className={`h-full antialiased ${inter.variable} ${barcode.variable}`}>
+    <html lang="de" className={`h-full antialiased ${inter.variable} ${playfair.variable} ${barcode.variable}`}>
       <body className="min-h-full flex flex-col font-sans bg-background text-foreground">
         <SessionProvider>
           {children}

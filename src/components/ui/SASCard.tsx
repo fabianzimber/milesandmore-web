@@ -20,17 +20,17 @@ export default function SASCard({
     <div
       className={cn(
         "rounded-[1.5rem] transition-all duration-300",
-        variant === "default" && "control-panel text-sas-midnight",
-        variant === "glass" && "glass text-sas-midnight",
-        variant === "elevated" && "bg-white/88 shadow-[0_24px_70px_rgba(5,11,25,0.08)] border border-white/80 text-sas-midnight",
-        variant === "dark" && "night-panel text-white shadow-2xl",
-        variant === "outlined" && "bg-transparent border border-sas-blue/18",
-        variant === "glow" && "glass glow-blue border border-sas-blue/12 text-sas-midnight",
+        variant === "default" && "surface-glass",
+        variant === "glass" && "surface-glass",
+        variant === "elevated" && "surface-elevated",
+        variant === "dark" && "night-panel",
+        variant === "outlined" && "bg-transparent border border-gold-400/15",
+        variant === "glow" && "surface-glass glow-gold border border-gold-400/10",
         padding === "none" && "p-0",
         padding === "sm" && "p-4",
         padding === "md" && "p-6",
         padding === "lg" && "p-8",
-        hover && "card-hover-lift hover:border-sas-blue/20 cursor-pointer",
+        hover && "hover:border-gold-400/20 cursor-pointer hover:-translate-y-0.5",
         className
       )}
       {...props}

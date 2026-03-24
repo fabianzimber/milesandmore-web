@@ -23,7 +23,7 @@ export default function ResponsiveTabRail<T extends string>({
   active,
   onChange,
   className,
-  tone = "light",
+  tone = "dark",
 }: ResponsiveTabRailProps<T>) {
   const shouldReduceMotion = useReducedMotion();
 
@@ -33,8 +33,8 @@ export default function ResponsiveTabRail<T extends string>({
         className={cn(
           "inline-flex min-w-full items-center gap-1 rounded-full border p-1",
           tone === "dark"
-            ? "border-white/10 bg-white/5 text-white/70 backdrop-blur-md"
-            : "border-sas-gray-200/70 bg-white/70 text-sas-gray-500 backdrop-blur-xl",
+            ? "border-white/[0.06] bg-white/[0.03] text-foreground/50 backdrop-blur-md"
+            : "border-white/[0.06] bg-white/[0.03] text-foreground/50 backdrop-blur-xl",
         )}
       >
         {items.map((item) => {
@@ -47,23 +47,14 @@ export default function ResponsiveTabRail<T extends string>({
               className={cn(
                 "relative flex min-w-0 flex-1 items-center justify-center gap-1.5 rounded-full px-3 py-2.5 text-xs font-semibold transition cursor-pointer sm:gap-2 sm:px-4 sm:py-3 sm:text-sm",
                 isActive
-                  ? tone === "dark"
-                    ? "text-white"
-                    : "text-sas-midnight"
-                  : tone === "dark"
-                    ? "hover:text-white"
-                    : "hover:text-sas-midnight",
+                  ? "text-foreground"
+                  : "hover:text-foreground/80",
               )}
             >
               {isActive && (
                 <motion.span
                   layoutId={`tab-rail-${tone}`}
-                  className={cn(
-                    "absolute inset-0 rounded-full",
-                    tone === "dark"
-                      ? "bg-white/12 shadow-[0_10px_30px_rgba(3,8,20,0.24)]"
-                      : "bg-white shadow-[0_12px_30px_rgba(5,11,25,0.1)]",
-                  )}
+                  className="absolute inset-0 rounded-full bg-white/[0.08] shadow-[0_10px_30px_rgba(0,0,0,0.3)]"
                   transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                 />
               )}

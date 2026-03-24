@@ -187,8 +187,8 @@ export default function BoardingControl({
     return (
       <div className="space-y-6">
         <div>
-          <h2 className="text-lg font-semibold text-sas-gray-900">Boarding Control</h2>
-          <p className="text-sm text-sas-gray-500 mt-1">
+          <h2 className="text-lg font-semibold text-foreground">Boarding Control</h2>
+          <p className="text-sm text-foreground/50 mt-1">
             Starte das Boarding für einen importierten Flugplan.
           </p>
         </div>
@@ -196,8 +196,8 @@ export default function BoardingControl({
         {!importedFlightPlan ? (
           <SASCard>
             <div className="text-center py-8">
-              <Plane size={40} className="mx-auto text-sas-gray-300 mb-3" />
-              <p className="text-sm text-sas-gray-500">
+              <Plane size={40} className="mx-auto text-foreground/30 mb-3" />
+              <p className="text-sm text-foreground/50">
                 Importiere zuerst einen SimBrief Flugplan im &quot;SimBrief&quot; Tab.
               </p>
             </div>
@@ -206,13 +206,13 @@ export default function BoardingControl({
           <SASCard>
             <div className="space-y-4">
               <div>
-                <label className="text-sm font-medium text-sas-gray-700 block mb-1.5">
+                <label className="text-sm font-medium text-foreground/70 block mb-1.5">
                   Twitch Channel für Boarding
                 </label>
                 <select
                   value={selectedChannel}
                   onChange={(e) => setSelectedChannel(e.target.value)}
-                  className="w-full px-4 py-2.5 border border-sas-gray-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-sas-blue bg-white cursor-pointer"
+                  className="w-full px-4 py-2.5 border border-white/[0.06] rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-aviation-blue bg-white/[0.04] cursor-pointer"
                 >
                   <option value="">Channel wählen...</option>
                   {channels.map((ch) => (
@@ -249,8 +249,8 @@ export default function BoardingControl({
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-lg font-semibold text-sas-gray-900">Boarding Control</h2>
-          <p className="text-sm text-sas-gray-500 mt-1">
+          <h2 className="text-lg font-semibold text-foreground">Boarding Control</h2>
+          <p className="text-sm text-foreground/50 mt-1">
             Flug {currentFlight.flight_number || `#${currentFlight.id}`} · {currentFlight.status}
           </p>
         </div>

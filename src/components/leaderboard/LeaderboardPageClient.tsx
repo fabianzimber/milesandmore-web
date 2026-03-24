@@ -16,6 +16,7 @@ import {
   RefreshCw,
 } from "lucide-react";
 import PageShell from "@/components/layout/PageShell";
+import Navigation from "@/components/layout/Navigation";
 import MotionSection from "@/components/layout/MotionSection";
 import GlowDivider from "@/components/layout/GlowDivider";
 import ResponsiveTabRail, { type TabRailItem } from "@/components/layout/ResponsiveTabRail";
@@ -28,10 +29,10 @@ interface Props {
   initialCountryBoard: CountryEntry[];
 }
 
-const MEDAL_STYLES = [
-  "bg-gradient-to-br from-yellow-400 to-amber-500 text-white shadow-md",
-  "bg-gradient-to-br from-mm-gray-300 to-mm-gray-400 text-white",
-  "bg-gradient-to-br from-amber-600 to-amber-700 text-white",
+const MEDAL_COLORS = [
+  "bg-gradient-to-br from-gold-400 to-gold-500 text-navy-950 shadow-[0_0_20px_rgba(200,169,110,0.3)]",
+  "bg-gradient-to-br from-white/30 to-white/15 text-white shadow-[0_0_16px_rgba(255,255,255,0.1)]",
+  "bg-gradient-to-br from-amber-700 to-amber-800 text-white shadow-[0_0_16px_rgba(180,120,50,0.2)]",
 ];
 
 const TABS: TabRailItem<string>[] = [
@@ -41,7 +42,7 @@ const TABS: TabRailItem<string>[] = [
 
 function RankBadge({ rank }: { rank: number }) {
   const style =
-    rank <= 3 ? MEDAL_STYLES[rank - 1] : "bg-mm-gray-100 text-mm-gray-500";
+    rank <= 3 ? MEDAL_COLORS[rank - 1] : "bg-white/[0.06] text-foreground/40";
   return (
     <div
       className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-black shrink-0 ${style}`}
@@ -78,7 +79,6 @@ export default function LeaderboardPageClient({
     }
   }, []);
 
-  // Poll every 60 seconds
   useEffect(() => {
     const id = setInterval(() => refresh(true), 60_000);
     return () => clearInterval(id);
@@ -90,11 +90,11 @@ export default function LeaderboardPageClient({
 
   return (
     <PageShell tone="night">
-      <div className="relative flex flex-col min-h-[100dvh] pb-24 text-white">
-        {/* ── Hero ── */}
-        <header className="relative shrink-0 overflow-hidden pb-8 pt-6 sm:pb-12 sm:pt-8 lg:pb-16 lg:pt-12">
-          <div className="absolute inset-0 bg-mesh-dark opacity-90" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_30%,rgba(123,92,181,0.22),transparent_30%),radial-gradient(circle_at_85%_10%,rgba(99,65,163,0.18),transparent_25%)]" />
+      <Navigation />
+      <div className="relative flex flex-col min-h-[100dvh] pb-24 text-foreground">
+        {/* Hero */}
+        <header className="relative shrink-0 overflow-hidden pb-8 pt-20 sm:pb-12 sm:pt-24 lg:pb-16 lg:pt-28">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_30%,rgba(100,60,180,0.1),transparent_30%),radial-gradient(circle_at_85%_10%,rgba(74,144,217,0.08),transparent_25%)]" />
 
           <div className="page-frame relative">
             <motion.div
@@ -103,7 +103,7 @@ export default function LeaderboardPageClient({
               transition={{ duration: 0.7 }}
             >
               <div className="flex items-center gap-3 mb-4 sm:mb-6">
-                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-white overflow-hidden p-1">
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 overflow-hidden p-1">
                   <Image src="/logo.svg" alt="Miles & More Logo" width={36} height={36} className="w-full h-full object-contain" />
                 </div>
                 <p className="eyebrow">Global Rankings</p>
@@ -111,28 +111,27 @@ export default function LeaderboardPageClient({
 
               <div className="mt-2 sm:mt-4 lg:mt-6 grid gap-6 lg:gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
                 <div>
-                  <h1 className="max-w-3xl text-4xl font-black tracking-[-0.05em] text-glow-white sm:text-5xl lg:text-6xl leading-tight">
+                  <h1 className="max-w-3xl text-4xl font-extrabold tracking-[-0.04em] sm:text-5xl lg:text-6xl leading-tight">
                     Wer fliegt am<br />
-                    weitesten?
+                    <span className="display-accent text-gold-400">weitesten?</span>
                   </h1>
-                  <p className="mt-4 sm:mt-5 max-w-2xl text-sm leading-7 sm:text-base sm:leading-8 text-white/60">
+                  <p className="mt-4 sm:mt-5 max-w-2xl text-sm leading-7 sm:text-base sm:leading-8 text-foreground/50">
                     Sammle Meilen auf jedem Flug, erkunde neue Länder und kletter im globalen Ranking nach oben.
                     Die Bestenliste wird automatisch aktualisiert.
                   </p>
                 </div>
 
-                {/* Stats overview panel */}
                 <div className="night-panel rounded-[2rem] p-5 sm:p-6 lg:p-8 lg:mb-36">
-                  <p className="metric-kicker !text-white/40">Leaderboard Overview</p>
+                  <p className="metric-kicker">Leaderboard Overview</p>
                   <div className="mt-4 sm:mt-5 grid grid-cols-3 gap-3 sm:gap-4">
                     {[
-                      { label: "Piloten", value: milesBoard.length, icon: <Users size={14} className="text-mm-purple-400" /> },
-                      { label: "Meilen", value: totalMiles >= 1000 ? `${(totalMiles / 1000).toFixed(0)}k` : totalMiles, icon: <MapPin size={14} className="text-mm-purple-400" /> },
-                      { label: "Flüge", value: totalFlights, icon: <Plane size={14} className="text-mm-purple-400" /> },
+                      { label: "Piloten", value: milesBoard.length, icon: <Users size={14} className="text-gold-400" /> },
+                      { label: "Meilen", value: totalMiles >= 1000 ? `${(totalMiles / 1000).toFixed(0)}k` : totalMiles, icon: <MapPin size={14} className="text-gold-400" /> },
+                      { label: "Flüge", value: totalFlights, icon: <Plane size={14} className="text-gold-400" /> },
                     ].map((stat) => (
                       <div key={stat.label}>
-                        <div className="flex items-center gap-1 mb-1">{stat.icon}<p className="text-[10px] text-white/40 uppercase tracking-wider">{stat.label}</p></div>
-                        <p className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tabular-nums">{stat.value || "—"}</p>
+                        <div className="flex items-center gap-1 mb-1">{stat.icon}<p className="text-[10px] text-foreground/30 uppercase tracking-wider">{stat.label}</p></div>
+                        <p className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tabular-nums">{stat.value || "—"}</p>
                       </div>
                     ))}
                   </div>
@@ -142,13 +141,12 @@ export default function LeaderboardPageClient({
           </div>
         </header>
 
-        {/* ── Main content ── */}
-        <main className="page-frame relative z-10 pb-6 sm:pb-8 text-sas-midnight">
-
+        {/* Main */}
+        <main className="page-frame relative z-10 pb-6 sm:pb-8">
           {/* Tab rail */}
           <MotionSection
             as="div"
-            className="z-30 mb-4 sm:mb-6 lg:mb-8 rounded-[1.75rem] bg-white/10 p-2 sm:p-3 backdrop-blur-xl shrink-0 -mt-8 sm:-mt-10 lg:-mt-14 max-w-xs mx-auto w-full"
+            className="z-30 mb-4 sm:mb-6 lg:mb-8 rounded-[1.75rem] surface-glass p-2 sm:p-3 shrink-0 -mt-8 sm:-mt-10 lg:-mt-14 max-w-xs mx-auto w-full"
           >
             <ResponsiveTabRail
               items={TABS}
@@ -159,29 +157,27 @@ export default function LeaderboardPageClient({
           </MotionSection>
 
           <div className="relative px-1 pb-4 sm:pb-6 lg:pb-8 lg:px-4 space-y-6 sm:space-y-8 lg:space-y-10">
-
-            {/* ── Leaderboard card ── */}
-            <MotionSection className="control-panel rounded-[2rem] overflow-hidden" delay={0.06}>
-              {/* Card header */}
-              <div className="px-5 sm:px-7 lg:px-8 py-4 sm:py-5 flex items-center justify-between border-b border-sas-gray-200/80">
+            {/* Leaderboard card */}
+            <MotionSection className="surface-elevated rounded-[2rem] overflow-hidden" delay={0.06}>
+              <div className="px-5 sm:px-7 lg:px-8 py-4 sm:py-5 flex items-center justify-between border-b border-white/[0.06]">
                 <div className="flex items-center gap-2.5">
                   {activeTab === "miles" ? (
-                    <TrendingUp size={18} className="text-sas-blue" />
+                    <TrendingUp size={18} className="text-gold-400" />
                   ) : (
-                    <Globe size={18} className="text-sas-blue" />
+                    <Globe size={18} className="text-aviation-blue" />
                   )}
-                  <h2 className="text-base sm:text-lg font-black tracking-tight text-sas-midnight">
+                  <h2 className="text-base sm:text-lg font-extrabold tracking-tight">
                     {activeTab === "miles" ? "Miles Ranking" : "Country Ranking"}
                   </h2>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="text-[10px] text-sas-gray-400 hidden sm:block">
+                  <span className="text-[10px] text-foreground/30 hidden sm:block">
                     {lastUpdated.toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" })} Uhr
                   </span>
                   <button
                     onClick={() => refresh()}
                     disabled={loading}
-                    className="inline-flex items-center gap-1.5 rounded-full bg-sas-gray-100 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-sas-gray-500 hover:bg-sas-gray-200 transition disabled:opacity-50"
+                    className="inline-flex items-center gap-1.5 rounded-full bg-white/[0.06] px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-foreground/40 hover:bg-white/[0.1] hover:text-foreground/60 transition disabled:opacity-50 cursor-pointer"
                   >
                     <RefreshCw size={11} className={loading ? "animate-spin" : ""} />
                     Refresh
@@ -196,7 +192,7 @@ export default function LeaderboardPageClient({
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -8 }}
                   transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                  className="divide-y divide-sas-gray-100/80"
+                  className="divide-y divide-white/[0.04]"
                 >
                   {activeTab === "miles" ? (
                     <>
@@ -209,21 +205,21 @@ export default function LeaderboardPageClient({
                           initial={{ opacity: 0, x: -8 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: i * 0.04 }}
-                          className={`flex items-center justify-between px-5 sm:px-7 lg:px-8 py-3 sm:py-4 hover:bg-sas-gray-50/80 transition-colors ${i === 0 ? "bg-gradient-to-r from-amber-50/60 to-transparent" : ""}`}
+                          className={`flex items-center justify-between px-5 sm:px-7 lg:px-8 py-3 sm:py-4 hover:bg-white/[0.03] transition-colors ${i === 0 ? "bg-gradient-to-r from-gold-400/[0.06] to-transparent" : ""}`}
                         >
                           <div className="flex items-center gap-3 sm:gap-4 min-w-0">
                             <RankBadge rank={i + 1} />
                             <div className="min-w-0">
-                              <p className="text-sm sm:text-base font-semibold text-sas-gray-800 truncate">{entry.user_name}</p>
-                              <p className="text-[11px] text-sas-gray-400">{entry.total_flights} Flüge</p>
+                              <p className="text-sm sm:text-base font-semibold truncate">{entry.user_name}</p>
+                              <p className="text-[11px] text-foreground/30">{entry.total_flights} Flüge</p>
                             </div>
                           </div>
                           <div className="flex items-center gap-1.5 shrink-0">
-                            <MapPin size={13} className="text-sas-blue" />
-                            <span className="text-sm sm:text-base font-black text-sas-midnight tabular-nums">
+                            <MapPin size={13} className="text-gold-400" />
+                            <span className="text-sm sm:text-base font-extrabold tabular-nums">
                               {entry.total_miles.toLocaleString("de-DE")}
                             </span>
-                            <span className="text-[11px] text-sas-gray-400 hidden sm:block">mi</span>
+                            <span className="text-[11px] text-foreground/30 hidden sm:block">mi</span>
                           </div>
                         </motion.div>
                       ))}
@@ -239,21 +235,21 @@ export default function LeaderboardPageClient({
                           initial={{ opacity: 0, x: -8 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: i * 0.04 }}
-                          className={`flex items-center justify-between px-5 sm:px-7 lg:px-8 py-3 sm:py-4 hover:bg-sas-gray-50/80 transition-colors ${i === 0 ? "bg-gradient-to-r from-amber-50/60 to-transparent" : ""}`}
+                          className={`flex items-center justify-between px-5 sm:px-7 lg:px-8 py-3 sm:py-4 hover:bg-white/[0.03] transition-colors ${i === 0 ? "bg-gradient-to-r from-gold-400/[0.06] to-transparent" : ""}`}
                         >
                           <div className="flex items-center gap-3 sm:gap-4 min-w-0">
                             <RankBadge rank={i + 1} />
                             <div className="min-w-0">
-                              <p className="text-sm sm:text-base font-semibold text-sas-gray-800 truncate">{entry.user_name}</p>
-                              <p className="text-[11px] text-sas-gray-400">{entry.total_miles.toLocaleString("de-DE")} Meilen gesamt</p>
+                              <p className="text-sm sm:text-base font-semibold truncate">{entry.user_name}</p>
+                              <p className="text-[11px] text-foreground/30">{entry.total_miles.toLocaleString("de-DE")} Meilen gesamt</p>
                             </div>
                           </div>
                           <div className="flex items-center gap-1.5 shrink-0">
-                            <Globe size={13} className="text-sas-green" />
-                            <span className="text-sm sm:text-base font-black text-sas-midnight tabular-nums">
+                            <Globe size={13} className="text-mm-success" />
+                            <span className="text-sm sm:text-base font-extrabold tabular-nums">
                               {entry.countries_count}
                             </span>
-                            <span className="text-[11px] text-sas-gray-400 hidden sm:block">
+                            <span className="text-[11px] text-foreground/30 hidden sm:block">
                               {entry.countries_count === 1 ? "Land" : "Länder"}
                             </span>
                           </div>
@@ -265,16 +261,15 @@ export default function LeaderboardPageClient({
               </AnimatePresence>
             </MotionSection>
 
-            {/* ── How to earn miles + top explorer teaser ── */}
+            {/* How to earn + stats */}
             <MotionSection className="grid gap-5 sm:gap-6 lg:gap-8 lg:grid-cols-[0.85fr_1.15fr]" delay={0.1}>
-              {/* Night panel: earn miles explainer */}
-              <div className="night-panel rounded-[2rem] p-6 sm:p-8 lg:p-10 text-white">
+              <div className="night-panel rounded-[2rem] p-6 sm:p-8 lg:p-10">
                 <p className="eyebrow">Wie es funktioniert</p>
-                <h3 className="mt-5 sm:mt-6 text-2xl sm:text-3xl font-black tracking-tight text-white">
-                  Meilen sammeln ist einfach.
+                <h3 className="mt-5 sm:mt-6 text-2xl sm:text-3xl font-extrabold tracking-tight">
+                  Meilen sammeln ist <span className="display-accent text-gold-400">einfach.</span>
                 </h3>
-                <p className="mt-3 sm:mt-4 text-sm sm:text-base leading-7 sm:leading-8 text-white/58">
-                  Schreibe <code className="px-2 py-0.5 rounded-md bg-white/10 text-white/90 text-xs font-mono">&joinflight</code> im Chat wenn ein Flug startet.
+                <p className="mt-3 sm:mt-4 text-sm sm:text-base leading-7 sm:leading-8 text-foreground/40">
+                  Schreibe <code className="px-2 py-0.5 rounded-md bg-white/[0.06] text-gold-400 text-xs font-mono">&joinflight</code> im Chat wenn ein Flug startet.
                   Jede Flugmeile landet automatisch auf deinem Konto — kein Setup nötig.
                 </p>
                 <div className="mt-6 sm:mt-8 space-y-3">
@@ -285,33 +280,32 @@ export default function LeaderboardPageClient({
                     { step: "04", text: "Länder werden freigeschaltet" },
                   ].map((item) => (
                     <div key={item.step} className="flex items-center gap-3">
-                      <span className="text-[10px] font-black tracking-widest text-mm-purple-400 shrink-0 w-6">{item.step}</span>
-                      <span className="text-sm text-white/70">{item.text}</span>
+                      <span className="text-[10px] font-black tracking-widest text-gold-400/40 shrink-0 w-6">{item.step}</span>
+                      <span className="text-sm text-foreground/60">{item.text}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Grid: top stats cards */}
               <div className="grid gap-3 sm:gap-4 sm:grid-cols-2">
                 {[
                   {
-                    icon: <Trophy size={18} className="text-amber-500" />,
-                    bg: "bg-amber-50",
+                    icon: <Trophy size={18} className="text-gold-400" />,
+                    bg: "bg-gold-400/10",
                     title: "Top Vielflieger",
                     value: milesBoard[0]?.user_name ?? "—",
                     sub: milesBoard[0] ? `${milesBoard[0].total_miles.toLocaleString("de-DE")} Meilen` : "Noch kein Ranking",
                   },
                   {
-                    icon: <Globe size={18} className="text-emerald-600" />,
-                    bg: "bg-emerald-50",
+                    icon: <Globe size={18} className="text-mm-success" />,
+                    bg: "bg-mm-success/10",
                     title: "Weltenbummler",
                     value: countryBoard[0]?.user_name ?? "—",
                     sub: countryBoard[0] ? `${countryBoard[0].countries_count} Länder erkundet` : "Noch kein Ranking",
                   },
                   {
-                    icon: <Sparkles size={18} className="text-sas-blue" />,
-                    bg: "bg-sas-blue/6",
+                    icon: <Sparkles size={18} className="text-aviation-blue" />,
+                    bg: "bg-aviation-blue/10",
                     title: "Gesamt-Meilen",
                     value: totalMiles >= 1_000_000
                       ? `${(totalMiles / 1_000_000).toFixed(1)}M`
@@ -321,24 +315,24 @@ export default function LeaderboardPageClient({
                     sub: "über alle Passagiere",
                   },
                   {
-                    icon: <Star size={18} className="text-mm-purple-500" />,
-                    bg: "bg-mm-purple-50",
+                    icon: <Star size={18} className="text-gold-400" />,
+                    bg: "bg-gold-400/10",
                     title: "Rekord-Länder",
                     value: topCountries > 0 ? String(topCountries) : "—",
                     sub: "in einer Saison",
                   },
                 ].map((card) => (
-                  <div key={card.title} className="control-panel rounded-[1.6rem] p-5 sm:p-6">
+                  <div key={card.title} className="surface-glass rounded-[1.6rem] p-5 sm:p-6">
                     <span className={`inline-flex rounded-full p-2.5 ${card.bg}`}>{card.icon}</span>
-                    <p className="mt-3 text-[11px] font-semibold uppercase tracking-wider text-sas-gray-400">{card.title}</p>
-                    <p className="mt-1 text-xl sm:text-2xl font-black tracking-tight text-sas-midnight truncate">{card.value}</p>
-                    <p className="mt-1 text-xs text-sas-gray-400">{card.sub}</p>
+                    <p className="mt-3 text-[11px] font-semibold uppercase tracking-wider text-foreground/30">{card.title}</p>
+                    <p className="mt-1 text-xl sm:text-2xl font-extrabold tracking-tight truncate">{card.value}</p>
+                    <p className="mt-1 text-xs text-foreground/30">{card.sub}</p>
                   </div>
                 ))}
               </div>
             </MotionSection>
 
-            {/* ── Commands strip ── */}
+            {/* Commands strip */}
             <MotionSection delay={0.12}>
               <GlowDivider className="mb-6 sm:mb-8" />
               <div className="grid gap-3 sm:gap-4 sm:grid-cols-3 pb-6">
@@ -347,33 +341,33 @@ export default function LeaderboardPageClient({
                     icon: <Plane size={16} />,
                     cmd: "&joinflight",
                     desc: "Aktuellen Flug beitreten und Meilen sammeln.",
-                    color: "text-sas-blue",
-                    bg: "bg-sas-blue/8",
+                    color: "text-aviation-blue",
+                    bg: "bg-aviation-blue/10",
                   },
                   {
                     icon: <MapPin size={16} />,
                     cmd: "&miles",
                     desc: "Eigene Meilen, Flüge und Länder auf einen Blick.",
-                    color: "text-sas-gold",
-                    bg: "bg-sas-gold/8",
+                    color: "text-gold-400",
+                    bg: "bg-gold-400/10",
                   },
                   {
                     icon: <Trophy size={16} />,
                     cmd: "&topmiles",
                     desc: "Leaderboard der fleißigsten Vielflieger im Stream.",
-                    color: "text-sas-green",
-                    bg: "bg-sas-green/8",
+                    color: "text-mm-success",
+                    bg: "bg-mm-success/10",
                   },
                 ].map((item) => (
-                  <div key={item.cmd} className="control-panel rounded-[1.6rem] p-5 sm:p-6 flex flex-col gap-3">
+                  <div key={item.cmd} className="surface-glass rounded-[1.6rem] p-5 sm:p-6 flex flex-col gap-3">
                     <span className={`inline-flex rounded-full p-2.5 ${item.bg} ${item.color}`}>{item.icon}</span>
                     <div>
-                      <code className="block text-base sm:text-lg font-black text-sas-midnight">{item.cmd}</code>
-                      <p className="mt-1.5 text-sm leading-6 text-sas-gray-500">{item.desc}</p>
+                      <code className="block text-base sm:text-lg font-extrabold">{item.cmd}</code>
+                      <p className="mt-1.5 text-sm leading-6 text-foreground/40">{item.desc}</p>
                     </div>
                     <a
                       href="/commands"
-                      className="mt-auto inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wider text-sas-blue hover:text-sas-midnight transition-colors"
+                      className="mt-auto inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wider text-gold-400/60 hover:text-gold-400 transition-colors"
                     >
                       Alle Commands <ChevronRight size={12} />
                     </a>
@@ -390,6 +384,6 @@ export default function LeaderboardPageClient({
 
 function EmptyState({ message }: { message: string }) {
   return (
-    <div className="px-5 py-14 text-center text-sas-gray-400 text-sm">{message}</div>
+    <div className="px-5 py-14 text-center text-foreground/30 text-sm">{message}</div>
   );
 }

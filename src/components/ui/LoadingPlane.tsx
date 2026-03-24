@@ -4,17 +4,17 @@ import { motion } from "framer-motion";
 
 export default function LoadingPlane({ text = "Loading..." }: { text?: string }) {
   return (
-    <div className="night-panel mx-auto flex max-w-md flex-col items-center justify-center gap-8 rounded-[2rem] px-8 py-12 text-white">
+    <div className="night-panel mx-auto flex max-w-md flex-col items-center justify-center gap-8 rounded-[2rem] px-8 py-12">
       <div className="pointer-events-none absolute inset-0 opacity-70">
-        <div className="absolute left-[-15%] top-[-10%] h-40 w-40 rounded-full bg-sas-blue/20 blur-3xl" />
-        <div className="absolute bottom-[-20%] right-[-5%] h-40 w-40 rounded-full bg-sas-gold/18 blur-3xl" />
+        <div className="absolute left-[-15%] top-[-10%] h-40 w-40 rounded-full bg-aviation-blue/15 blur-3xl" />
+        <div className="absolute bottom-[-20%] right-[-5%] h-40 w-40 rounded-full bg-gold-400/12 blur-3xl" />
       </div>
 
       <div className="relative w-64 h-24">
         <svg viewBox="0 0 260 80" className="w-full h-full" fill="none">
           <motion.path
             d="M 10 60 Q 65 10, 130 40 Q 195 70, 250 20"
-            stroke="rgba(123,164,255,0.2)"
+            stroke="rgba(74,144,217,0.2)"
             strokeWidth="2"
             strokeDasharray="6 4"
             initial={{ pathLength: 0 }}
@@ -23,7 +23,7 @@ export default function LoadingPlane({ text = "Loading..." }: { text?: string })
           />
           <motion.path
             d="M 10 60 Q 65 10, 130 40 Q 195 70, 250 20"
-            stroke="rgba(123,164,255,0.76)"
+            stroke="rgba(200,169,110,0.6)"
             strokeWidth="2"
             strokeDasharray="6 4"
             initial={{ pathLength: 0 }}
@@ -53,35 +53,35 @@ export default function LoadingPlane({ text = "Loading..." }: { text?: string })
         </motion.div>
 
         <motion.div
-          className="absolute left-1 bottom-3 w-2.5 h-2.5 rounded-full bg-sas-blue"
+          className="absolute left-1 bottom-3 w-2.5 h-2.5 rounded-full bg-aviation-blue"
           animate={{ scale: [1, 1.3, 1] }}
           transition={{ duration: 2, repeat: Infinity }}
         />
         <motion.div
-          className="absolute right-1 top-3 w-2.5 h-2.5 rounded-full bg-sas-gold"
+          className="absolute right-1 top-3 w-2.5 h-2.5 rounded-full bg-gold-400"
           animate={{ scale: [1, 1.3, 1] }}
           transition={{ duration: 2, repeat: Infinity, delay: 1 }}
         />
       </div>
 
       <div className="flex flex-col items-center gap-2">
-        <span className="eyebrow !text-white/60">FlightOps Runtime</span>
+        <span className="eyebrow">FlightOps Runtime</span>
         <div className="flex items-center gap-1">
-          <span className="text-sm font-medium tracking-widest uppercase text-white/82">
+          <span className="text-sm font-medium tracking-widest uppercase text-foreground/70">
             {text}
           </span>
           <span className="flex gap-0.5">
             {[0, 1, 2].map((i) => (
               <motion.span
                 key={i}
-                className="w-1 h-1 rounded-full bg-sas-blue-light"
+                className="w-1 h-1 rounded-full bg-gold-400"
                 animate={{ opacity: [0.2, 1, 0.2], y: [0, -4, 0] }}
                 transition={{ duration: 1, repeat: Infinity, delay: i * 0.2 }}
               />
             ))}
           </span>
         </div>
-        <p className="text-center text-sm text-white/45">Initialisiere Dashboard, Flight State und Livemetriken.</p>
+        <p className="text-center text-sm text-foreground/35">Initialisiere Dashboard, Flight State und Livemetriken.</p>
       </div>
     </div>
   );
