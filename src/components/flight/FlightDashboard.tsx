@@ -20,6 +20,7 @@ interface FlightDashboardProps {
   initialFlight: Flight | null;
   initialParticipant: Participant | null;
   initialParticipants: Participant[];
+  isDemo?: boolean;
 }
 
 export default function FlightDashboard({
@@ -27,6 +28,7 @@ export default function FlightDashboard({
   initialFlight,
   initialParticipant,
   initialParticipants,
+  isDemo,
 }: FlightDashboardProps) {
   const [error, setError] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<Tab>("pass");
@@ -50,7 +52,7 @@ export default function FlightDashboard({
   }, [activeTab]);
 
   useEffect(() => {
-    if (!flight?.id) return;
+    if (!flight?.id || isDemo) return;
     const refresh = async () => {
       try {
         const [participantData, participantList] = await Promise.all([
@@ -89,7 +91,7 @@ export default function FlightDashboard({
     };
     const interval = setInterval(refresh, 5000);
     return () => clearInterval(interval);
-  }, [flight?.id, hash]);
+  }, [flight?.id, hash, isDemo]);
 
   const handleSeatChange = async (newSeat: string) => {
     if (!currentParticipant) return;
@@ -100,7 +102,9 @@ export default function FlightDashboard({
           participant.user_id === currentParticipant.user_id ? { ...participant, seat: newSeat } : participant,
         ),
       );
-      await changeSeat(currentParticipant.participant_hash, newSeat);
+      if (!isDemo) {
+        await changeSeat(currentParticipant.participant_hash, newSeat);
+      }
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : "Sitzwechsel fehlgeschlagen");
       try {
@@ -275,7 +279,7 @@ export default function FlightDashboard({
                   />
                 )}
                 {activeTab === "map" && <FlightTracker flight={flight} position={position} />}
-                {activeTab === "stats" && <CountryLeaderboard userId={currentParticipant.user_id} />}
+                {activeTab === "stats" && <CountryLeaderboard userId={currentParticipant.user_id} isDemo={isDemo} />}
               </motion.div>
             </AnimatePresence>
           </div>

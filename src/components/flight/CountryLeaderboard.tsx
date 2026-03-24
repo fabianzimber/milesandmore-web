@@ -7,7 +7,7 @@ import { getUserStats, getCountryLeaderboard } from "@/lib/botApi";
 import type { UserCountry } from "@/lib/types";
 import { Globe, Trophy, Plane, MapPin } from "lucide-react";
 
-export default function CountryLeaderboard({ userId }: { userId: string }) {
+export default function CountryLeaderboard({ userId, isDemo }: { userId: string; isDemo?: boolean }) {
   const [userStats, setUserStats] = useState<{
     miles: { total_miles: number; total_flights: number };
     countries: UserCountry[];
@@ -18,6 +18,25 @@ export default function CountryLeaderboard({ userId }: { userId: string }) {
   const [fetchError, setFetchError] = useState<string | null>(null);
 
   useEffect(() => {
+    if (isDemo) {
+      setUserStats({
+        miles: { total_miles: 84500, total_flights: 42 },
+        countries: [
+          { country_code: "DE", country_name: "Deutschland", unlocked_at: "" },
+          { country_code: "US", country_name: "USA", unlocked_at: "" },
+          { country_code: "JP", country_name: "Japan", unlocked_at: "" },
+          { country_code: "GB", country_name: "Großbritannien", unlocked_at: "" },
+        ]
+      });
+      setLeaderboard([
+        { user_name: "ShiftbloomFan", total_miles: 125000, countries_count: 15 },
+        { user_name: "DemoPassenger", total_miles: 84500, countries_count: 4 },
+        { user_name: "FrequentFlyer", total_miles: 52000, countries_count: 8 },
+        { user_name: "TwitchLurker", total_miles: 34000, countries_count: 3 },
+      ]);
+      return;
+    }
+
     (async () => {
       try {
         const [stats, board] = await Promise.all([getUserStats(userId), getCountryLeaderboard()]);
@@ -28,7 +47,7 @@ export default function CountryLeaderboard({ userId }: { userId: string }) {
         setFetchError(err instanceof Error ? err.message : "Statistiken konnten nicht geladen werden");
       }
     })();
-  }, [userId]);
+  }, [userId, isDemo]);
 
   return (
     <div className="space-y-6">
