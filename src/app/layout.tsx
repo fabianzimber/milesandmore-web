@@ -85,7 +85,7 @@ export default function RootLayout({
     <html lang="de" className={`h-full antialiased ${inter.variable} ${barcode.variable} ${playfair.variable}`}>
       <body className="min-h-full flex flex-col font-sans bg-background text-foreground">
         <SessionProvider>
-          <SmoothScrollProvider>{children}</SmoothScrollProvider>
+{children}
         </SessionProvider>
       </body>
     </html>
