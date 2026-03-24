@@ -55,9 +55,10 @@ export default function BotCredentialsPanel({ initialSettings }: BotCredentialsP
             </div>
 
             <p className="text-sm leading-6 text-sas-gray-500">
-              Die Twitch Dev Console App liefert `TWITCH_APP_CLIENT_ID` und `TWITCH_APP_CLIENT_SECRET`. Der Miles & More
-              Twitch-Account liefert `TWITCH_BOT_CLIENT_ID`, `TWITCH_BOT_ACCESS_TOKEN` und `TWITCH_BOT_REFRESH_TOKEN`.
-              Fuer eigene Kanaele muss der Bot anschliessend einmal Moderator sein.
+              Die Twitch Developer Console liefert `TWITCH_APP_CLIENT_ID` und `TWITCH_APP_CLIENT_SECRET`. Der Miles &amp;
+              More Twitch-Account liefert `TWITCH_BOT_ACCESS_TOKEN` und `TWITCH_BOT_REFRESH_TOKEN`. Es gibt nur eine
+              Twitch-Anwendung — der Bot ist ein Twitch-Account, keine separate App. Fuer eigene Kanaele muss der Bot
+              anschliessend einmal Moderator sein.
             </p>
 
             <div className="flex flex-wrap gap-3">
@@ -109,12 +110,6 @@ export default function BotCredentialsPanel({ initialSettings }: BotCredentialsP
               <span className="text-sas-gray-500">App Client ID</span>
               <span className="max-w-[220px] truncate font-medium text-sas-gray-900">
                 {settings.appClientId || "Nicht gesetzt"}
-              </span>
-            </div>
-            <div className="flex items-center justify-between gap-4">
-              <span className="text-sas-gray-500">Bot Client ID</span>
-              <span className="max-w-[220px] truncate font-medium text-sas-gray-900">
-                {settings.botClientId || "Nicht gesetzt"}
               </span>
             </div>
             <div className="flex items-center justify-between gap-4">
