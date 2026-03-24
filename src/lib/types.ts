@@ -188,7 +188,6 @@ export interface BotStatus {
 
 export interface BotRuntimeSettings {
   appClientId: string;
-  botClientId: string;
   tokenPreview: string;
   source: "env" | "redis";
   botUserId?: string;
