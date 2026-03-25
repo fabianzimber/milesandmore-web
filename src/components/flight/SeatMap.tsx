@@ -67,7 +67,7 @@ export default function SeatMap({ flight, participants, currentUser, onSeatChang
       <SASCard variant="glass" className="overflow-hidden">
         <div className="text-center mb-5">
           <h3 className="text-lg font-bold text-sas-midnight">{flight.aircraft_name || "Aircraft"}</h3>
-          <p className="text-xs text-sas-gray-400 mt-1">Tippe zweimal auf einen freien Sitz zum Umbuchen.</p>
+          <p className="text-xs text-sas-gray-400 mt-1">Tippe zweimal auf einen freien Sitz, um ihn zu wählen oder umzubuchen.</p>
         </div>
 
         <div className="mb-6 flex flex-wrap justify-center gap-3 text-xs">
