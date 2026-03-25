@@ -77,7 +77,12 @@ export default function SeatMap({ flight, participants, currentUser, onSeatChang
           <LegendItem className="bg-gradient-to-b from-sas-cyan/60 to-sas-cyan/80 glow-cyan" label="Ausgewählt" />
         </div>
 
-        <div className="relative mx-auto max-w-3xl overflow-x-auto pb-4">
+        <div
+          className={cn(
+            "relative mx-auto max-w-3xl overflow-x-auto pb-4",
+            saving && "pointer-events-none opacity-60"
+          )}
+        >
           <div className="relative mx-auto w-max px-8 sm:px-12 pt-4">
             
             {/* Simple Implied Wings */}
