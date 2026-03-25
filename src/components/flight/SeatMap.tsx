@@ -3,10 +3,8 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import SASCard from "@/components/ui/SASCard";
-import SASButton from "@/components/ui/SASButton";
 import { parseSeatConfig, getSeatLetters, formatSeatId, cn } from "@/lib/utils";
 import type { Flight, Participant } from "@/lib/types";
-import { Check, UserRound } from "lucide-react";
 
 interface SeatMapProps {
   flight: Flight;
@@ -69,7 +67,7 @@ export default function SeatMap({ flight, participants, currentUser, onSeatChang
       <SASCard variant="glass" className="overflow-hidden">
         <div className="text-center mb-5">
           <h3 className="text-lg font-bold text-sas-midnight">{flight.aircraft_name || "Aircraft"}</h3>
-          <p className="text-xs text-sas-gray-400 mt-1">Tippe auf einen freien Sitz und bestätige die Umbuchung direkt oben.</p>
+          <p className="text-xs text-sas-gray-400 mt-1">Tippe zweimal auf einen freien Sitz zum Umbuchen.</p>
         </div>
 
         <div className="mb-6 flex flex-wrap justify-center gap-3 text-xs">
@@ -78,38 +76,6 @@ export default function SeatMap({ flight, participants, currentUser, onSeatChang
           <LegendItem className="bg-gradient-to-b from-sas-blue/15 to-sas-blue/25 border border-sas-blue/20" label="Frei" />
           <LegendItem className="bg-gradient-to-b from-sas-cyan/60 to-sas-cyan/80 glow-cyan" label="Ausgewählt" />
         </div>
-
-        <AnimatePresence>
-          {selectedSeat && (
-            <motion.div
-              initial={{ opacity: 0, y: -16 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              className="sticky top-2 z-20 mb-4 px-2"
-            >
-              <div className="night-panel mx-auto flex max-w-sm flex-col gap-4 rounded-[1.75rem] px-4 py-4 text-white sm:max-w-lg sm:flex-row sm:items-center sm:justify-between">
-                <div className="flex items-center gap-3">
-                  <span className="inline-flex rounded-full bg-white/10 p-2 text-sas-cyan">
-                    <UserRound size={16} />
-                  </span>
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.22em] text-white/42">Selected Seat</p>
-                    <p className="text-lg font-black">{selectedSeat}</p>
-                  </div>
-                </div>
-                <div className="flex gap-2">
-                  <SASButton variant="ghost" onClick={() => setSelectedSeat(null)} className="!text-white/70 hover:!bg-white/8">
-                    Verwerfen
-                  </SASButton>
-                  <SASButton variant="gold" onClick={confirmSeatChange} loading={saving}>
-                    <Check size={15} />
-                    Sitz übernehmen
-                  </SASButton>
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
 
         <div className="relative mx-auto max-w-3xl overflow-x-auto pb-4">
           <div className="relative mx-auto w-max px-8 sm:px-12 pt-4">
